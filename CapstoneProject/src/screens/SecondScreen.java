@@ -35,7 +35,7 @@ public class SecondScreen extends Screen {
 
 
 	public void spawnNewMario() {
-		mario = new Mario(surface.loadImage("img/mario.png"), DRAWING_WIDTH/2-Mario.MARIO_WIDTH/2,50);
+		mario = new Mario(surface.loadImage("img/mainchar.png"), DRAWING_WIDTH/2-Mario.MARIO_WIDTH/2,50);
 	}
 
 	// The statements in the setup() function 
