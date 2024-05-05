@@ -9,30 +9,30 @@ import processing.core.PImage;
  */
 public class Player extends Sprite {
 
-	/** Width of this Mario character
+	/** Width of this the Player character
 	 */
-	public static final int MARIO_WIDTH = 40;
-	/** Height of this Mario character
+	public static final int PLAYER_WIDTH = 40;
+	/** Height of this the Player character
 	 */
-	public static final int MARIO_HEIGHT = 60;
+	public static final int PLAYER_HEIGHT = 60;
 
 	private double xVel, yVel;
 
 	
-	/** Constructor for Mario
-	 * @param img image to use for Mario
-	 * @param x x-coordinate of Mario
-	 * @param y y-coordinate of Mario 
+	/** Constructor for the Player
+	 * @param img image to use for this Player
+	 * @param x x-coordinate of this Player
+	 * @param y y-coordinate of this Player 
 	 */
 	public Player(PImage img, int x, int y)
 	{
-		super(img, x, y, MARIO_WIDTH, MARIO_HEIGHT);
+		super(img, x, y, PLAYER_WIDTH, PLAYER_HEIGHT);
 		xVel = 0;
 		yVel = 0;
 	}
 	
 	
-	/** Makes mario walk left or right across the window
+	/** Makes the Player walk left or right across the window
 	 * @param dir -1 for left, 1 for right
 	 * 
 	 * Lead coder: Boon Chew
@@ -42,7 +42,7 @@ public class Player extends Sprite {
 		xVel += dir;
 	}
 
-	/** Makes Mario jump up
+	/** Makes the Player jump up
 	 * 
 	 * Lead coder: Nikunj Govil
 	 */
@@ -51,8 +51,8 @@ public class Player extends Sprite {
 		yVel = -10;
 	}
 
-	/** Makes mario do everything that he should do without any keys being pressed
-	 * @param obstacles Other sprites that Mario could collide with
+	/** Makes the Player do everything that he should do without any keys being pressed
+	 * @param obstacles Other sprites that the Player could collide with
 	 * 
 	 * Lead coder: Yashasvi Chitela
 	 */
