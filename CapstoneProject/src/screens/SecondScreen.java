@@ -37,9 +37,9 @@ public class SecondScreen extends Screen {
 	}
 	
 	
-	/** Spawns Mario into the game
+	/** Spawns new Player into the game
 	 */
-	public void spawnNewMario()
+	public void spawnNewPlayer()
 	{
 		player = new Player(surface.loadImage("resources/img/mainchar.png"), 
 				DRAWING_WIDTH / 2 - Player.PLAYER_WIDTH / 2, 50);
@@ -49,7 +49,7 @@ public class SecondScreen extends Screen {
 	 */
 	public void setup()
 	{
-		spawnNewMario();
+		spawnNewPlayer();
 	}
 	
 	/** Draws this SecondScreen and handles game controls
