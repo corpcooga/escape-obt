@@ -6,6 +6,7 @@ import processing.core.PImage;
 
 /**
  * @author Nikunj Govil, Boon Chew, Yashavi Chitela
+ * @version 5/5/2024
  */
 public class Sprite extends Rectangle2D.Double {
 	
@@ -13,11 +14,11 @@ public class Sprite extends Rectangle2D.Double {
 	
 	/**
 	 * Constructor for Sprite
-	 * @param img - image to use for Sprite
-	 * @param x - X coordinate of Sprite
-	 * @param y - Y coordinate of Sprite
-	 * @param w - Width of Sprite
-	 * @param h - Height of SPrite
+	 * @param img  image to use for Sprite
+	 * @param x X coordinate of Sprite
+	 * @param y Y coordinate of Sprite
+	 * @param w Width of Sprite
+	 * @param h Height of SPrite
 	 */
 	public Sprite(PImage img, int x, int y, int w, int h)
 	{
@@ -27,10 +28,10 @@ public class Sprite extends Rectangle2D.Double {
 	
 	/**
 	 * Constructor for Sprite without image
-	 * @param x - X coordinate of Sprite
-	 * @param y - Y coordinate of Sprite
-	 * @param w - Width of Sprite
-	 * @param h - Height of Sprite
+	 * @param x X coordinate of Sprite
+	 * @param y Y coordinate of Sprite
+	 * @param w Width of Sprite
+	 * @param h Height of Sprite
 	 */
 	public Sprite(int x, int y, int w, int h)
 	{
@@ -39,8 +40,8 @@ public class Sprite extends Rectangle2D.Double {
 	
 	/**
 	 * Moves Sprite to specified location
-	 * @param x - X coordinate of location
-	 * @param y - Y coordinate of location
+	 * @param x X coordinate of location
+	 * @param y Y coordinate of location
 	 */
 	public void moveToLocation(double x, double y)
 	{
@@ -50,8 +51,8 @@ public class Sprite extends Rectangle2D.Double {
 	
 	/**
 	 * Moves by specified amount
-	 * @param x - X coordinate amount to move
-	 * @param y - Y coordinate amount to move
+	 * @param x X coordinate amount to move
+	 * @param y Y coordinate amount to move
 	 */
 	public void moveByAmount(double x, double y)
 	{
@@ -60,8 +61,8 @@ public class Sprite extends Rectangle2D.Double {
 	}
 	/**
 	 * Sets screen size
-	 * @param windowWidth - Width of screen
-	 * @param windowHeight - Height of screen
+	 * @param windowWidth Width of screen
+	 * @param windowHeight Height of screen
 	 */
 	public void applyWindowLimits(int windowWidth, int windowHeight)
 	{
@@ -73,7 +74,7 @@ public class Sprite extends Rectangle2D.Double {
 	
 	/**
 	 * Draws Sprite
-	 * @param g - PApplet object to use
+	 * @param g PApplet object to use
 	 */
 	public void draw(PApplet g)
 	{
