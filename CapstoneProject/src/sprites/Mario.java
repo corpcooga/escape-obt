@@ -2,15 +2,30 @@ package sprites;
 
 import java.util.List;
 import processing.core.PImage;
-
+/**
+ * @author Nikunj Govil, Yashasvi Chitela, Boon Chew
+ * 
+ */
 public class Mario extends Sprite {
 
+	/**
+	 * Width of Mario character
+	 */
 	public static final int MARIO_WIDTH = 40;
+	
+	/**
+	 * Height of Mario character
+	 */
 	public static final int MARIO_HEIGHT = 60;
 
 	private double xVel, yVel;
 
-	
+	/**
+	 * Constructor for Mario
+	 * @param img - image to use for mario
+	 * @param x - X coordinate of Mario
+	 * @param y - Y coordinate of Mario 
+	 */
 	public Mario(PImage img, int x, int y)
 	{
 		super(img, x, y, MARIO_WIDTH, MARIO_HEIGHT);
