@@ -4,7 +4,7 @@ import java.util.List;
 import processing.core.PImage;
 /**
  * @author Nikunj Govil, Yashasvi Chitela, Boon Chew
- * 
+ * @version 5/5/2024
  */
 public class Mario extends Sprite {
 
@@ -22,9 +22,9 @@ public class Mario extends Sprite {
 
 	/**
 	 * Constructor for Mario
-	 * @param img - image to use for mario
-	 * @param x - X coordinate of Mario
-	 * @param y - Y coordinate of Mario 
+	 * @param img image to use for mario
+	 * @param x X coordinate of Mario
+	 * @param y Y coordinate of Mario 
 	 */
 	public Mario(PImage img, int x, int y)
 	{
