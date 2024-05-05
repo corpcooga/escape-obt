@@ -17,7 +17,7 @@ public class SecondScreen extends Screen {
 	private List<Sprite> obstacles;
 	
 	private DrawingSurface surface;
-	private Player mario;
+	private Player player;
 	
 	
 	/** Constructs a SecondScreen
@@ -41,7 +41,7 @@ public class SecondScreen extends Screen {
 	 */
 	public void spawnNewMario()
 	{
-		mario = new Player(surface.loadImage("resources/img/mainchar.png"), 
+		player = new Player(surface.loadImage("resources/img/mainchar.png"), 
 				DRAWING_WIDTH / 2 - Player.PLAYER_WIDTH / 2, 50);
 	}
 	
@@ -61,21 +61,21 @@ public class SecondScreen extends Screen {
 		for (Sprite s : obstacles)
 			s.draw(surface);
 
-		mario.draw(surface);
+		player.draw(surface);
 
 		if (surface.isPressed(KeyEvent.VK_ESCAPE)) {
 			surface.switchScreen(ScreenSwitcher.MENU_SCREEN);
 			return;
 		}
 		if (surface.isPressed(KeyEvent.VK_LEFT))
-			mario.walk(-1);
+			player.walk(-1);
 		if (surface.isPressed(KeyEvent.VK_RIGHT))
-			mario.walk(1);
+			player.walk(1);
 		if (surface.isPressed(KeyEvent.VK_UP))
-			mario.jump();
+			player.jump();
 
-		mario.act(obstacles);
-		mario.applyWindowLimits(DRAWING_WIDTH, DRAWING_HEIGHT);
+		player.act(obstacles);
+		player.applyWindowLimits(DRAWING_WIDTH, DRAWING_HEIGHT);
 	}
 
 }
