@@ -21,7 +21,7 @@ public class Sprite extends Rectangle2D.Double {
 	 */
 	public Sprite(PImage img, int x, int y, int w, int h)
 	{
-		super(x,y,w,h);
+		super(x, y, w, h);
 		image = img;
 	}
 	
@@ -62,10 +62,10 @@ public class Sprite extends Rectangle2D.Double {
 	 */
 	public void applyWindowLimits(int windowWidth, int windowHeight)
 	{
-		x = Math.min(x,windowWidth-width);
-		y = Math.min(y,windowHeight-height);
-		x = Math.max(0,x);
-		y = Math.max(0,y);
+		x = Math.min(x, windowWidth-width);
+		y = Math.min(y, windowHeight-height);
+		x = Math.max(0, x);
+		y = Math.max(0, y);
 	}
 	
 	/** Draws this Sprite
@@ -74,10 +74,10 @@ public class Sprite extends Rectangle2D.Double {
 	public void draw(PApplet g)
 	{
 		if (image != null)
-			g.image(image,(float)x,(float)y,(float)width,(float)height);
+			g.image(image, (float)x, (float)y, (float)width, (float)height);
 		else {
 			g.fill(100);
-			g.rect((float)x,(float)y,(float)width,(float)height);
+			g.rect((float)x, (float)y, (float)width, (float)height);
 		}
 	}
 
