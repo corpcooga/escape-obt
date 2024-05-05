@@ -1,8 +1,6 @@
 package sprites;
 
-
 import java.util.List;
-
 import processing.core.PImage;
 
 public class Mario extends Sprite {
@@ -12,13 +10,14 @@ public class Mario extends Sprite {
 
 	private double xVel, yVel;
 
-	public Mario(PImage img, int x, int y) {
+	
+	public Mario(PImage img, int x, int y)
+	{
 		super(img, x, y, MARIO_WIDTH, MARIO_HEIGHT);
 		xVel = 0;
 		yVel = 0;
 	}
-
-	// METHODS
+	
 	
 	/** 
 	 * Makes mario walk left or right across the window
@@ -36,8 +35,8 @@ public class Mario extends Sprite {
 	 * 
 	 * Lead coder: Nikunj Govil
 	 */
-	public void jump() {
-//		super.y-= 30;
+	public void jump()
+	{
 		yVel = -10;
 	}
 
@@ -46,10 +45,10 @@ public class Mario extends Sprite {
 	 * (such as fall to the ground)
 	 * @param obstacles Other sprites that mario could collide with
 	 * 
-	 * Lead coder:
+	 * Lead coder: Yashasvi Chitela
 	 */
-	public void act(List<Sprite> obstacles) {
-		
+	public void act(List<Sprite> obstacles)
+	{
 		y += yVel;
 		
 		for(Sprite s : obstacles) {
@@ -71,6 +70,5 @@ public class Mario extends Sprite {
 		yVel += 0.5;
 		xVel *= 0.9;
 	}
-
 
 }

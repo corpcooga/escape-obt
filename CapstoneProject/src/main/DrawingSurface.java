@@ -37,7 +37,7 @@ public class DrawingSurface extends PApplet implements ScreenSwitcher {
 	
 	public void settings()
 	{
-		setSize(800,600);
+		setSize(800, 600);
 	}
 	
 	public void setup()
@@ -48,8 +48,8 @@ public class DrawingSurface extends PApplet implements ScreenSwitcher {
 	
 	public void draw()
 	{
-		ratioX = (float)width/activeScreen.DRAWING_WIDTH;
-		ratioY = (float)height/activeScreen.DRAWING_HEIGHT;
+		ratioX = (float)width / activeScreen.DRAWING_WIDTH;
+		ratioY = (float)height / activeScreen.DRAWING_HEIGHT;
 
 		push();
 		scale(ratioX, ratioY);
@@ -61,7 +61,7 @@ public class DrawingSurface extends PApplet implements ScreenSwitcher {
 	{
 		if (!keys.contains(keyCode))
 			keys.add(keyCode);
-		if (key == ESC)  // prevents the program from closing on escape key
+		if (key == ESC) // prevents the program from closing on escape key
 			key = 0;
 	}
 

@@ -7,15 +7,8 @@ import processing.core.PImage;
 
 public class Sprite extends Rectangle2D.Double {
 	
-	// FIELDS
 	private PImage image;
 	
-	// CONSTRUCTORS
-	
-	public Sprite(int x, int y, int w, int h)
-	{
-		this(null, x, y, w, h);
-	}
 	
 	public Sprite(PImage img, int x, int y, int w, int h)
 	{
@@ -23,8 +16,12 @@ public class Sprite extends Rectangle2D.Double {
 		image = img;
 	}
 	
+	public Sprite(int x, int y, int w, int h)
+	{
+		this(null, x, y, w, h);
+	}
 	
-	// METHODS	
+	
 	public void moveToLocation(double x, double y)
 	{
 		super.x = x;
@@ -44,7 +41,6 @@ public class Sprite extends Rectangle2D.Double {
 		x = Math.max(0,x);
 		y = Math.max(0,y);
 	}
-	
 	
 	public void draw(PApplet g)
 	{

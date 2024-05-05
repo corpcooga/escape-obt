@@ -1,7 +1,6 @@
 package screens;
 
 import java.awt.Rectangle;
-import java.awt.Shape;
 import java.awt.event.*;
 import java.util.ArrayList;
 import java.util.List;
@@ -55,7 +54,6 @@ public class SecondScreen extends Screen {
 			s.draw(surface);
 
 		mario.draw(surface);
-		
 
 		if (surface.isPressed(KeyEvent.VK_ESCAPE)) {
 			surface.switchScreen(ScreenSwitcher.MENU_SCREEN);
