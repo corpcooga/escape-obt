@@ -7,7 +7,7 @@ import processing.core.PImage;
  * @author Boon Chew, Nikunj Govil, Yashasvi Chitela
  * @version 5/5/24
  */
-public class Mario extends Sprite {
+public class Player extends Sprite {
 
 	/** Width of this Mario character
 	 */
@@ -24,7 +24,7 @@ public class Mario extends Sprite {
 	 * @param x x-coordinate of Mario
 	 * @param y y-coordinate of Mario 
 	 */
-	public Mario(PImage img, int x, int y)
+	public Player(PImage img, int x, int y)
 	{
 		super(img, x, y, MARIO_WIDTH, MARIO_HEIGHT);
 		xVel = 0;
