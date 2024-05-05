@@ -9,6 +9,14 @@ import processing.core.PImage;
  */
 public class KeyFragment extends Sprite{
 
+	/**
+	 *  Object of KeyFragment needed to escape Ohio
+	 * @param img image of KeyFragment
+	 * @param x X coordinate of KeyFragment
+	 * @param y Y coordinate of KeyFragment
+	 * @param w Width of KeyFragment
+	 * @param h Height of KeyFragment
+	 */
 	public KeyFragment(PImage img, int x, int y, int w, int h) {
 		super(img, x, y, w, h);
 		// TODO Auto-generated constructor stub
