@@ -5,7 +5,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import main.DrawingSurface;
-import sprites.Mario;
+import sprites.Player;
 import sprites.Sprite;
 
 /** This class represents the game screen
@@ -17,7 +17,7 @@ public class SecondScreen extends Screen {
 	private List<Sprite> obstacles;
 	
 	private DrawingSurface surface;
-	private Mario mario;
+	private Player mario;
 	
 	
 	/** Constructs a SecondScreen
@@ -41,8 +41,8 @@ public class SecondScreen extends Screen {
 	 */
 	public void spawnNewMario()
 	{
-		mario = new Mario(surface.loadImage("resources/img/mainchar.png"), 
-				DRAWING_WIDTH / 2 - Mario.MARIO_WIDTH / 2, 50);
+		mario = new Player(surface.loadImage("resources/img/mainchar.png"), 
+				DRAWING_WIDTH / 2 - Player.MARIO_WIDTH / 2, 50);
 	}
 	
 	/** Sets up this SecondScreen
