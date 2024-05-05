@@ -6,7 +6,7 @@ import processing.core.PImage;
  * @author Nikunj Govil, Boon Chew, Yashasvi Chitela
  * @version 5/5/2024
  */
-public class KeyFragment extends Sprite{
+public class KeyFragment extends Sprite {
 
 	/** Constructs a KeyFragment
 	 * @param img image to use for this KeyFragment
