@@ -1,6 +1,5 @@
 package screens;
 
-import java.awt.Rectangle;
 import java.awt.event.*;
 import java.util.ArrayList;
 import java.util.List;
@@ -9,43 +8,52 @@ import main.DrawingSurface;
 import sprites.Mario;
 import sprites.Sprite;
 
-
+/** This class represents the game screen
+ * @author Boon Chew, Nikunj Govil, Yashasvi Chitela
+ * @version 5/5/24
+ */
 public class SecondScreen extends Screen {
 	
 	private List<Sprite> obstacles;
 	
 	private DrawingSurface surface;
-	private Rectangle screenRect;
 	private Mario mario;
 	
-
+	
+	/** Constructs a SecondScreen
+	 * @param surface The DrawingSurface this SecondScreen uses
+	 */
 	public SecondScreen(DrawingSurface surface)
 	{
-		super(800,600);
+		super(800, 600);
 		this.surface = surface;
 		
-		screenRect = new Rectangle(0,0,DRAWING_WIDTH,DRAWING_HEIGHT);
-		
 		obstacles = new ArrayList<Sprite>();
-		obstacles.add(new Sprite(0,250,100,50));
-		obstacles.add(new Sprite(700,250,100,50));
-		obstacles.add(new Sprite(200,400,400,50));
-		obstacles.add(new Sprite(375,300,50,100));
-		obstacles.add(new Sprite(300,250,200,50));
+		obstacles.add(new Sprite(0, 250, 100, 50));
+		obstacles.add(new Sprite(700, 250, 100, 50));
+		obstacles.add(new Sprite(200, 400, 400, 50));
+		obstacles.add(new Sprite(375, 300, 50, 100));
+		obstacles.add(new Sprite(300, 250, 200, 50));
 	}
 	
-
+	
+	/** Spawns Mario into the game
+	 */
 	public void spawnNewMario()
 	{
 		mario = new Mario(surface.loadImage("resources/img/mainchar.png"), 
 				DRAWING_WIDTH / 2 - Mario.MARIO_WIDTH / 2, 50);
 	}
 	
+	/** Sets up this SecondScreen
+	 */
 	public void setup()
 	{
 		spawnNewMario();
 	}
 	
+	/** Draws this SecondScreen and handles game controls
+	 */
 	public void draw()
 	{
 		surface.background(0, 255, 255);   
@@ -67,9 +75,7 @@ public class SecondScreen extends Screen {
 			mario.jump();
 
 		mario.act(obstacles);
-
-		if (!screenRect.intersects(mario))
-			spawnNewMario();
+		mario.applyWindowLimits(DRAWING_WIDTH, DRAWING_HEIGHT);
 	}
 
 }
