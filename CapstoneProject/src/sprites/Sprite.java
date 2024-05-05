@@ -12,6 +12,7 @@ public class Sprite extends Rectangle2D.Double {
 	
 	private PImage image;
 	
+	
 	/** Constructs a Sprite
 	 * @param img image to use for Sprite
 	 * @param x x-coordinate of Sprite
@@ -24,6 +25,7 @@ public class Sprite extends Rectangle2D.Double {
 		super(x, y, w, h);
 		image = img;
 	}
+	
 	
 	/** Constructs a Sprite without an image
 	 * @param x x-coordinate of Sprite
