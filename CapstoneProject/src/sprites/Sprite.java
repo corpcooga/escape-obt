@@ -4,7 +4,7 @@ import java.awt.geom.Rectangle2D;
 import processing.core.PApplet;
 import processing.core.PImage;
 
-/**
+/** This class represents a sprite in the game
  * @author Nikunj Govil, Boon Chew, Yashavi Chitela
  * @version 5/5/2024
  */
@@ -12,13 +12,12 @@ public class Sprite extends Rectangle2D.Double {
 	
 	private PImage image;
 	
-	/**
-	 * Constructor for Sprite
-	 * @param img  image to use for Sprite
-	 * @param x X coordinate of Sprite
-	 * @param y Y coordinate of Sprite
-	 * @param w Width of Sprite
-	 * @param h Height of SPrite
+	/** Constructs a Sprite
+	 * @param img image to use for Sprite
+	 * @param x x-coordinate of Sprite
+	 * @param y y-coordinate of Sprite
+	 * @param w width of Sprite
+	 * @param h height of SPrite
 	 */
 	public Sprite(PImage img, int x, int y, int w, int h)
 	{
@@ -26,22 +25,20 @@ public class Sprite extends Rectangle2D.Double {
 		image = img;
 	}
 	
-	/**
-	 * Constructor for Sprite without image
-	 * @param x X coordinate of Sprite
-	 * @param y Y coordinate of Sprite
-	 * @param w Width of Sprite
-	 * @param h Height of Sprite
+	/** Constructs a Sprite without an image
+	 * @param x x-coordinate of Sprite
+	 * @param y y-coordinate of Sprite
+	 * @param w width of Sprite
+	 * @param h weight of Sprite
 	 */
 	public Sprite(int x, int y, int w, int h)
 	{
 		this(null, x, y, w, h);
 	}
 	
-	/**
-	 * Moves Sprite to specified location
-	 * @param x X coordinate of location
-	 * @param y Y coordinate of location
+	/** Moves this Sprite to specified location
+	 * @param x x-coordinate of location
+	 * @param y y-coordinate of location
 	 */
 	public void moveToLocation(double x, double y)
 	{
@@ -49,20 +46,19 @@ public class Sprite extends Rectangle2D.Double {
 		super.y = y;
 	}
 	
-	/**
-	 * Moves by specified amount
-	 * @param x X coordinate amount to move
-	 * @param y Y coordinate amount to move
+	/** Moves this Sprite by specified amount
+	 * @param x amount to move along the x-axis
+	 * @param y amount to move along the y-axis
 	 */
 	public void moveByAmount(double x, double y)
 	{
 		super.x += x;
 		super.y += y;
 	}
-	/**
-	 * Sets screen size
-	 * @param windowWidth Width of screen
-	 * @param windowHeight Height of screen
+	
+	/** Keeps this Sprite in the screen
+	 * @param windowWidth width of screen
+	 * @param windowHeight height of screen
 	 */
 	public void applyWindowLimits(int windowWidth, int windowHeight)
 	{
@@ -72,9 +68,8 @@ public class Sprite extends Rectangle2D.Double {
 		y = Math.max(0,y);
 	}
 	
-	/**
-	 * Draws Sprite
-	 * @param g PApplet object to use
+	/** Draws this Sprite
+	 * @param g PApplet used to draw
 	 */
 	public void draw(PApplet g)
 	{
