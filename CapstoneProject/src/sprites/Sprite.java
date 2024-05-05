@@ -47,8 +47,8 @@ public class Sprite extends Rectangle2D.Double {
 	}
 	
 	/** Moves this Sprite by specified amount
-	 * @param x amount to move along the x-axis
-	 * @param y amount to move along the y-axis
+	 * @param x The amount to move along the x-axis
+	 * @param y The amount to move along the y-axis
 	 */
 	public void moveByAmount(double x, double y)
 	{

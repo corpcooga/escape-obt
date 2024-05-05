@@ -2,25 +2,32 @@ package screens;
 
 import java.awt.Point;
 import java.awt.Rectangle;
-
 import main.DrawingSurface;
 
-
+/** This class represents the menu screen
+ * @author Boon Chew, Nikunj Govil, Yashasvi Chitela
+ * @version 5/5/24
+ */
 public class FirstScreen extends Screen {
 
 	private DrawingSurface surface;
 	private Rectangle button;
 	
-
+	
+	/** Constructs a FirstScreen
+	 * @param surface The DrawingSurface this FirstScreen uses
+	 */
 	public FirstScreen(DrawingSurface surface)
 	{
-		super(800,600);
+		super(800, 600);
 		this.surface = surface;
-
+		
 		button = new Rectangle(800 / 2 - 100, 600 / 2 - 50, 200, 100);
 	}
 	
-
+	
+	/** Draws this FirstScreen
+	 */
 	public void draw()
 	{
 		surface.background(255, 255, 255);
@@ -32,6 +39,8 @@ public class FirstScreen extends Screen {
 		surface.text(str, button.x + button.width / 2 - w / 2, button.y + button.height / 2);
 	}
 	
+	/** Executes a mouse press in this FirstScreen
+	 */
 	public void mousePressed()
 	{
 		Point p = surface.actualCoordinatesToAssumed(new Point(surface.mouseX,surface.mouseY));
