@@ -21,8 +21,8 @@ public class Mario extends Sprite {
 	
 	/** Constructor for Mario
 	 * @param img image to use for Mario
-	 * @param x X coordinate of Mario
-	 * @param y Y coordinate of Mario 
+	 * @param x x-coordinate of Mario
+	 * @param y y-coordinate of Mario 
 	 */
 	public Mario(PImage img, int x, int y)
 	{
@@ -52,7 +52,7 @@ public class Mario extends Sprite {
 	}
 
 	/** Makes mario do everything that he should do without any keys being pressed
-	 * @param obstacles Other sprites that mario could collide with
+	 * @param obstacles Other sprites that Mario could collide with
 	 * 
 	 * Lead coder: Yashasvi Chitela
 	 */
