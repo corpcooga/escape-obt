@@ -141,6 +141,7 @@ public class DrawingSurface extends PApplet implements ScreenSwitcher {
 
 	@Override
 	/** Changes the current screen
+	 * @param i The screen to switch to
 	 */
 	public void switchScreen(int i)
 	{
