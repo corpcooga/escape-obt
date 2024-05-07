@@ -77,7 +77,9 @@ public class SecondScreen extends Screen {
 		if (surface.isPressed(KeyEvent.VK_D))
 			player.walk(1);
 		if (surface.isPressed(KeyEvent.VK_W))
-			player.jump();
+			player.walkUp();
+		if (surface.isPressed(KeyEvent.VK_S))
+			player.walkDown();
 
 //		player.act(obstacles);
 		player.applyWindowLimits(DRAWING_WIDTH, DRAWING_HEIGHT);
