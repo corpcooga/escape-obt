@@ -13,7 +13,7 @@ import processing.core.PApplet;
  * @author Boon Chew, Nikunj Govil, Yashasvi Chitela
  * @version 5/7/24
  */
-public abstract class GridTemplate {
+public class Maze {
 	
 	/** The grid array
 	 */
@@ -22,7 +22,7 @@ public abstract class GridTemplate {
 	
 	/** Construct an empty 2D array with some default dimensions
 	 */
-	public GridTemplate()
+	public Maze()
 	{
 		grid = new char[20][20];
 	}
@@ -30,31 +30,30 @@ public abstract class GridTemplate {
 	
 	/** Construct an empty 2D array with dimensions width and height, then fill it with data from
 	 * the file filename
-	 * @param width The width of the grid.
-	 * @param height The height of the grid.
-	 * @param filename The text file to read from.
+	 * @param width The width of the grid
+	 * @param height The height of the grid
+	 * @param filename The text file to read from
 	 */
-	public GridTemplate(int width, int height, String filename)
+	public Maze(int width, int height, String filename)
 	{
 		grid = new char[width][height];
 		readData(filename, grid);
 	}
 	
-	/**	Prints out a formatted version of this GridTemplate
+	/**	Prints out a formatted version of this Maze
 	 */
 	public String toString()
 	{
 		StringBuffer out = new StringBuffer("");
-		for (int i = 0; i < grid.length; i++) {
-			out.append((i + 1) + "\t");
-			for (int j = 0; j < grid[i].length; j++)
-				out.append("*");
+		for (char[] row : grid) {
+			for (char c : row)
+				out.append(c);
 			out.append("\n");
 		}
 		return out.toString();
 	}
 	
-	/** Draws this GridTemplate
+	/** Draws this Maze
 	 * @param marker The PApplet used for drawing
 	 * @param x The x-coordinate of the upper left corner of the grid drawing
 	 * @param y The y-coordinate of the upper left corner of the grid drawing
@@ -108,13 +107,8 @@ public abstract class GridTemplate {
 	 */
 	public Point clickToIndex(Point p, float x, float y, float width, float height)
 	{
-		float rw = width / grid.length;
-		float rh = height / grid[0].length;
-		float distx = p.x - x;
-		float disty = p.y - y;
-		float xpos = distx / rw;
-		float ypos = disty / rh;
-		return new Point((int)ypos, (int)xpos);
+		return new Point((int)((p.getX() - x) / (width / grid.length)), 
+				(int)((p.getY() - y) / (height / grid[0].length)));
 	}
 	
 	/** Reads data from a text file and loads it into an array
@@ -126,10 +120,10 @@ public abstract class GridTemplate {
 		File dataFile = new File(filename);
 
 		if (dataFile.exists()) {
-			int count = 0;
-
 			FileReader reader = null;
 			Scanner in = null;
+			int count = 0;
+			
 			try {
 					reader = new FileReader(dataFile);
 					in = new Scanner(reader);
@@ -139,7 +133,6 @@ public abstract class GridTemplate {
 						for(int i = 0; i < line.length(); i++)
 							if (count < gameData.length && i < gameData[count].length)
 								gameData[count][i] = line.charAt(i);
-
 						count++;
 					}
 
@@ -149,10 +142,8 @@ public abstract class GridTemplate {
 				if (in != null)
 					in.close();
 			}
-			
-		} else {
+		} else
 			throw new IllegalArgumentException("Data file " + filename + " does not exist.");
-		}
 	}
 	
 }
