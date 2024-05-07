@@ -80,7 +80,7 @@ public class SecondScreen extends Screen {
 			player.move(0, -1);
 		if (surface.isPressed(KeyEvent.VK_D))
 			player.move(1, 0);
-
+		
 		player.act(null);
 		player.applyWindowLimits(DRAWING_WIDTH, DRAWING_HEIGHT);
 	}
