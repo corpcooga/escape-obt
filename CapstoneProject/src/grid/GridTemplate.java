@@ -11,7 +11,7 @@ import processing.core.PApplet;
 
 /** This class represents the game's grid
  * @author Boon Chew, Nikunj Govil, Yashasvi Chitela
- * @version 5/5/24
+ * @version 5/7/24
  */
 public abstract class GridTemplate {
 	
@@ -44,7 +44,14 @@ public abstract class GridTemplate {
 	 */
 	public String toString()
 	{
-		return null;
+		StringBuffer out = new StringBuffer("");
+		for (int i = 0; i < grid.length; i++) {
+			out.append((i + 1) + "\t");
+			for (int j = 0; j < grid[i].length; j++)
+				out.append("*");
+			out.append("\n");
+		}
+		return out.toString();
 	}
 	
 	/** Draws this GridTemplate
