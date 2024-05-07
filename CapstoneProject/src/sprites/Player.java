@@ -46,9 +46,14 @@ public class Player extends Sprite {
 	 * 
 	 * Lead coder: Nikunj Govil
 	 */
-	public void jump()
+	public void walkUp()
 	{
 		yVel = -10;
+	}
+	
+	public void walkDown()
+	{
+		yVel = 10;
 	}
 
 	/** Makes the Player do everything that he should do without any keys being pressed
@@ -76,7 +81,7 @@ public class Player extends Sprite {
 			}
 		}
 		
-		yVel += 0.5;
+		yVel += 0.6;
 		xVel *= 0.9;
 	}
 
