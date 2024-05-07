@@ -72,16 +72,16 @@ public class SecondScreen extends Screen {
 			surface.switchScreen(ScreenSwitcher.MENU_SCREEN);
 			return;
 		}
-		if (surface.isPressed(KeyEvent.VK_A))
-			player.walk(-1);
-		if (surface.isPressed(KeyEvent.VK_D))
-			player.walk(1);
 		if (surface.isPressed(KeyEvent.VK_W))
-			player.walkUp();
+			player.move(0, 1);
+		if (surface.isPressed(KeyEvent.VK_A))
+			player.move(-1, 0);
 		if (surface.isPressed(KeyEvent.VK_S))
-			player.walkDown();
+			player.move(0, -1);
+		if (surface.isPressed(KeyEvent.VK_D))
+			player.move(1, 0);
 
-//		player.act(obstacles);
+		player.act(null);
 		player.applyWindowLimits(DRAWING_WIDTH, DRAWING_HEIGHT);
 	}
 

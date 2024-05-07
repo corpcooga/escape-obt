@@ -19,7 +19,7 @@ public class Player extends Sprite {
 	private double xVel, yVel;
 
 	
-	/** Constructor for the Player
+	/** Constructs a Player
 	 * @param img image to use for this Player
 	 * @param x x-coordinate of this Player
 	 * @param y y-coordinate of this Player 
@@ -31,58 +31,38 @@ public class Player extends Sprite {
 		yVel = 0;
 	}
 	
-	
-	/** Makes the Player walk left or right across the window
-	 * @param dir -1 for left, 1 for right
-	 * 
-	 * Lead coder: Boon Chew
-	*/
-	public void walk(int dir)
-	{
-		xVel += dir;
-	}
-
-	/** Makes the Player jump up
-	 * 
-	 * Lead coder: Nikunj Govil
+	/** Accelerates this Player by a specified x/y amount
+	 * @param xChange The amount to accelerate x by
+	 * @param yChange The amount to accelerate y by
 	 */
-	public void walkUp()
+	public void move(int xChange, int yChange)
 	{
-		yVel = -10;
-	}
-	
-	public void walkDown()
-	{
-		yVel = 10;
+		xVel += xChange;
+		yVel += yChange;
 	}
 
-	/** Makes the Player do everything that he should do without any keys being pressed
+	/** Moves the Player naturally
 	 * @param obstacles Other sprites that the Player could collide with
-	 * 
-	 * Lead coder: Yashasvi Chitela
 	 */
 	public void act(List<Sprite> obstacles)
 	{
-		y += yVel;
-		
-		for(Sprite s : obstacles) {
-			if(s.intersects(this)) {
-				y -= yVel;
-				yVel = 0;
-			}
-		}
-		
+		y -= yVel;
 		x += xVel;
+		yVel *= 0.8;
+		xVel *= 0.8;
 		
-		for(Sprite s : obstacles) {
-			if(s.intersects(this)) {
-				x -= xVel;
-				xVel = 0;
-			}
-		}
-		
-		yVel += 0.6;
-		xVel *= 0.9;
+//		for(Sprite s : obstacles) {
+//			if(s.intersects(this)) {
+//				y -= yVel;
+//				yVel = 0;
+//			}
+//		}
+//		for(Sprite s : obstacles) {
+//			if(s.intersects(this)) {
+//				x -= xVel;
+//				xVel = 0;
+//			}
+//		}
 	}
 
 }
