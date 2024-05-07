@@ -7,17 +7,19 @@ import java.util.List;
 import main.DrawingSurface;
 import sprites.Player;
 import sprites.Sprite;
+import grid.Maze;
 
 /** This class represents the game screen
  * @author Boon Chew, Nikunj Govil, Yashasvi Chitela
- * @version 5/5/24
+ * @version 5/7/24
  */
 public class SecondScreen extends Screen {
 	
-	private List<Sprite> obstacles;
+//	private List<Sprite> obstacles;
 	
 	private DrawingSurface surface;
 	private Player player;
+	private Maze maze;
 	
 	
 	/** Constructs a SecondScreen
@@ -28,12 +30,14 @@ public class SecondScreen extends Screen {
 		super(800, 600);
 		this.surface = surface;
 		
-		obstacles = new ArrayList<Sprite>();
-		obstacles.add(new Sprite(0, 250, 100, 50));
-		obstacles.add(new Sprite(700, 250, 100, 50));
-		obstacles.add(new Sprite(200, 400, 400, 50));
-		obstacles.add(new Sprite(375, 300, 50, 100));
-		obstacles.add(new Sprite(300, 250, 200, 50));
+		maze = new Maze(20, 16, "testfiles/paintcan/digital.txt");
+		
+//		obstacles = new ArrayList<Sprite>();
+//		obstacles.add(new Sprite(0, 250, 100, 50));
+//		obstacles.add(new Sprite(700, 250, 100, 50));
+//		obstacles.add(new Sprite(200, 400, 400, 50));
+//		obstacles.add(new Sprite(375, 300, 50, 100));
+//		obstacles.add(new Sprite(300, 250, 200, 50));
 	}
 	
 	
@@ -58,9 +62,10 @@ public class SecondScreen extends Screen {
 	{
 		surface.background(0, 255, 255);   
 
-		for (Sprite s : obstacles)
-			s.draw(surface);
-
+//		for (Sprite s : obstacles)
+//			s.draw(surface);
+		
+		maze.draw(surface, 0, 0, 600, 600);
 		player.draw(surface);
 
 		if (surface.isPressed(KeyEvent.VK_ESCAPE)) {
@@ -74,7 +79,7 @@ public class SecondScreen extends Screen {
 		if (surface.isPressed(KeyEvent.VK_W))
 			player.jump();
 
-		player.act(obstacles);
+//		player.act(obstacles);
 		player.applyWindowLimits(DRAWING_WIDTH, DRAWING_HEIGHT);
 	}
 

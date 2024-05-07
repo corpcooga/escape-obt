@@ -64,36 +64,14 @@ public class Maze {
 	{
 		float rw = width / grid[0].length;
 		float rh = height / grid.length;
-		for (int i = 0; i < grid.length; i++) {
-			float ry = rh * i + y;
+		for (int i = 0; i < grid.length; i++)
 			for (int j = 0; j < grid[0].length; j++) {
-				float rx = rw * j + x;
-				if (grid[i][j] == ' ') {
+				if (grid[i][j] == ' ')
 					marker.fill(255);
-					marker.rect(rx, ry, rw, rh);
-				} else if (grid[i][j] == '*') {
+				else if(grid[i][j] == '*')
 					marker.fill(0);
-					marker.rect(rx, ry, rw, rh);
-					marker.fill(255);
-					marker.text('*', rx + rw/2 - 2, ry + rh/2 + 1);
-				}else if(grid[i][j] == '#') {
-					marker.fill(100);
-					marker.rect(rx, ry, rw, rh);
-					marker.fill(255);
-					marker.text('#', rx + rw/2 - 1, ry + rh/2 + 1);
-				}else if(grid[i][j] == 'X') {
-					marker.fill(200);
-					marker.rect(rx, ry, rw, rh);
-					marker.fill(255);
-					marker.text('X', rx + rw/2 - 1, ry + rh/2 + 1);
-				}else if(grid[i][j] == '.') {
-					marker.fill(150);
-					marker.rect(rx, ry, rw, rh);
-					marker.fill(255);
-					marker.text('.', rx + rw/2 - 1, ry + rh/2 + 1);
-				}
+				marker.rect(x + rw * j, y + rh * i, rw, rh);
 			}
-		}
 	}
 	
 	/** Converts click coordinates to index values that correspond to the grid

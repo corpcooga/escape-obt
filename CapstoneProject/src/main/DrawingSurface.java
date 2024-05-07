@@ -5,7 +5,6 @@ import java.util.ArrayList;
 
 import processing.core.PApplet;
 import screens.*;
-import grid.Maze;
 
 /** This class draws everything in the program
  * @author Boon Chew, Nikunj Govil, Yashasvi Chitela
@@ -17,7 +16,6 @@ public class DrawingSurface extends PApplet implements ScreenSwitcher {
 	private ArrayList<Screen> screens;
 	
 	private Screen activeScreen;
-	private Maze maze;
 	
 	/** The scaling factor of the screen's original to current dimensions
 	 */
@@ -31,13 +29,9 @@ public class DrawingSurface extends PApplet implements ScreenSwitcher {
 		screens = new ArrayList<Screen>();
 		keys = new ArrayList<Integer>();
 		
-		maze = new Maze(20, 16, "testfiles/paintcan/digital.txt");
-		System.out.println(maze);
-		
 		FirstScreen screen1 = new FirstScreen(this);
-		screens.add(screen1);
-		
 		SecondScreen screen2 = new SecondScreen(this);
+		screens.add(screen1);
 		screens.add(screen2);
 		
 		activeScreen = screens.get(0);
