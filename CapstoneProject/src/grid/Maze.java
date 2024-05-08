@@ -62,15 +62,23 @@ public class Maze {
 	 */
 	public void draw(PApplet marker, float x, float y, float width, float height)
 	{
-		float rw = width / grid[0].length * 2;
-		float rh = height / grid.length * 2;
+		float rw = width / grid[0].length;
+		float rh = height / grid.length;
 		for (int i = 0; i < grid.length; i++)
 			for (int j = 0; j < grid[0].length; j++) {
+				float rx = x + rw * j;
+				float ry = y + rh * i;
+				
+				if (rx > marker.width || ry > marker.height || rx < 0 || ry + height < 0)
+					break;
+				
 				if (grid[i][j] == ' ')
 					marker.fill(255);
 				else if(grid[i][j] == '*')
 					marker.fill(0);
-				marker.rect(x + rw * j, y + rh * i, rw, rh);
+				marker.noStroke();
+				
+				marker.rect(rx, ry, rw, rh);
 			}
 	}
 	

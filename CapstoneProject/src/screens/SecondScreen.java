@@ -65,7 +65,7 @@ public class SecondScreen extends Screen {
 //		for (Sprite s : obstacles)
 //			s.draw(surface);
 		
-		maze.draw(surface, 0, 0, 600, 600);
+		maze.draw(surface, (int)player.x, (int)player.y, 600, 600);
 		player.draw(surface);
 
 		if (surface.isPressed(KeyEvent.VK_ESCAPE)) {
