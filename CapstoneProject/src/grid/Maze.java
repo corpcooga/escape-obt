@@ -69,8 +69,9 @@ public class Maze {
 				float rx = x + rw * j;
 				float ry = y + rh * i;
 				
-				if (rx > marker.width || ry > marker.height || rx + width < 0 || ry + height < 0)
-					break;
+//				doesn't draw tiles that are offscreen
+				if (rx > marker.width || ry > marker.height || rx + rw < 0 || ry + rh < 0)
+					continue;
 				
 				if (grid[i][j] == ' ')
 					marker.fill(255);
