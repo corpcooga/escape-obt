@@ -69,7 +69,7 @@ public class Maze {
 				float rx = x + rw * j;
 				float ry = y + rh * i;
 				
-				if (rx > marker.width || ry > marker.height || rx < 0 || ry + height < 0)
+				if (rx > marker.width || ry > marker.height || rx + width < 0 || ry + height < 0)
 					break;
 				
 				if (grid[i][j] == ' ')
