@@ -82,7 +82,7 @@ public class SecondScreen extends Screen {
 			player.move(1, 0);
 		
 		player.act(null);
-		player.applyWindowLimits(DRAWING_WIDTH, DRAWING_HEIGHT);
+//		player.applyWindowLimits(DRAWING_WIDTH, DRAWING_HEIGHT);
 	}
 
 }
