@@ -23,7 +23,6 @@ public class Sprite extends Rectangle2D.Double {
 	{
 		super(x, y, w, h);
 		image = img;
-		isOnGrid = true;
 	}
 	
 	
@@ -36,7 +35,6 @@ public class Sprite extends Rectangle2D.Double {
 	public Sprite(int x, int y, int w, int h)
 	{
 		this(null, x, y, w, h);
-		isOnGrid = true;
 	}
 	
 	/** Moves this Sprite to specified location
