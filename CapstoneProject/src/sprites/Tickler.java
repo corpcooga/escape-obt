@@ -21,8 +21,11 @@ public class Tickler extends Sprite {
 		// TODO Auto-generated constructor stub
 	}
 	
-	public void tickle(Player tickled) {
-		tickled.removeSprite(tickled);
+	/** Tickles the specified player which kills the specified player
+	 * @param toBeTickled Player to be tickled
+	 */
+	public void tickle(Player toBeTickled) {
+		toBeTickled.removeSprite(toBeTickled);
 	}
 
 }
