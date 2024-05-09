@@ -87,6 +87,9 @@ public class Sprite extends Rectangle2D.Double {
 		}
 	}
 	
+	/**Removes specified player from sight
+	 * @param toRemove Player to be removed
+	 */
 	public void removeSprite(Sprite toRemove) {
 		toRemove.isOnGrid = false;
 	}
