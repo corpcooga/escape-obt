@@ -46,8 +46,7 @@ public class Player extends Sprite {
 	 */
 	public void act(List<Sprite> obstacles)
 	{
-		y -= yVel;
-		x += xVel;
+		moveByAmount(xVel, -yVel);
 		yVel *= 0.8;
 		xVel *= 0.8;
 		
