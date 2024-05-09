@@ -20,5 +20,9 @@ public class Tickler extends Sprite {
 		super(img, x, y, w, h);
 		// TODO Auto-generated constructor stub
 	}
+	
+	public void tickle(Player tickled) {
+		tickled.removeSprite(tickled);
+	}
 
 }

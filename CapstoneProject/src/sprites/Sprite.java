@@ -11,7 +11,7 @@ import processing.core.PImage;
 public class Sprite extends Rectangle2D.Double {
 	
 	private PImage image;
-	
+	private boolean isOnGrid;
 	
 	/** Constructs a Sprite
 	 * @param img image to use for Sprite
@@ -24,6 +24,7 @@ public class Sprite extends Rectangle2D.Double {
 	{
 		super(x, y, w, h);
 		image = img;
+		isOnGrid = true;
 	}
 	
 	
@@ -36,6 +37,7 @@ public class Sprite extends Rectangle2D.Double {
 	public Sprite(int x, int y, int w, int h)
 	{
 		this(null, x, y, w, h);
+		isOnGrid = true;
 	}
 	
 	/** Moves this Sprite to specified location
@@ -75,12 +77,18 @@ public class Sprite extends Rectangle2D.Double {
 	 */
 	public void draw(PApplet g)
 	{
-		if (image != null)
-			g.image(image, (float)x, (float)y, (float)width, (float)height);
-		else {
-			g.fill(100);
-			g.rect((float)x, (float)y, (float)width, (float)height);
+		if(isOnGrid) {
+			if (image != null)
+				g.image(image, (float)x, (float)y, (float)width, (float)height);
+			else {
+				g.fill(100);
+				g.rect((float)x, (float)y, (float)width, (float)height);
+			}
 		}
+	}
+	
+	public void removeSprite(Sprite toRemove) {
+		toRemove.isOnGrid = false;
 	}
 
 }
