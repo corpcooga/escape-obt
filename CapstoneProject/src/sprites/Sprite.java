@@ -90,5 +90,8 @@ public class Sprite extends Rectangle2D.Double {
 	public void removeSprite(Sprite toRemove) {
 		toRemove.isOnGrid = false;
 	}
-
+	
+	public void changeImage(PImage pic) {
+		
+	}
 }

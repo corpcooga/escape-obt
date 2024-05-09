@@ -74,12 +74,16 @@ public class SecondScreen extends Screen {
 		}
 		if (surface.isPressed(KeyEvent.VK_W))
 			player.move(0, 1);
-		if (surface.isPressed(KeyEvent.VK_A))
+		if (surface.isPressed(KeyEvent.VK_A)) {
+			player.changeImage(surface.loadImage("resources/img/flmainchar.png"));
 			player.move(-1, 0);
+		}
 		if (surface.isPressed(KeyEvent.VK_S))
 			player.move(0, -1);
-		if (surface.isPressed(KeyEvent.VK_D))
+		if (surface.isPressed(KeyEvent.VK_D)) {
+			player.changeImage(surface.loadImage("resources/img/mainchar.png"));
 			player.move(1, 0);
+		}
 		
 		player.act(null);
 //		player.applyWindowLimits(DRAWING_WIDTH, DRAWING_HEIGHT);

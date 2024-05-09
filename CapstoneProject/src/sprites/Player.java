@@ -73,4 +73,7 @@ public class Player extends Sprite {
 		
 	}
 
+	public void changeImage(PImage pic) {
+		super.changeImage(pic);
+	}
 }
