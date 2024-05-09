@@ -64,6 +64,11 @@ public class Player extends Sprite {
 //		}
 	}
 	
+	
+	/** Calling this method makes the player pick up certain objects present within the game
+	 * @param obj Object that the character picks up
+	 * 
+	 */
 	public void pickUp(Sprite obj) {
 		
 	}
