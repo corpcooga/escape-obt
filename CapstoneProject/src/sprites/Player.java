@@ -72,8 +72,4 @@ public class Player extends Sprite {
 	public void pickUp(Sprite obj) {
 		
 	}
-
-	public void changeImage(PImage pic) {
-		super.changeImage(pic);
-	}
 }

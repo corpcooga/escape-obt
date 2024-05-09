@@ -25,7 +25,7 @@ public class Tickler extends Sprite {
 	 * @param toBeTickled Player to be tickled
 	 */
 	public void tickle(Player toBeTickled) {
-		toBeTickled.removeSprite(toBeTickled);
+//		toBeTickled.removeSprite(toBeTickled);
 	}
 
 }

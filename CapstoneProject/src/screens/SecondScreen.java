@@ -65,7 +65,7 @@ public class SecondScreen extends Screen {
 //		for (Sprite s : obstacles)
 //			s.draw(surface);
 		
-		maze.draw(surface, (int)player.x, (int)player.y, 600, 600);
+		maze.draw(surface, (int)100, (int)100, 600, 600);
 		player.draw(surface);
 
 		if (surface.isPressed(KeyEvent.VK_ESCAPE)) {
@@ -75,13 +75,13 @@ public class SecondScreen extends Screen {
 		if (surface.isPressed(KeyEvent.VK_W))
 			player.move(0, 1);
 		if (surface.isPressed(KeyEvent.VK_A)) {
-			player.changeImage(surface.loadImage("resources/img/flmainchar.png"));
+//			player.changeImage(surface.loadImage("resources/img/flmainchar.png"));
 			player.move(-1, 0);
 		}
 		if (surface.isPressed(KeyEvent.VK_S))
 			player.move(0, -1);
 		if (surface.isPressed(KeyEvent.VK_D)) {
-			player.changeImage(surface.loadImage("resources/img/mainchar.png"));
+//			player.changeImage(surface.loadImage("resources/img/mainchar.png"));
 			player.move(1, 0);
 		}
 		
