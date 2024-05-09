@@ -1,21 +1,33 @@
 package main;
 
 import java.awt.Point;
+import java.awt.geom.Rectangle2D;
 import java.util.ArrayList;
 
 import processing.core.PApplet;
+import processing.core.PImage;
+import grid.Level;
 import screens.*;
 
 /** This class draws everything in the program
  * @author Boon Chew, Nikunj Govil, Yashasvi Chitela
- * @version 5/7/24
+ * @version 5/9/24
  */
 public class DrawingSurface extends PApplet implements ScreenSwitcher {
+	
+	private static final int DRAWING_WIDTH = 800, DRAWING_HEIGHT = 600;
+	
+	private static final double characterFractionOfWindow = 0;  // Bigger = panning happens closer to the edge of window. 1 = right at edge, 0 = panning happens always
+	private static final double panningLag = 10;  // Bigger = follow char more slowly. 1 = immediately pan
+	
+	private Rectangle2D.Double visibleSpace;  // Area of the level that we can see
+	private Rectangle2D.Double characterSpace;  // Area of the window that the character can move freely in
 
 	private ArrayList<Integer> keys;
 	private ArrayList<Screen> screens;
 	
 	private Screen activeScreen;
+	private Level level;
 	
 	/** The scaling factor of the screen's original to current dimensions
 	 */
@@ -42,15 +54,28 @@ public class DrawingSurface extends PApplet implements ScreenSwitcher {
 	 */
 	public void settings()
 	{
-		setSize(800, 600);
+		setSize(DRAWING_WIDTH, DRAWING_HEIGHT);
 	}
 	
-	/** Sets up each of the different screens
+	/** Sets up different aspects of the game
 	 */
 	public void setup()
 	{
 		for (Screen s : screens)
 			s.setup();
+		PImage[] assets = new PImage[] {super.loadImage("img/house.jpg"),
+				super.loadImage("img/tree.gif"),
+				super.loadImage("img/sun.jpg"),
+				super.loadImage("img/cloud.png")};
+//		mario = new Sprite(img,0,940,50,60);
+		
+		level = new Level(assets);
+		visibleSpace = new Rectangle2D.Double(0, level.getHeight() - DRAWING_HEIGHT, DRAWING_WIDTH, DRAWING_HEIGHT);
+		characterSpace = new Rectangle2D.Double(visibleSpace.getX() + visibleSpace.getWidth() * (1 - characterFractionOfWindow) * 0.5,
+												visibleSpace.getY() + visibleSpace.getHeight() * (1 - characterFractionOfWindow) * 0.5,
+												visibleSpace.getWidth() * characterFractionOfWindow,
+												visibleSpace.getHeight() * characterFractionOfWindow);
+
 	}
 	
 	/** Scales the screen properly and draws the current screen 
@@ -62,6 +87,7 @@ public class DrawingSurface extends PApplet implements ScreenSwitcher {
 
 		push();
 		scale(ratioX, ratioY);
+		translate((float)-visibleSpace.getX(),(float)-visibleSpace.getY());
 		activeScreen.draw();
 		pop();
 	}
