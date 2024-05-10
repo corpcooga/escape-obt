@@ -72,5 +72,4 @@ public class Player extends Sprite {
 	public void pickUp(Sprite obj) {
 		
 	}
-
 }
