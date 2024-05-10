@@ -18,15 +18,12 @@ public class Maze {
 	/** The grid array
 	 */
 	protected char[][] grid;
-	private double x, y;
 	
 	/** Construct an empty 2D array with some default dimensions
 	 */
 	public Maze()
 	{
 		grid = new char[20][20];
-		x = 0;
-		y = 0;
 	}
 	
 	
