@@ -1,48 +1,65 @@
 package sprites;
 
-import java.awt.geom.Point2D;
 import java.awt.geom.Rectangle2D;
 import processing.core.PApplet;
 import processing.core.PImage;
 
-
- 
-public class Sprite extends Rectangle2D.Double{
+/** This class represents a sprite in the game
+* @author Nikunj Govil, Boon Chew, Yashavi Chitela
+* @version 5/10/2024
+*/
+public class Sprite extends Rectangle2D.Double {
 	
-	// FIELDS
 	private PImage image;
 	
-	// CONSTRUCTORS
-	public Sprite(PImage img, double x, double y, double w, double h) {
-		super(x,y,w,h);
+	
+	/** Constructs a Sprite
+	 * @param img image to use for Sprite
+	 * @param x x-coordinate of Sprite
+	 * @param y y-coordinate of Sprite
+	 * @param w width of Sprite
+	 * @param h height of SPrite
+	 */
+	public Sprite(PImage img, int x, int y, int w, int h)
+	{
+		super(x, y, w, h);
 		image = img;
 	}
 	
 	
-	// METHODS	
-	public void moveToLocation(double x, double y) {
+	/** Constructs a Sprite without an image
+	 * @param x x-coordinate of Sprite
+	 * @param y y-coordinate of Sprite
+	 * @param w width of Sprite
+	 * @param h weight of Sprite
+	 */
+	public Sprite(int x, int y, int w, int h)
+	{
+		this(null, x, y, w, h);
+	}
+	
+	/** Moves this Sprite to specified location
+	 * @param x x-coordinate of location
+	 * @param y y-coordinate of location
+	 */
+	public void moveToLocation(double x, double y)
+	{
 		super.x = x;
 		super.y = y;
 	}
 	
-	public void moveByAmount(double x, double y) {
+	/** Moves this Sprite by specified amount
+	 * @param x The amount to move along the x-axis
+	 * @param y The amount to move along the y-axis
+	 */
+	public void moveByAmount(double x, double y)
+	{
 		super.x += x;
 		super.y += y;
 	}
 	
-	public void applyWindowLimits(int windowWidth, int windowHeight) {
-		x = Math.min(x,windowWidth-width);
-		y = Math.min(y,windowHeight-height);
-		x = Math.max(0,x);
-		y = Math.max(0,y);
-	}
-	
-	
-	public void draw(PApplet drawer) {
-		drawer.image(image,(int)x,(int)y,(int)width,(int)height);
-	}
-	
-	public void moveInLimits(Rectangle2D.Double limits, double x, double y) {
+	public void moveInLimits(Rectangle2D.Double limits, double x, double y)
+	{
 		double newX = this.x + x;
 		double newY = this.y + y;
 		if (limits.contains(new Rectangle2D.Double(newX,newY,width,height))) {
@@ -51,106 +68,29 @@ public class Sprite extends Rectangle2D.Double{
 		}
 	}
 	
-	public Point2D.Double getCenter() {
-		return new Point2D.Double(getX()+getWidth()/2,getY()+getHeight()/2);
+	/** Keeps this Sprite in the screen
+	 * @param windowWidth width of screen
+	 * @param windowHeight height of screen
+	 */
+	public void applyWindowLimits(int windowWidth, int windowHeight)
+	{
+		x = Math.min(x, windowWidth - width);
+		y = Math.min(y, windowHeight - height);
+		x = Math.max(0, x);
+		y = Math.max(0, y);
 	}
 	
-	
+	/** Draws this Sprite
+	 * @param g PApplet used to draw
+	 */
+	public void draw(PApplet g)
+	{
+		if (image != null)
+			g.image(image, (float)x, (float)y, (float)width, (float)height);
+		else {
+			g.fill(100);
+			g.rect((float)x, (float)y, (float)width, (float)height);
+		}
+	}
 	
 }
-
-//package sprites;
-//
-//import java.awt.geom.Rectangle2D;
-//import processing.core.PApplet;
-//import processing.core.PImage;
-//
-///** This class represents a sprite in the game
-//* @author Nikunj Govil, Boon Chew, Yashavi Chitela
-//* @version 5/5/2024
-//*/
-//public class Sprite extends Rectangle2D.Double {
-//	
-//	private PImage image;
-//	
-//	/** Constructs a Sprite
-//	 * @param img image to use for Sprite
-//	 * @param x x-coordinate of Sprite
-//	 * @param y y-coordinate of Sprite
-//	 * @param w width of Sprite
-//	 * @param h height of SPrite
-//	 */
-//	public Sprite(PImage img, int x, int y, int w, int h)
-//	{
-//		super(x, y, w, h);
-//		image = img;
-//	}
-//	
-//	
-//	/** Constructs a Sprite without an image
-//	 * @param x x-coordinate of Sprite
-//	 * @param y y-coordinate of Sprite
-//	 * @param w width of Sprite
-//	 * @param h weight of Sprite
-//	 */
-//	public Sprite(int x, int y, int w, int h)
-//	{
-//		this(null, x, y, w, h);
-//	}
-//	
-//	/** Moves this Sprite to specified location
-//	 * @param x x-coordinate of location
-//	 * @param y y-coordinate of location
-//	 */
-//	public void moveToLocation(double x, double y)
-//	{
-//		super.x = x;
-//		super.y = y;
-//	}
-//	
-//	/** Moves this Sprite by specified amount
-//	 * @param x The amount to move along the x-axis
-//	 * @param y The amount to move along the y-axis
-//	 */
-//	public void moveByAmount(double x, double y)
-//	{
-//		super.x += x;
-//		super.y += y;
-//	}
-//	
-//	/** Keeps this Sprite in the screen
-//	 * @param windowWidth width of screen
-//	 * @param windowHeight height of screen
-//	 */
-//	public void applyWindowLimits(int windowWidth, int windowHeight)
-//	{
-//		x = Math.min(x, windowWidth-width);
-//		y = Math.min(y, windowHeight-height);
-//		x = Math.max(0, x);
-//		y = Math.max(0, y);
-//	}
-//	
-//	/** Draws this Sprite
-//	 * @param g PApplet used to draw
-//	 */
-//	public void draw(PApplet g)
-//	{
-//		if (image != null)
-//			g.image(image, (float)x, (float)y, (float)width, (float)height);
-//		else {
-//			g.fill(100);
-//			g.rect((float)x, (float)y, (float)width, (float)height);
-//		}
-//	}
-//	
-//	/**Removes specified player from sight
-//	 * @param toRemove Player to be removed
-//	 */
-//	public void removeSprite(Sprite toRemove) {
-//		toRemove = null;
-//	}
-//	
-//	public void changeImage(PImage pic) {
-//		
-//	}
-//}

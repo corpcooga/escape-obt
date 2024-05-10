@@ -63,10 +63,7 @@ public class DrawingSurface extends PApplet implements ScreenSwitcher {
 	{
 		for (Screen s : screens)
 			s.setup();
-		PImage[] assets = new PImage[] {super.loadImage("img/house.jpg"),
-				super.loadImage("img/tree.gif"),
-				super.loadImage("img/sun.jpg"),
-				super.loadImage("img/cloud.png")};
+		PImage[] assets = new PImage[] {};
 //		mario = new Sprite(img,0,940,50,60);
 		
 		level = new Level(assets);
@@ -75,7 +72,6 @@ public class DrawingSurface extends PApplet implements ScreenSwitcher {
 												visibleSpace.getY() + visibleSpace.getHeight() * (1 - characterFractionOfWindow) * 0.5,
 												visibleSpace.getWidth() * characterFractionOfWindow,
 												visibleSpace.getHeight() * characterFractionOfWindow);
-
 	}
 	
 	/** Scales the screen properly and draws the current screen 
@@ -87,7 +83,7 @@ public class DrawingSurface extends PApplet implements ScreenSwitcher {
 
 		push();
 		scale(ratioX, ratioY);
-		translate((float)-visibleSpace.getX(),(float)-visibleSpace.getY());
+//		translate((float)-visibleSpace.getX(),(float)-visibleSpace.getY());
 		activeScreen.draw();
 		pop();
 	}
