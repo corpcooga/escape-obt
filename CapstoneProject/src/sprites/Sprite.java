@@ -1,5 +1,6 @@
 package sprites;
 
+import java.awt.geom.Point2D;
 import java.awt.geom.Rectangle2D;
 import processing.core.PApplet;
 import processing.core.PImage;
@@ -78,6 +79,11 @@ public class Sprite extends Rectangle2D.Double {
 		y = Math.min(y, windowHeight - height);
 		x = Math.max(0, x);
 		y = Math.max(0, y);
+	}
+	
+	public Point2D.Double getCenter()
+	{
+		return new Point2D.Double(x + width / 2, y + height / 2);
 	}
 	
 	/** Draws this Sprite

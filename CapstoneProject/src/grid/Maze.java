@@ -11,7 +11,7 @@ import processing.core.PApplet;
 
 /** This class represents the game's grid
  * @author Boon Chew, Nikunj Govil, Yashasvi Chitela
- * @version 5/7/24
+ * @version 5/10/24
  */
 public class Maze {
 	
@@ -19,13 +19,13 @@ public class Maze {
 	 */
 	protected char[][] grid;
 	
+	
 	/** Construct an empty 2D array with some default dimensions
 	 */
 	public Maze()
 	{
 		grid = new char[20][20];
 	}
-	
 	
 	/** Construct an empty 2D array with dimensions width and height, then fill it with data from
 	 * the file filename
