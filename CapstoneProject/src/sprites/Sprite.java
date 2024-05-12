@@ -7,7 +7,7 @@ import processing.core.PImage;
 
 /** This class represents a sprite in the game
 * @author Nikunj Govil, Boon Chew, Yashavi Chitela
-* @version 5/10/2024
+* @version 5/12/2024
 */
 public class Sprite extends Rectangle2D.Double {
 	
@@ -63,7 +63,7 @@ public class Sprite extends Rectangle2D.Double {
 	{
 		double newX = this.x + x;
 		double newY = this.y + y;
-		if (limits.contains(new Rectangle2D.Double(newX,newY,width,height))) {
+		if (limits.contains(new Rectangle2D.Double(newX, newY, width, height))) {
 			this.x = newX;
 			this.y = newY;
 		}
