@@ -11,7 +11,7 @@ import processing.core.PImage;
 */
 public class Sprite extends Rectangle2D.Double {
 	
-	private PImage image;
+	private String imageFile;
 	
 	
 	/** Constructs a Sprite
@@ -21,10 +21,10 @@ public class Sprite extends Rectangle2D.Double {
 	 * @param w width of Sprite
 	 * @param h height of SPrite
 	 */
-	public Sprite(PImage img, int x, int y, int w, int h)
+	public Sprite(String img, int x, int y, int w, int h)
 	{
 		super(x, y, w, h);
-		image = img;
+		imageFile = img;
 	}
 	
 	/** Constructs a Sprite without an image
@@ -94,6 +94,7 @@ public class Sprite extends Rectangle2D.Double {
 	 */
 	public void draw(PApplet g)
 	{
+		PImage image = g.loadImage(imageFile);
 		if (image != null)
 			g.image(image, (float)x, (float)y, (float)width, (float)height);
 		else {

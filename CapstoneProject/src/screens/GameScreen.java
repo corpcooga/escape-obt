@@ -57,8 +57,7 @@ public class GameScreen extends Screen {
 	 */
 	public void spawnNewPlayer()
 	{
-		player = new Player(surface.loadImage("resources/img/mainchar.png"), 
-				DRAWING_WIDTH / 2 - Player.PLAYER_WIDTH / 2, 50);
+		player = new Player(DRAWING_WIDTH / 2 - Player.PLAYER_WIDTH / 2, 50);
 	}
 	
 	/** Sets up this GameScreen

@@ -25,12 +25,21 @@ public class Player extends Sprite {
 	 * @param x x-coordinate of this Player
 	 * @param y y-coordinate of this Player 
 	 */
-	public Player(PImage img, int x, int y)
+	public Player(String img, int x, int y)
 	{
 		super(img, x, y, PLAYER_WIDTH, PLAYER_HEIGHT);
 		xVel = 0;
 		yVel = 0;
 		speed = 1;
+	}
+	
+	/** Constructs a Player with the image specified
+	 * @param x x-coordinate of this Player
+	 * @param y y-coordinate of this Player
+	 */
+	public Player(int x, int y)
+	{
+		this("resources/img/mainchar.png", x, y);
 	}
 	
 	/** Accelerates this Player by a specified x/y amount

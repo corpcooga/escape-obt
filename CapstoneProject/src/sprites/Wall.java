@@ -1,8 +1,6 @@
 package sprites;
 
-import processing.core.PImage;
-
-/** This class represents a Wall that cannot be walked through
+/** This class represents a wall that cannot be walked through
  * @author Nikunj Govil, Boon Chew, Yashasvi Chitela
  * @version 5/12/2024
  */
@@ -15,7 +13,7 @@ public class Wall extends Sprite {
 	 * @param w width of this Wall
 	 * @param h height of this Wall
 	 */
-	public Wall(PImage img, int x, int y, int w, int h)
+	public Wall(String img, int x, int y, int w, int h)
 	{
 		super(img, x, y, w, h);
 	}
@@ -28,7 +26,7 @@ public class Wall extends Sprite {
 	 */
 	public Wall(int x, int y, int w, int h)
 	{
-		super(null, x, y, w, h);
+		this(null, x, y, w, h);
 	}
 
 }
