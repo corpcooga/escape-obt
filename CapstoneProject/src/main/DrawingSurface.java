@@ -12,7 +12,7 @@ import screens.*;
  */
 public class DrawingSurface extends PApplet implements ScreenSwitcher {
 	
-	public static final int DRAWING_WIDTH = 800, DRAWING_HEIGHT = 600;
+	public static final int DRAWING_WIDTH = 800, DRAWING_HEIGHT = 800;
 	
 	private ArrayList<Integer> keys;
 	private ArrayList<Screen> screens;
@@ -49,6 +49,7 @@ public class DrawingSurface extends PApplet implements ScreenSwitcher {
 	 */
 	public void setup()
 	{
+		super.windowTitle("Escape OBT");
 		for (Screen s : screens)
 			s.setup();
 	}

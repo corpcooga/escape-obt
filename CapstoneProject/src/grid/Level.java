@@ -79,11 +79,11 @@ public class Level extends Rectangle2D.Double {
 						rx + rw < visible.x || ry + rh < visible.y)
 					continue;
 				
-				if (grid[i][j] == ' ') {
+				if (grid[i][j] == '.') {
 					marker.fill(255);
 					marker.noStroke();
 					marker.rect(rx, ry, rw, rh);
-				} else if(grid[i][j] == '*') {
+				} else if(grid[i][j] == '#') {
 					Wall wall = new Wall((int)rx, (int)ry, (int)rw, (int)rh);
 					if (!walls.contains(wall))
 						walls.add(wall);

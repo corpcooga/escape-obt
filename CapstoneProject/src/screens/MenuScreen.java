@@ -19,7 +19,7 @@ public class MenuScreen extends Screen {
 	 */
 	public MenuScreen(DrawingSurface surface)
 	{
-		super(800, 600);
+		super(DrawingSurface.DRAWING_WIDTH, DrawingSurface.DRAWING_HEIGHT);
 		this.surface = surface;
 		
 		button = new Rectangle(800 / 2 - 100, 600 / 2 - 50, 200, 100);
@@ -34,7 +34,7 @@ public class MenuScreen extends Screen {
 		
 		surface.rect(button.x, button.y, button.width, button.height, 10, 10, 10, 10);
 		surface.fill(0);
-		String str = "Click me!";
+		String str = "PLAY";
 		float w = surface.textWidth(str);
 		surface.text(str, button.x + button.width / 2 - w / 2, button.y + button.height / 2);
 	}
