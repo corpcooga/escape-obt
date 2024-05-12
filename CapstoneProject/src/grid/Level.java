@@ -20,17 +20,6 @@ public class Level extends Rectangle2D.Double {
 	private ArrayList<Wall> walls;
 	
 	
-	/** Construct an empty 2D array with some default dimensions
-	 */
-	public Level()
-	{
-		grid = new char[20][20];
-		x = 0;
-		y = 0;
-		width = 1000;
-		height = 1000;
-	}
-	
 	/** Construct an empty 2D array with dimensions width and height, then fill it with data from 
 	 * the file filename
 	 * @param width The width of the grid
@@ -39,13 +28,23 @@ public class Level extends Rectangle2D.Double {
 	 */
 	public Level(int width, int height, String filename)
 	{
+		walls = new ArrayList<Wall>();
 		grid = new char[width][height];
-		readData(filename, grid);
+		if (filename != null)
+			readData(filename, grid);
 		x = 0;
 		y = 0;
 		this.width = 1000;
 		this.height = 1000;
 	}
+	
+	/** Construct an empty 2D array with some default dimensions
+	 */
+	public Level()
+	{
+		this(20, 20, null);
+	}
+	
 	
 	/**	Prints out a formatted version of this Level
 	 */
@@ -81,14 +80,13 @@ public class Level extends Rectangle2D.Double {
 				
 				if (grid[i][j] == ' ')
 					marker.fill(255);
-				else if(grid[i][j] == '*')
-					marker.fill(0);
-				marker.noStroke();
-				
-//				TODO maybe add rect walls to an arraylist to use for collisions
-				Wall wall = new Wall((int)rx, (int)ry, (int)rw, (int)rh);
-				marker.rect(rx, ry, rw, rh);
-				
+				else if(grid[i][j] == '*') {
+//					TODO maybe add rect walls to an arraylist to use for collisions
+					Wall wall = new Wall((int)rx, (int)ry, (int)rw, (int)rh);
+					walls.add(wall);
+					wall.draw(marker);
+				}
+//				marker.rect(rx, ry, rw, rh);
 			}
 	}
 	

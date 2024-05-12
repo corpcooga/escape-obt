@@ -31,7 +31,7 @@ public class GameScreen extends Screen {
 	
 	private DrawingSurface surface;
 	private Player player;
-	private Level maze;
+	private Level level;
 	
 	
 	/** Constructs a GameScreen
@@ -42,7 +42,7 @@ public class GameScreen extends Screen {
 		super(DrawingSurface.DRAWING_WIDTH, DrawingSurface.DRAWING_HEIGHT);
 		this.surface = surface;
 		
-		maze = new Level(20, 16, "testfiles/paintcan/digital.txt");
+		level = new Level(20, 16, "testfiles/paintcan/digital.txt");
 		
 //		obstacles = new ArrayList<Sprite>();
 //		obstacles.add(new Sprite(0, 250, 100, 50));
@@ -57,7 +57,7 @@ public class GameScreen extends Screen {
 	 */
 	public void spawnNewPlayer()
 	{
-		player = new Player(DRAWING_WIDTH / 2 - Player.PLAYER_WIDTH / 2, 50);
+		player = new Player(DRAWING_WIDTH / 2, 50);
 	}
 	
 	/** Sets up this GameScreen
@@ -93,8 +93,8 @@ public class GameScreen extends Screen {
 			
 			newX = Math.max(newX, 0);
 			newY = Math.max(newY, 0);
-			newX = Math.min(newX, maze.getWidth() - visibleSpace.getWidth());
-			newY = Math.min(newY, maze.getHeight() - visibleSpace.getHeight());
+			newX = Math.min(newX, level.getWidth() - visibleSpace.getWidth());
+			newY = Math.min(newY, level.getHeight() - visibleSpace.getHeight());
 
 			visibleSpace.setRect(newX, newY, visibleSpace.getWidth(), visibleSpace.getHeight());
 			characterSpace.setRect(visibleSpace.getX() + visibleSpace.getWidth() * (1 - characterFractionOfWindow) * 0.5, 
@@ -116,7 +116,7 @@ public class GameScreen extends Screen {
 		surface.translate((float)-visibleSpace.getX(), (float)-visibleSpace.getY());
 		surface.background(0, 255, 255);
 		
-		maze.draw(surface);
+		level.draw(surface);
 		player.draw(surface);
 //		for (Sprite s : obstacles)
 //			s.draw(surface);
@@ -131,7 +131,7 @@ public class GameScreen extends Screen {
 			player.accelerate(1, 0);
 //		player.changeImage(surface.loadImage("resources/img/mainchar.png"));
 		
-		player.act(maze, null);
+		player.act(level, null);
 		slideWorldToImage(player);
 	}
 

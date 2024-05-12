@@ -2,20 +2,13 @@ package sprites;
 
 import java.awt.geom.Rectangle2D;
 import java.util.List;
-import processing.core.PImage;
 
 /** This class represents the playable character
  * @author Boon Chew, Nikunj Govil, Yashasvi Chitela
  * @version 5/12/24
  */
 public class Player extends Sprite {
-
-	/** Width of this Player
-	 */
-	public static final int PLAYER_WIDTH = 40;
-	/** Height of this Player
-	 */
-	public static final int PLAYER_HEIGHT = 60;
+	
 	private boolean isSneaking = false;
 	private double xVel, yVel, speed;
 
@@ -27,7 +20,7 @@ public class Player extends Sprite {
 	 */
 	public Player(String img, int x, int y)
 	{
-		super(img, x, y, PLAYER_WIDTH, PLAYER_HEIGHT);
+		super(img, x, y, 40, 60);
 		xVel = 0;
 		yVel = 0;
 		speed = 1;
