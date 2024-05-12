@@ -94,11 +94,10 @@ public class Sprite extends Rectangle2D.Double {
 	 */
 	public void draw(PApplet g)
 	{
-		PImage image = g.loadImage(imageFile);
-		if (image != null)
-			g.image(image, (float)x, (float)y, (float)width, (float)height);
+		if (imageFile != null)
+			g.image(g.loadImage(imageFile), (float)x, (float)y, (float)width, (float)height);
 		else {
-			g.fill(100);
+			g.fill(50);
 			g.rect((float)x, (float)y, (float)width, (float)height);
 		}
 	}

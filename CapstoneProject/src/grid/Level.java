@@ -78,15 +78,17 @@ public class Level extends Rectangle2D.Double {
 //				if (rx > marker.width || ry > marker.height || rx + rw < 0 || ry + rh < 0)
 //					continue;
 				
-				if (grid[i][j] == ' ')
+				if (grid[i][j] == ' ') {
 					marker.fill(255);
-				else if(grid[i][j] == '*') {
-//					TODO maybe add rect walls to an arraylist to use for collisions
+					marker.noStroke();
+					marker.rect(rx, ry, rw, rh);
+				} else if(grid[i][j] == '*') {
 					Wall wall = new Wall((int)rx, (int)ry, (int)rw, (int)rh);
-					walls.add(wall);
+					if (!walls.contains(wall))
+						walls.add(wall);
+					System.out.println(walls.size());
 					wall.draw(marker);
 				}
-//				marker.rect(rx, ry, rw, rh);
 			}
 	}
 	
