@@ -27,7 +27,6 @@ public class Sprite extends Rectangle2D.Double {
 		image = img;
 	}
 	
-	
 	/** Constructs a Sprite without an image
 	 * @param x x-coordinate of Sprite
 	 * @param y y-coordinate of Sprite
@@ -39,11 +38,12 @@ public class Sprite extends Rectangle2D.Double {
 		this(null, x, y, w, h);
 	}
 	
+	
 	/** Moves this Sprite to specified location
 	 * @param x x-coordinate of location
 	 * @param y y-coordinate of location
 	 */
-	public void moveToLocation(double x, double y)
+	public void setLocation(double x, double y)
 	{
 		super.x = x;
 		super.y = y;
@@ -59,28 +59,31 @@ public class Sprite extends Rectangle2D.Double {
 		super.y += y;
 	}
 	
-	public void moveInLimits(Rectangle2D.Double limits, double x, double y)
-	{
-		double newX = this.x + x;
-		double newY = this.y + y;
-		if (limits.contains(new Rectangle2D.Double(newX, newY, width, height))) {
-			this.x = newX;
-			this.y = newY;
-		}
-	}
+//	public void moveInLimits(Rectangle2D.Double limits, double x, double y)
+//	{
+//		double newX = this.x + x;
+//		double newY = this.y + y;
+//		if (limits.contains(new Rectangle2D.Double(newX, newY, width, height))) {
+//			this.x = newX;
+//			this.y = newY;
+//		}
+//	}
 	
 	/** Keeps this Sprite in the screen
 	 * @param windowWidth width of screen
 	 * @param windowHeight height of screen
 	 */
-	public void applyWindowLimits(int windowWidth, int windowHeight)
+	public void applyWindowLimits(Rectangle2D.Double limits)
 	{
-		x = Math.min(x, windowWidth - width);
-		y = Math.min(y, windowHeight - height);
+		x = Math.min(x, limits.width - width);
+		y = Math.min(y, limits.height - height);
 		x = Math.max(0, x);
 		y = Math.max(0, y);
 	}
 	
+	/** Gets the coordinates of the center of this Sprite
+	 * @return A Point2D object containing this Sprite's center coordinates
+	 */
 	public Point2D.Double getCenter()
 	{
 		return new Point2D.Double(x + width / 2, y + height / 2);

@@ -1,22 +1,23 @@
 package sprites;
 
+import java.awt.geom.Rectangle2D;
 import java.util.List;
 import processing.core.PImage;
 
 /** This class represents the playable character
  * @author Boon Chew, Nikunj Govil, Yashasvi Chitela
- * @version 5/5/24
+ * @version 5/12/24
  */
 public class Player extends Sprite {
 
-	/** Width of this the Player character
+	/** Width of this Player
 	 */
 	public static final int PLAYER_WIDTH = 40;
-	/** Height of this the Player character
+	/** Height of this Player
 	 */
 	public static final int PLAYER_HEIGHT = 60;
 
-	private double xVel, yVel;
+	private double xVel, yVel, speed;
 
 	
 	/** Constructs a Player
@@ -29,24 +30,33 @@ public class Player extends Sprite {
 		super(img, x, y, PLAYER_WIDTH, PLAYER_HEIGHT);
 		xVel = 0;
 		yVel = 0;
+		speed = 1;
 	}
 	
 	/** Accelerates this Player by a specified x/y amount
 	 * @param xChange The amount to accelerate x by
 	 * @param yChange The amount to accelerate y by
 	 */
-	public void move(int xChange, int yChange)
+	public void accelerate(int xChange, int yChange)
 	{
-		xVel += xChange;
-		yVel += yChange;
+		xVel += xChange * speed;
+		yVel += yChange * speed;
+	}
+	
+	/** Executes a sneak action
+	 */
+	public void sneak()
+	{
+		speed = .1;
 	}
 
 	/** Moves the Player naturally
-	 * @param obstacles Other sprites that the Player could collide with
+	 * @param obstacles Other sprites that this Player could collide with
 	 */
-	public void act(List<Sprite> obstacles)
+	public void act(List<Sprite> obstacles, Rectangle2D.Double limits)
 	{
 		moveByAmount(xVel, -yVel);
+		applyWindowLimits(limits);
 		yVel *= 0.8;
 		xVel *= 0.8;
 		
@@ -64,12 +74,12 @@ public class Player extends Sprite {
 //		}
 	}
 	
+//	/** Calling this method makes the player pick up certain objects present within the game
+//	 * @param obj Object that the character picks up
+//	 * 
+//	 */
+//	public void pickUp(Sprite obj) {
+//		
+//	}
 	
-	/** Calling this method makes the player pick up certain objects present within the game
-	 * @param obj Object that the character picks up
-	 * 
-	 */
-	public void pickUp(Sprite obj) {
-		
-	}
 }

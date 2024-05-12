@@ -16,7 +16,7 @@ public class Maze extends Rectangle2D.Double {
 	
 	/** The grid array
 	 */
-	protected char[][] grid;
+	private char[][] grid;
 	
 	
 	/** Construct an empty 2D array with some default dimensions
@@ -71,6 +71,7 @@ public class Maze extends Rectangle2D.Double {
 				float rx = (float)x + rw * j;
 				float ry = (float)y + rh * i;
 				
+//				FIXME
 ////				doesn't draw tiles that are offscreen
 //				if (rx > marker.width || ry > marker.height || rx + rw < 0 || ry + rh < 0)
 //					continue;

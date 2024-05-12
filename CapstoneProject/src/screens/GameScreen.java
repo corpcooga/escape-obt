@@ -15,7 +15,7 @@ import grid.Maze;
  * @author Boon Chew, Nikunj Govil, Yashasvi Chitela
  * @version 5/12/24
  */
-public class SecondScreen extends Screen {
+public class GameScreen extends Screen {
 	
 //	private List<Sprite> obstacles;
 	
@@ -34,10 +34,10 @@ public class SecondScreen extends Screen {
 	private Maze maze;
 	
 	
-	/** Constructs a SecondScreen
-	 * @param surface The DrawingSurface this SecondScreen uses
+	/** Constructs a GameScreen
+	 * @param surface The DrawingSurface this GameScreen uses
 	 */
-	public SecondScreen(DrawingSurface surface)
+	public GameScreen(DrawingSurface surface)
 	{
 		super(DrawingSurface.DRAWING_WIDTH, DrawingSurface.DRAWING_HEIGHT);
 		this.surface = surface;
@@ -61,7 +61,7 @@ public class SecondScreen extends Screen {
 				DRAWING_WIDTH / 2 - Player.PLAYER_WIDTH / 2, 50);
 	}
 	
-	/** Sets up this SecondScreen
+	/** Sets up this GameScreen
 	 */
 	public void setup()
 	{
@@ -105,12 +105,16 @@ public class SecondScreen extends Screen {
 		}
 	}
 	
-	/** Draws this SecondScreen and handles game controls
+	/** Draws this GameScreen and handles game controls
 	 */
 	public void draw()
 	{
-		surface.translate((float)-visibleSpace.getX(), (float)-visibleSpace.getY());
+		if (surface.isPressed(KeyEvent.VK_ESCAPE)) {
+			surface.switchScreen(ScreenSwitcher.MENU_SCREEN);
+			return;
+		}
 		
+		surface.translate((float)-visibleSpace.getX(), (float)-visibleSpace.getY());
 		surface.background(0, 255, 255);
 		
 		maze.draw(surface);
@@ -118,29 +122,21 @@ public class SecondScreen extends Screen {
 //		for (Sprite s : obstacles)
 //			s.draw(surface);
 
-		if (surface.isPressed(KeyEvent.VK_ESCAPE)) {
-			surface.switchScreen(ScreenSwitcher.MENU_SCREEN);
-			return;
-		}
 		if (surface.isPressed(KeyEvent.VK_W))
-//			player.move(0, 1);
-			player.moveInLimits(maze, 0, -5);
+			player.accelerate(0, 1);
 		if (surface.isPressed(KeyEvent.VK_S))
-//			player.move(0, -1);
-			player.moveInLimits(maze, 0, 5);
+			player.accelerate(0, -1);
 		if (surface.isPressed(KeyEvent.VK_A)) {
 //			player.changeImage(surface.loadImage("resources/img/flmainchar.png"));
-//			player.move(-1, 0);
-			player.moveInLimits(maze, -5, 0);
+			player.accelerate(-1, 0);
 		}
 		if (surface.isPressed(KeyEvent.VK_D)) {
 //			player.changeImage(surface.loadImage("resources/img/mainchar.png"));
-//			player.move(1, 0);
-			player.moveInLimits(maze, 5, 0);
+			player.accelerate(1, 0);
 		}
 		
 		slideWorldToImage(player);
-		player.act(null);
+		player.act(null, maze);
 //		player.applyWindowLimits(DRAWING_WIDTH, DRAWING_HEIGHT);
 	}
 

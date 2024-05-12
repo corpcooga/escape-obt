@@ -6,18 +6,18 @@ import main.DrawingSurface;
 
 /** This class represents the menu screen
  * @author Boon Chew, Nikunj Govil, Yashasvi Chitela
- * @version 5/5/24
+ * @version 5/12/24
  */
-public class FirstScreen extends Screen {
+public class MenuScreen extends Screen {
 
 	private DrawingSurface surface;
 	private Rectangle button;
 	
 	
-	/** Constructs a FirstScreen
+	/** Constructs a MenuScreen
 	 * @param surface The DrawingSurface this FirstScreen uses
 	 */
-	public FirstScreen(DrawingSurface surface)
+	public MenuScreen(DrawingSurface surface)
 	{
 		super(800, 600);
 		this.surface = surface;
@@ -26,7 +26,7 @@ public class FirstScreen extends Screen {
 	}
 	
 	
-	/** Draws this FirstScreen
+	/** Draws this MenuScreen
 	 */
 	public void draw()
 	{
@@ -39,7 +39,7 @@ public class FirstScreen extends Screen {
 		surface.text(str, button.x + button.width / 2 - w / 2, button.y + button.height / 2);
 	}
 	
-	/** Executes a mouse press in this FirstScreen
+	/** Executes a mouse press in this MenuScreen
 	 */
 	public void mousePressed()
 	{

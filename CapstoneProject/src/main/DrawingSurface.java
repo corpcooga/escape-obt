@@ -13,7 +13,7 @@ import screens.*;
 public class DrawingSurface extends PApplet implements ScreenSwitcher {
 	
 	public static final int DRAWING_WIDTH = 800, DRAWING_HEIGHT = 600;
-
+	
 	private ArrayList<Integer> keys;
 	private ArrayList<Screen> screens;
 	
@@ -31,10 +31,8 @@ public class DrawingSurface extends PApplet implements ScreenSwitcher {
 		screens = new ArrayList<Screen>();
 		keys = new ArrayList<Integer>();
 		
-		FirstScreen screen1 = new FirstScreen(this);
-		SecondScreen screen2 = new SecondScreen(this);
-		screens.add(screen1);
-		screens.add(screen2);
+		screens.add(new MenuScreen(this));
+		screens.add(new GameScreen(this));
 		
 		activeScreen = screens.get(0);
 	}
