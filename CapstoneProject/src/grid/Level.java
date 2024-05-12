@@ -34,8 +34,8 @@ public class Level extends Rectangle2D.Double {
 			readData(filename, grid);
 		x = 0;
 		y = 0;
-		this.width = 1000;
-		this.height = 1000;
+		this.width = 10000;
+		this.height = 10000;
 	}
 	
 	/** Construct an empty 2D array with some default dimensions
