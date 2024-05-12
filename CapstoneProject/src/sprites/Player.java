@@ -52,9 +52,9 @@ public class Player extends Sprite {
 
 	/** Handles natural Player movement
 	 * @param limits A Rectangle2D representing the limits in game
-	 * @param obstacles Other sprites that this Player could collide with
+	 * @param walls Walls that this Player could collide with
 	 */
-	public void act(Rectangle2D.Double limits, List<Sprite> obstacles)
+	public void act(Rectangle2D.Double limits, List<Wall> walls)
 	{
 		moveByAmount(xVel, -yVel);
 		applyWindowLimits(limits);
