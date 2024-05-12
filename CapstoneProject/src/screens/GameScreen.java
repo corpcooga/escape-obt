@@ -130,7 +130,9 @@ public class GameScreen extends Screen {
 		if (surface.isPressed(KeyEvent.VK_D))
 			player.accelerate(1, 0);
 		if (surface.isPressed(KeyEvent.VK_SHIFT))
-			player.sneak();
+			player.sneak(true);
+		else 
+			player.sneak(false);
 //		player.changeImage(surface.loadImage("resources/img/mainchar.png"));
 		
 		player.act(level, null);
