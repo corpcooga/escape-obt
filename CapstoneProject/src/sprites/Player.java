@@ -65,23 +65,24 @@ public class Player extends Sprite {
 	 */
 	public void act(Rectangle2D.Double limits, List<Wall> walls)
 	{
-		moveByAmount(xVel, -yVel);
+		x += xVel;
+		for(Wall w : walls)
+			if(w.intersects(this)) {
+				x -= xVel;
+				xVel = 0;
+			}
+		
+		y -= yVel;
+		for(Wall w : walls)
+			if(w.intersects(this)) {
+				y += yVel;
+				yVel = 0;
+			}
+		
 		applyWindowLimits(limits);
+		
 		yVel *= 0.8;
 		xVel *= 0.8;
-		
-//		for(Sprite s : obstacles) {
-//			if(s.intersects(this)) {
-//				y -= yVel;
-//				yVel = 0;
-//			}
-//		}
-//		for(Sprite s : obstacles) {
-//			if(s.intersects(this)) {
-//				x -= xVel;
-//				xVel = 0;
-//			}
-//		}
 	}
 	
 //	/** Calling this method makes the player pick up certain objects present within the game

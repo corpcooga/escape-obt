@@ -57,7 +57,7 @@ public class GameScreen extends Screen {
 	 */
 	public void spawnNewPlayer()
 	{
-		player = new Player(DRAWING_WIDTH / 2, 50);
+		player = new Player(50, 50);
 	}
 	
 	/** Sets up this GameScreen
@@ -135,7 +135,7 @@ public class GameScreen extends Screen {
 			player.sneak(false);
 //		player.changeImage(surface.loadImage("resources/img/mainchar.png"));
 		
-		player.act(level, null);
+		player.act(level, level.getWalls());
 		slideWorldToImage(player);
 	}
 

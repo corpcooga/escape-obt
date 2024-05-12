@@ -46,17 +46,12 @@ public class Level extends Rectangle2D.Double {
 	}
 	
 	
-	/**	Prints out a formatted version of this Level
+	/** Gets all Walls in this Level
+	 * @return An ArrayList containing all Walls in this Level
 	 */
-	public String toString()
+	public ArrayList<Wall> getWalls()
 	{
-		StringBuffer out = new StringBuffer("");
-		for (char[] row : grid) {
-			for (char c : row)
-				out.append(c);
-			out.append("\n");
-		}
-		return out.toString();
+		return walls;
 	}
 	
 	/** Draws this Level
@@ -85,6 +80,8 @@ public class Level extends Rectangle2D.Double {
 					marker.rect(rx, ry, rw, rh);
 				} else if(grid[i][j] == '#') {
 					Wall wall = new Wall((int)rx, (int)ry, (int)rw, (int)rh);
+//					TODO add another method that adds all walls and other sprites to ArrayLists, 
+//					then use draw to draw those sprites
 					if (!walls.contains(wall))
 						walls.add(wall);
 					wall.draw(marker);
@@ -140,6 +137,19 @@ public class Level extends Rectangle2D.Double {
 			}
 		} else
 			throw new IllegalArgumentException("Data file " + filename + " does not exist.");
+	}
+	
+	/**	Prints out a formatted version of this Level
+	 */
+	public String toString()
+	{
+		StringBuffer out = new StringBuffer("");
+		for (char[] row : grid) {
+			for (char c : row)
+				out.append(c);
+			out.append("\n");
+		}
+		return out.toString();
 	}
 	
 }
