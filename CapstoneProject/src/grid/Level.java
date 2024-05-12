@@ -1,12 +1,14 @@
 package grid;
 
-import java.awt.geom.Rectangle2D;
 import java.io.File;
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.Scanner;
+import java.util.ArrayList;
+import java.awt.geom.Rectangle2D;
 
 import processing.core.PApplet;
+import sprites.Wall;
 
 /** This class represents the game's grid
  * @author Boon Chew, Nikunj Govil, Yashasvi Chitela
@@ -15,6 +17,7 @@ import processing.core.PApplet;
 public class Level extends Rectangle2D.Double {
 	
 	private char[][] grid;
+	private ArrayList<Wall> walls;
 	
 	
 	/** Construct an empty 2D array with some default dimensions
@@ -83,7 +86,9 @@ public class Level extends Rectangle2D.Double {
 				marker.noStroke();
 				
 //				TODO maybe add rect walls to an arraylist to use for collisions
+				Wall wall = new Wall((int)rx, (int)ry, (int)rw, (int)rh);
 				marker.rect(rx, ry, rw, rh);
+				
 			}
 	}
 	
