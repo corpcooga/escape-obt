@@ -93,6 +93,11 @@ public class DrawingSurface extends PApplet implements ScreenSwitcher {
 		return keys.contains(code);
 	}
 	
+	public boolean keyReleased(Integer code)
+	{
+		return keys.contains(code);
+	}
+
 	/** Executes a mouse press
 	 */
 	public void mousePressed()
