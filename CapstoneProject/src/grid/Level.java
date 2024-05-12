@@ -12,16 +12,14 @@ import processing.core.PApplet;
  * @author Boon Chew, Nikunj Govil, Yashasvi Chitela
  * @version 5/12/24
  */
-public class Maze extends Rectangle2D.Double {
+public class Level extends Rectangle2D.Double {
 	
-	/** The grid array
-	 */
 	private char[][] grid;
 	
 	
 	/** Construct an empty 2D array with some default dimensions
 	 */
-	public Maze()
+	public Level()
 	{
 		grid = new char[20][20];
 		x = 0;
@@ -36,7 +34,7 @@ public class Maze extends Rectangle2D.Double {
 	 * @param height The height of the grid
 	 * @param filename The text file to read from
 	 */
-	public Maze(int width, int height, String filename)
+	public Level(int width, int height, String filename)
 	{
 		grid = new char[width][height];
 		readData(filename, grid);
@@ -46,7 +44,7 @@ public class Maze extends Rectangle2D.Double {
 		this.height = 1000;
 	}
 	
-	/**	Prints out a formatted version of this Maze
+	/**	Prints out a formatted version of this Level
 	 */
 	public String toString()
 	{
@@ -59,15 +57,17 @@ public class Maze extends Rectangle2D.Double {
 		return out.toString();
 	}
 	
-	/** Draws this Maze
+	/** Draws this Level
 	 * @param marker The PApplet used for drawing
 	 */
 	public void draw(PApplet marker)
 	{
 		float rw = (float)width / grid[0].length;
 		float rh = (float)height / grid.length;
+		
 		for (int i = 0; i < grid.length; i++)
-			for (int j = 0; j < grid[0].length; j++) {
+			for (int j = 0; j < grid[0].length; j++)
+			{
 				float rx = (float)x + rw * j;
 				float ry = (float)y + rh * i;
 				

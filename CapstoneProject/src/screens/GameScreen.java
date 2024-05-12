@@ -9,7 +9,7 @@ import java.util.List;
 import main.DrawingSurface;
 import sprites.Player;
 import sprites.Sprite;
-import grid.Maze;
+import grid.Level;
 
 /** This class represents the game screen
  * @author Boon Chew, Nikunj Govil, Yashasvi Chitela
@@ -31,7 +31,7 @@ public class GameScreen extends Screen {
 	
 	private DrawingSurface surface;
 	private Player player;
-	private Maze maze;
+	private Level maze;
 	
 	
 	/** Constructs a GameScreen
@@ -42,7 +42,7 @@ public class GameScreen extends Screen {
 		super(DrawingSurface.DRAWING_WIDTH, DrawingSurface.DRAWING_HEIGHT);
 		this.surface = surface;
 		
-		maze = new Maze(20, 16, "testfiles/paintcan/digital.txt");
+		maze = new Level(20, 16, "testfiles/paintcan/digital.txt");
 		
 //		obstacles = new ArrayList<Sprite>();
 //		obstacles.add(new Sprite(0, 250, 100, 50));
@@ -126,18 +126,14 @@ public class GameScreen extends Screen {
 			player.accelerate(0, 1);
 		if (surface.isPressed(KeyEvent.VK_S))
 			player.accelerate(0, -1);
-		if (surface.isPressed(KeyEvent.VK_A)) {
-//			player.changeImage(surface.loadImage("resources/img/flmainchar.png"));
+		if (surface.isPressed(KeyEvent.VK_A))
 			player.accelerate(-1, 0);
-		}
-		if (surface.isPressed(KeyEvent.VK_D)) {
-//			player.changeImage(surface.loadImage("resources/img/mainchar.png"));
+		if (surface.isPressed(KeyEvent.VK_D))
 			player.accelerate(1, 0);
-		}
+//		player.changeImage(surface.loadImage("resources/img/mainchar.png"));
 		
+		player.act(maze, null);
 		slideWorldToImage(player);
-		player.act(null, maze);
-//		player.applyWindowLimits(DRAWING_WIDTH, DRAWING_HEIGHT);
 	}
 
 }

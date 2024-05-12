@@ -50,10 +50,11 @@ public class Player extends Sprite {
 		speed = .1;
 	}
 
-	/** Moves the Player naturally
+	/** Handles natural Player movement
+	 * @param limits A Rectangle2D representing the limits in game
 	 * @param obstacles Other sprites that this Player could collide with
 	 */
-	public void act(List<Sprite> obstacles, Rectangle2D.Double limits)
+	public void act(Rectangle2D.Double limits, List<Sprite> obstacles)
 	{
 		moveByAmount(xVel, -yVel);
 		applyWindowLimits(limits);

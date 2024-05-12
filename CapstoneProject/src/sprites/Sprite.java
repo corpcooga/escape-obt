@@ -77,8 +77,8 @@ public class Sprite extends Rectangle2D.Double {
 	{
 		x = Math.min(x, limits.width - width);
 		y = Math.min(y, limits.height - height);
-		x = Math.max(0, x);
-		y = Math.max(0, y);
+		x = Math.max(limits.x, x);
+		y = Math.max(limits.y, y);
 	}
 	
 	/** Gets the coordinates of the center of this Sprite
