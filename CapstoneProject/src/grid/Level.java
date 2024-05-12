@@ -86,7 +86,6 @@ public class Level extends Rectangle2D.Double {
 					Wall wall = new Wall((int)rx, (int)ry, (int)rw, (int)rh);
 					if (!walls.contains(wall))
 						walls.add(wall);
-					System.out.println(walls.size());
 					wall.draw(marker);
 				}
 			}

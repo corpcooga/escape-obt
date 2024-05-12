@@ -9,8 +9,8 @@ import java.util.List;
  */
 public class Player extends Sprite {
 	
-	private boolean isSneaking = false;
 	private double xVel, yVel, speed;
+	private boolean isSneaking;
 
 	
 	/** Constructs a Player
@@ -24,6 +24,7 @@ public class Player extends Sprite {
 		xVel = 0;
 		yVel = 0;
 		speed = 1;
+		isSneaking = false;
 	}
 	
 	/** Constructs a Player with the image specified
@@ -45,17 +46,17 @@ public class Player extends Sprite {
 		yVel += yChange * speed;
 	}
 	
-/** Makes the player sneak
- * 
- */
-	public void sneak()
+	/** Makes this Player move slower, decreases range of vision, and makes it harder for entities 
+	 * to see this Player
+	 * @param doSneak Determines whether this Player should sneak or not
+	 */
+	public void sneak(boolean doSneak)
 	{
-		isSneaking = !isSneaking;
-		if(isSneaking) {
+		isSneaking = doSneak;
+		if (isSneaking)
 			speed = 0.1;
-		}else {
+		else
 			speed = 1;
-		}
 	}
 
 	/** Handles natural Player movement
