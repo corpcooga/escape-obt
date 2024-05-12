@@ -23,7 +23,7 @@ public class Player extends Sprite {
 		super(img, x, y, 40, 60);
 		xVel = 0;
 		yVel = 0;
-		speed = 1;
+		speed = 0.6;
 		isSneaking = false;
 	}
 	
@@ -56,7 +56,7 @@ public class Player extends Sprite {
 		if (isSneaking)
 			speed = 0.1;
 		else
-			speed = 1;
+			speed = 0.6;
 	}
 
 	/** Handles natural Player movement
