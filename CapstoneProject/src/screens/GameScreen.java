@@ -116,7 +116,7 @@ public class GameScreen extends Screen {
 		surface.translate((float)-visibleSpace.getX(), (float)-visibleSpace.getY());
 		surface.background(0, 255, 255);
 		
-		level.draw(surface);
+		level.draw(surface, visibleSpace);
 		player.draw(surface);
 //		for (Sprite s : obstacles)
 //			s.draw(surface);

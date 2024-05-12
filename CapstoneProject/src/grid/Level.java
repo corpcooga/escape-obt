@@ -61,8 +61,9 @@ public class Level extends Rectangle2D.Double {
 	
 	/** Draws this Level
 	 * @param marker The PApplet used for drawing
+	 * @param visible A Rectangle2D representing the visible in game
 	 */
-	public void draw(PApplet marker)
+	public void draw(PApplet marker, Rectangle2D.Double visible)
 	{
 		float rw = (float)width / grid[0].length;
 		float rh = (float)height / grid.length;
@@ -73,10 +74,10 @@ public class Level extends Rectangle2D.Double {
 				float rx = (float)x + rw * j;
 				float ry = (float)y + rh * i;
 				
-//				FIXME
-////				doesn't draw tiles that are offscreen
-//				if (rx > marker.width || ry > marker.height || rx + rw < 0 || ry + rh < 0)
-//					continue;
+//				doesn't draw tiles that are offscreen
+				if (rx > visible.x + visible.width || ry > visible.y + visible.height || 
+						rx + rw < visible.x || ry + rh < visible.y)
+					continue;
 				
 				if (grid[i][j] == ' ') {
 					marker.fill(255);
