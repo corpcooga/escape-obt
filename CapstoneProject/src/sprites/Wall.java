@@ -26,7 +26,8 @@ public class Wall extends Sprite {
 	 */
 	public Wall(int x, int y, int w, int h)
 	{
-		this("resources/img/wall.png", x, y, w, h);
+		//"resources/img/wall.png"
+		this(null, x, y, w, h);
 	}
 
 }
