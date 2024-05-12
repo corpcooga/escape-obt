@@ -16,7 +16,7 @@ public class Player extends Sprite {
 	/** Height of this Player
 	 */
 	public static final int PLAYER_HEIGHT = 60;
-
+	private boolean isSneaking = false;
 	private double xVel, yVel, speed;
 
 	
@@ -52,11 +52,17 @@ public class Player extends Sprite {
 		yVel += yChange * speed;
 	}
 	
-	/** Executes a sneak action
-	 */
+/** Makes the player sneak
+ * 
+ */
 	public void sneak()
 	{
-		speed = .1;
+		isSneaking = !isSneaking;
+		if(isSneaking) {
+			speed = 0.1;
+		}else {
+			speed = 1;
+		}
 	}
 
 	/** Handles natural Player movement
