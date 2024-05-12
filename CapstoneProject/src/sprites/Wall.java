@@ -18,7 +18,17 @@ public class Wall extends Sprite {
 	public Wall(PImage img, int x, int y, int w, int h)
 	{
 		super(img, x, y, w, h);
-		// TODO Auto-generated constructor stub
+	}
+	
+	/** Constructs a Wall with the image specified
+	 * @param x x-coordinate of this Wall
+	 * @param y y-coordinate of this Wall
+	 * @param w width of this Wall
+	 * @param h height of this Wall
+	 */
+	public Wall(int x, int y, int w, int h)
+	{
+		super(null, x, y, w, h);
 	}
 
 }
