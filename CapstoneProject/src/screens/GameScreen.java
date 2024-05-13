@@ -3,8 +3,6 @@ package screens;
 import java.awt.event.*;
 import java.awt.geom.Point2D;
 import java.awt.geom.Rectangle2D;
-import java.util.ArrayList;
-import java.util.List;
 
 import main.DrawingSurface;
 import sprites.Player;
@@ -135,7 +133,7 @@ public class GameScreen extends Screen {
 			player.sneak(false);
 //		player.changeImage(surface.loadImage("resources/img/mainchar.png"));
 		
-		player.act(level, level.getWalls());
+		player.act(level);
 		slideWorldToImage(player);
 	}
 
