@@ -26,7 +26,7 @@ public class Exit extends Sprite {
 	 */
 	public Exit(int x, int y, int w, int h)
 	{
-		this("resources/img/dooropen.png", x, y, w, h);
+		this("resources/img/doorclosed.png", x, y, w, h);
 	}
 
 }

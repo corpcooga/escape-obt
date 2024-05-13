@@ -88,11 +88,11 @@ public class Level extends Rectangle2D.Double {
 				
 //				Key Fragment
 				else if (grid[i][j] == '*')
-					keyFragments.add(new KeyFragment((int)sx, (int)sy, (int)sw, (int)sh));
+					keyFragments.add(new KeyFragment((int)sx, (int)sy, (int)sw / 2, (int)sh / 2));
 				
 //				Tickler
 				else if (grid[i][j] == 'T')
-					ticklers.add(new Tickler((int)sx, (int)sy, (int)sw, (int)sh));
+					ticklers.add(new Tickler((int)sx, (int)sy, (int)sw / 2, (int)sh / 2));
 				
 //				Player
 				else if (grid[i][j] == 'P')
@@ -120,8 +120,8 @@ public class Level extends Rectangle2D.Double {
 			if (tickler.inLimits(visible))
 				tickler.draw(marker);
 		
-		player.draw(marker);
 		exit.draw(marker);
+		player.draw(marker);
 	}
 	
 //	/** Converts click coordinates to index values that correspond to the grid

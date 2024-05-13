@@ -98,6 +98,7 @@ public class GameScreen extends Screen {
 		
 		level.draw(surface, visibleSpace);
 		
+//		Player controls
 		Player player = level.getPlayer();
 		if (surface.isPressed(KeyEvent.VK_W))
 			player.accelerate(0, 1);
