@@ -57,7 +57,7 @@ public class GameScreen extends Screen {
 	 */
 	public void spawnNewPlayer()
 	{
-		player = new Player(50, 50);
+		player = new Player(150, 150);
 	}
 	
 	/** Sets up this GameScreen
