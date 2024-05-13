@@ -63,6 +63,11 @@ public class Player extends Sprite {
 			speed = 0.6;
 	}
 	
+	public int getNumFragments()
+	{
+		return numFragments;
+	}
+	
 	/** Handles natural Player movement
 	 * @param level Represents the level that this Player is in
 	 */
@@ -93,7 +98,7 @@ public class Player extends Sprite {
 			}
 		
 		if (level.getExit().intersects(this))
-			if (numFragments == level.getNumFragments())
+			if (level.allFragmentsCollected())
 				yVel = -100;
 		
 		yVel *= 0.8;

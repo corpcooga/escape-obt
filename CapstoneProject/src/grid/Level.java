@@ -83,11 +83,6 @@ public class Level extends Rectangle2D.Double {
 		keyFragments.remove(idx);
 	}
 	
-	public int getNumFragments()
-	{
-		return levelFragments;
-	}
-	
 	public Player getPlayer()
 	{
 		return player;
@@ -96,6 +91,11 @@ public class Level extends Rectangle2D.Double {
 	public Exit getExit()
 	{
 		return exit;
+	}
+	
+	public boolean allFragmentsCollected()
+	{
+		return player.getNumFragments() == levelFragments;
 	}
 	
 	public void readSprites()
