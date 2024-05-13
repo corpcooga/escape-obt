@@ -1,8 +1,10 @@
 package sprites;
 
+import grid.Level;
+
 /** This class represents an enemy entity
  * @author Nikunj Govil, Yashasvi Chitela, Boon Chew
- * @version 5/5/2024
+ * @version 5/12/24
  */
 public class Tickler extends Sprite {
 	
@@ -26,14 +28,32 @@ public class Tickler extends Sprite {
 	 */
 	public Tickler(int x, int y, int w, int h)
 	{
-		this(null, x, y, w, h);
+		this("resources/img/tickler.png", x, y, w, h);
 	}
 	
-	/** Tickles the specified player which kills the specified player
-	 * @param toBeTickled Player to be tickled
+	/** Handles Tickler movement
+	 * @param level Represents the level that this Tickler
 	 */
-	public void tickle(Player toBeTickled) {
-//		toBeTickled.removeSprite(toBeTickled);
+	public void act(Level level)
+	{
+//		x += xVel;
+//		for(Wall w : level.getWalls())
+//			if (w.intersects(this)) {
+//				x -= xVel;
+//				xVel = 0;
+//			}
+//		
+//		y -= yVel;
+//		for(Wall w : level.getWalls())
+//			if (w.intersects(this)) {
+//				y += yVel;
+//				yVel = 0;
+//			}
+//		
+//		applyWindowLimits(level);
+//		
+//		yVel *= 0.8;
+//		xVel *= 0.8;
 	}
 
 }

@@ -59,15 +59,15 @@ public class Sprite extends Rectangle2D.Double {
 		super.y += y;
 	}
 	
-//	public void moveInLimits(Rectangle2D.Double limits, double x, double y)
-//	{
-//		double newX = this.x + x;
-//		double newY = this.y + y;
-//		if (limits.contains(new Rectangle2D.Double(newX, newY, width, height))) {
-//			this.x = newX;
-//			this.y = newY;
-//		}
-//	}
+	/** Determines whether or not this Sprite is in specified limits
+	 * @param limits The limits to check for the Sprite
+	 * @return true if this Sprite is in the limits, false otherwise
+	 */
+	public boolean inLimits(Rectangle2D.Double limits)
+	{
+		return limits.contains(this);
+//		new Rectangle2D.Double(x, y, width, height)
+	}
 	
 	/** Keeps this Sprite in the screen
 	 * @param windowWidth width of screen

@@ -8,6 +8,7 @@ import java.util.ArrayList;
 import java.awt.geom.Rectangle2D;
 
 import processing.core.PApplet;
+import sprites.KeyFragment;
 import sprites.Wall;
 
 /** This class represents the game's grid
@@ -18,6 +19,7 @@ public class Level extends Rectangle2D.Double {
 	
 	private char[][] grid;
 	private ArrayList<Wall> walls;
+	private ArrayList<KeyFragment> keyFragments;
 	
 	
 	/** Construct an empty 2D array with dimensions width and height, then fill it with data from 
@@ -28,10 +30,14 @@ public class Level extends Rectangle2D.Double {
 	 */
 	public Level(int width, int height, String filename)
 	{
-		walls = new ArrayList<Wall>();
 		grid = new char[width][height];
 		if (filename != null)
 			readData(filename, grid);
+		
+		walls = new ArrayList<Wall>();
+		keyFragments = new ArrayList<KeyFragment>();
+		readSprites();
+		
 		x = 0;
 		y = 0;
 		this.width = width * 100;
@@ -54,39 +60,64 @@ public class Level extends Rectangle2D.Double {
 		return walls;
 	}
 	
+	public void readSprites()
+	{
+//		Sprite width and heights
+		float sw = (float)width / grid[0].length;
+		float sh = (float)height / grid.length;
+		
+		for (int i = 0; i < grid.length; i++)
+			for (int j = 0; j < grid[0].length; j++)
+			{
+//				Sprite x and y's
+				float sx = (float)x + sw * j;
+				float sy = (float)y + sh * i;
+				
+//				Wall
+				if (grid[i][j] == '#')
+					walls.add(new Wall((int)sx, (int)sy, (int)sw, (int)sh));
+				
+//				Key Fragment
+				else if (grid[i][j] == '*')
+					keyFragments.add(new KeyFragment((int)sx, (int)sy, (int)sw, (int)sh));
+			}
+	}
+	
 	/** Draws this Level
 	 * @param marker The PApplet used for drawing
 	 * @param visible A Rectangle2D representing the visible in game
 	 */
 	public void draw(PApplet marker, Rectangle2D.Double visible)
 	{
-		float rw = (float)width / grid[0].length;
-		float rh = (float)height / grid.length;
+		for (Wall wall : walls)
+			if (wall.inLimits(visible))
+				wall.draw(marker);
 		
-		for (int i = 0; i < grid.length; i++)
-			for (int j = 0; j < grid[0].length; j++)
-			{
-				float rx = (float)x + rw * j;
-				float ry = (float)y + rh * i;
-				
-//				doesn't draw tiles that are offscreen
-				if (rx > visible.x + visible.width || ry > visible.y + visible.height || 
-						rx + rw < visible.x || ry + rh < visible.y)
-					continue;
-				
-				if (grid[i][j] == '.') {
-					marker.fill(255);
-					marker.noStroke();
-					marker.rect(rx, ry, rw, rh);
-				} else if(grid[i][j] == '#') {
-					Wall wall = new Wall((int)rx, (int)ry, (int)rw, (int)rh);
-//					TODO add another method that adds all walls and other sprites to ArrayLists, 
-//					then use draw to draw those sprites
-					if (!walls.contains(wall))
-						walls.add(wall);
-					wall.draw(marker);
-				}
-			}
+//		float rw = (float)width / grid[0].length;
+//		float rh = (float)height / grid.length;
+//		
+//		for (int i = 0; i < grid.length; i++)
+//			for (int j = 0; j < grid[0].length; j++)
+//			{
+//				float rx = (float)x + rw * j;
+//				float ry = (float)y + rh * i;
+//				
+////				doesn't draw tiles that are offscreen
+//				if (rx > visible.x + visible.width || ry > visible.y + visible.height || 
+//						rx + rw < visible.x || ry + rh < visible.y)
+//					continue;
+//				
+//				if (grid[i][j] == '#') {
+//					Wall wall = new Wall((int)rx, (int)ry, (int)rw, (int)rh);
+//					if (!walls.contains(wall))
+//						walls.add(wall);
+//					wall.draw(marker);
+//				} else {
+//					marker.fill(255);
+//					marker.noStroke();
+//					marker.rect(rx, ry, rw, rh);
+//				}
+//			}
 	}
 	
 //	/** Converts click coordinates to index values that correspond to the grid
