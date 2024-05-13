@@ -39,6 +39,7 @@ public class Player extends Sprite {
 		this("resources/img/player.gif", x, y);
 	}
 	
+	
 	/** Accelerates this Player by a specified x/y amount
 	 * @param xChange The amount to accelerate x by
 	 * @param yChange The amount to accelerate y by
@@ -90,6 +91,10 @@ public class Player extends Sprite {
 				level.removeKeyFragment(i);
 				i--;
 			}
+		
+		if (level.getExit().intersects(this))
+			if (numFragments == level.getNumFragments())
+				yVel = -100;
 		
 		yVel *= 0.8;
 		xVel *= 0.8;
