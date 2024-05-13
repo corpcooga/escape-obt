@@ -18,7 +18,7 @@ public class GameScreen extends Screen {
 	// Bigger = panning happens closer to the edge of window (1 = panning at edge, 0 = panning constantly)
 	private static final double characterFractionOfWindow = 0;
 	// Bigger = follow char more slowly (1 = pan immediately)
-	private static final double panningLag = 10;
+	private static final double panningLag = 30;
 	
 	// Area of the level that can be seen
 	private Rectangle2D.Double visibleSpace;
@@ -27,6 +27,7 @@ public class GameScreen extends Screen {
 	
 	private DrawingSurface surface;
 	private Level level;
+	private int numLevel;
 	
 	
 	/** Constructs a GameScreen
@@ -37,7 +38,8 @@ public class GameScreen extends Screen {
 		super(DrawingSurface.DRAWING_WIDTH, DrawingSurface.DRAWING_HEIGHT);
 		this.surface = surface;
 		
-		level = new Level(21, 21, "resources/levels/level1.txt");
+		numLevel = 1;
+		level = new Level(21, 21, "resources/levels/level" + numLevel + ".txt");
 	}
 	
 	
