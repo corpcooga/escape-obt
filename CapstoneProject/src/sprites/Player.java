@@ -1,5 +1,7 @@
 package sprites;
 
+import java.util.ArrayList;
+
 import grid.Level;
 
 /** This class represents the playable character
@@ -66,20 +68,28 @@ public class Player extends Sprite {
 	public void act(Level level)
 	{
 		x += xVel;
-		for(Wall w : level.getWalls())
+		for (Wall w : level.getWalls())
 			if (w.intersects(this)) {
 				x -= xVel;
 				xVel = 0;
 			}
 		
 		y -= yVel;
-		for(Wall w : level.getWalls())
+		for (Wall w : level.getWalls())
 			if (w.intersects(this)) {
 				y += yVel;
 				yVel = 0;
 			}
 		
 		applyWindowLimits(level);
+		
+		ArrayList<KeyFragment> keyFragments = level.getKeyFragments();
+		for (int i = 0; i < keyFragments.size(); i++)
+			if (keyFragments.get(i).intersects(this)) {
+				numFragments++;
+				level.removeKeyFragment(i);
+				i--;
+			}
 		
 		yVel *= 0.8;
 		xVel *= 0.8;
