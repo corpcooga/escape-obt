@@ -1,3 +1,4 @@
+
 package sprites;
 
 import grid.Level;
@@ -8,6 +9,7 @@ import grid.Level;
  */
 public class Tickler extends Sprite {
 	
+
 	/** Constructs a Tickler
 	 * @param img image to use for this Tickler
 	 * @param x x-coordinate of this Tickler
@@ -36,24 +38,25 @@ public class Tickler extends Sprite {
 	 */
 	public void act(Level level)
 	{
-//		x += xVel;
-//		for(Wall w : level.getWalls())
-//			if (w.intersects(this)) {
-//				x -= xVel;
-//				xVel = 0;
-//			}
-//		
-//		y -= yVel;
-//		for(Wall w : level.getWalls())
-//			if (w.intersects(this)) {
-//				y += yVel;
-//				yVel = 0;
-//			}
-//		
-//		applyWindowLimits(level);
-//		
-//		yVel *= 0.8;
-//		xVel *= 0.8;
+		x += 10;
+		for(Wall w : level.getWalls())
+			if (w.intersects(this)) {
+				x -= 10;
+			}
+		
+		y -= 10;
+		for(Wall w : level.getWalls())
+			if (w.intersects(this)) {
+				y += 10;
+			}
+		
+		applyWindowLimits(level);
+		
+	}
+	
+	public boolean isInRange() {
+		
+		return false;
 	}
 
 }
