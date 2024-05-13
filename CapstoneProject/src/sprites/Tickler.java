@@ -28,7 +28,7 @@ public class Tickler extends Sprite {
 	 */
 	public Tickler(int x, int y, int w, int h)
 	{
-		this("resources/img/tickler.png", x, y, w, h);
+		this("resources/img/tickler.gif", x, y, w, h);
 	}
 	
 	/** Handles Tickler movement

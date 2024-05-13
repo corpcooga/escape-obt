@@ -26,7 +26,7 @@ public class KeyFragment extends Sprite {
 	 */
 	public KeyFragment(int x, int y, int w, int h)
 	{
-		this("resources/img/keyfragment.png", x, y, w, h);
+		this("resources/img/keyfragment.gif", x, y, w, h);
 	}
 
 }

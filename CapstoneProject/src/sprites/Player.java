@@ -34,7 +34,7 @@ public class Player extends Sprite {
 	 */
 	public Player(int x, int y)
 	{
-		this("resources/img/player.png", x, y);
+		this("resources/img/player.gif", x, y);
 	}
 	
 	/** Accelerates this Player by a specified x/y amount
