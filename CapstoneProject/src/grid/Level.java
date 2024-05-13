@@ -23,6 +23,7 @@ public class Level extends Rectangle2D.Double {
 	private Exit exit;
 	
 	private char[][] grid;
+	private int levelFragments;
 	
 	
 	/** Construct an empty 2D array with dimensions width and height, then fill it with data from 
@@ -46,6 +47,8 @@ public class Level extends Rectangle2D.Double {
 		keyFragments = new ArrayList<KeyFragment>();
 		ticklers = new ArrayList<Tickler>();
 		readSprites();
+		
+		levelFragments = keyFragments.size();
 	}
 	
 	/** Construct an empty 2D array with some default dimensions
@@ -80,9 +83,19 @@ public class Level extends Rectangle2D.Double {
 		keyFragments.remove(idx);
 	}
 	
+	public int getNumFragments()
+	{
+		return levelFragments;
+	}
+	
 	public Player getPlayer()
 	{
 		return player;
+	}
+	
+	public Exit getExit()
+	{
+		return exit;
 	}
 	
 	public void readSprites()

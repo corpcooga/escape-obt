@@ -90,12 +90,16 @@ public class Sprite extends Rectangle2D.Double {
 		return new Point2D.Double(x + width / 2, y + height / 2);
 	}
 	
+	public void setImage(String imageFile)
+	{
+		this.imageFile = imageFile;
+	}
+	
 	/** Draws this Sprite
 	 * @param g PApplet used to draw
 	 */
 	public void draw(PApplet g)
 	{
-		
 		if (image == null && imageFile != null)
 			image = g.loadImage(imageFile);
 		
