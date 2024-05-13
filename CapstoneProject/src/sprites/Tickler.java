@@ -38,24 +38,10 @@ public class Tickler extends Sprite {
 	 */
 	public void act(Level level)
 	{
-		x += 10;
-		for(Wall w : level.getWalls())
-			if (w.intersects(this)) {
-				x -= 10;
-			}
-		
-		y -= 10;
-		for(Wall w : level.getWalls())
-			if (w.intersects(this)) {
-				y += 10;
-			}
-		
-		applyWindowLimits(level);
 		
 	}
 	
 	public boolean isInRange() {
-		
 		return false;
 	}
 
