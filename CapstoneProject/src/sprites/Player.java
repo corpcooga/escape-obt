@@ -10,6 +10,7 @@ public class Player extends Sprite {
 	
 	private double xVel, yVel, speed;
 	private boolean isSneaking;
+	private int numFragments;
 
 	
 	/** Constructs a Player
@@ -20,9 +21,10 @@ public class Player extends Sprite {
 	public Player(String img, int x, int y)
 	{
 		super(img, x, y, 40, 60);
+		speed = 0.6;
 		xVel = 0;
 		yVel = 0;
-		speed = 0.6;
+		numFragments = 0;
 		isSneaking = false;
 	}
 	

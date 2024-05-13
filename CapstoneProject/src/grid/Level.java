@@ -93,6 +93,10 @@ public class Level extends Rectangle2D.Double {
 			if (wall.inLimits(visible))
 				wall.draw(marker);
 		
+		for (KeyFragment key : keyFragments)
+			if (key.inLimits(visible))
+				key.draw(marker);
+		
 //		float rw = (float)width / grid[0].length;
 //		float rh = (float)height / grid.length;
 		
