@@ -64,6 +64,22 @@ public class Level extends Rectangle2D.Double {
 		return walls;
 	}
 	
+	/** Gets all KeyFragments in this Level
+	 * @return An ArrayList containing all KeyFragmentsin this Level
+	 */
+	public ArrayList<KeyFragment> getKeyFragments()
+	{
+		return keyFragments;
+	}
+	
+	/** Removes the KeyFragment at the specified index
+	 * @param idx The index of the KeyFragment to remove
+	 */
+	public void removeKeyFragment(int idx)
+	{
+		keyFragments.remove(idx);
+	}
+	
 	public Player getPlayer()
 	{
 		return player;
