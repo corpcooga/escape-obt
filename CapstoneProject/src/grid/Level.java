@@ -8,8 +8,7 @@ import java.util.ArrayList;
 import java.awt.geom.Rectangle2D;
 
 import processing.core.PApplet;
-import sprites.KeyFragment;
-import sprites.Wall;
+import sprites.*;
 
 /** This class represents the game's grid
  * @author Boon Chew, Nikunj Govil, Yashasvi Chitela
@@ -17,9 +16,13 @@ import sprites.Wall;
  */
 public class Level extends Rectangle2D.Double {
 	
-	private char[][] grid;
 	private ArrayList<Wall> walls;
 	private ArrayList<KeyFragment> keyFragments;
+	private ArrayList<Tickler> ticklers;
+	private Player player;
+	private Exit exit;
+	
+	private char[][] grid;
 	
 	
 	/** Construct an empty 2D array with dimensions width and height, then fill it with data from 
@@ -41,6 +44,7 @@ public class Level extends Rectangle2D.Double {
 		
 		walls = new ArrayList<Wall>();
 		keyFragments = new ArrayList<KeyFragment>();
+		ticklers = new ArrayList<Tickler>();
 		readSprites();
 	}
 	
@@ -80,6 +84,18 @@ public class Level extends Rectangle2D.Double {
 //				Key Fragment
 				else if (grid[i][j] == '*')
 					keyFragments.add(new KeyFragment((int)sx, (int)sy, (int)sw, (int)sh));
+				
+//				Tickler
+				else if (grid[i][j] == 'T')
+					ticklers.add(new Tickler((int)sx, (int)sy, (int)sw, (int)sh));
+				
+//				Player
+				else if (grid[i][j] == 'P')
+					player = new Player((int)sx, (int)sy);
+				
+//				Exit
+				else if (grid[i][j] == 'X')
+					exit = new Exit((int)sx, (int)sy, (int)sw, (int)sh);
 			}
 	}
 	
@@ -92,36 +108,15 @@ public class Level extends Rectangle2D.Double {
 		for (Wall wall : walls)
 			if (wall.inLimits(visible))
 				wall.draw(marker);
-		
 		for (KeyFragment key : keyFragments)
 			if (key.inLimits(visible))
 				key.draw(marker);
+		for (Tickler tickler : ticklers)
+			if (tickler.inLimits(visible))
+				tickler.draw(marker);
 		
-//		float rw = (float)width / grid[0].length;
-//		float rh = (float)height / grid.length;
-		
-//		for (int i = 0; i < grid.length; i++)
-//			for (int j = 0; j < grid[0].length; j++)
-//			{
-//				float rx = (float)x + rw * j;
-//				float ry = (float)y + rh * i;
-//				
-////				doesn't draw tiles that are offscreen
-//				if (rx > visible.x + visible.width || ry > visible.y + visible.height || 
-//						rx + rw < visible.x || ry + rh < visible.y)
-//					continue;
-//				
-//				if (grid[i][j] == '#') {
-//					Wall wall = new Wall((int)rx, (int)ry, (int)rw, (int)rh);
-//					if (!walls.contains(wall))
-//						walls.add(wall);
-//					wall.draw(marker);
-//				} else {
-//					marker.fill(255);
-//					marker.noStroke();
-//					marker.rect(rx, ry, rw, rh);
-//				}
-//			}
+		player.draw(marker);
+		exit.draw(marker);
 	}
 	
 //	/** Converts click coordinates to index values that correspond to the grid
