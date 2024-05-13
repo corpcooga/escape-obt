@@ -34,14 +34,14 @@ public class Level extends Rectangle2D.Double {
 		if (filename != null)
 			readData(filename, grid);
 		
-		walls = new ArrayList<Wall>();
-		keyFragments = new ArrayList<KeyFragment>();
-		readSprites();
-		
 		x = 0;
 		y = 0;
 		this.width = width * 100;
 		this.height = height * 100;
+		
+		walls = new ArrayList<Wall>();
+		keyFragments = new ArrayList<KeyFragment>();
+		readSprites();
 	}
 	
 	/** Construct an empty 2D array with some default dimensions
@@ -95,7 +95,7 @@ public class Level extends Rectangle2D.Double {
 		
 //		float rw = (float)width / grid[0].length;
 //		float rh = (float)height / grid.length;
-//		
+		
 //		for (int i = 0; i < grid.length; i++)
 //			for (int j = 0; j < grid[0].length; j++)
 //			{

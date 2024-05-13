@@ -65,8 +65,8 @@ public class Sprite extends Rectangle2D.Double {
 	 */
 	public boolean inLimits(Rectangle2D.Double limits)
 	{
-		return limits.contains(this);
-//		new Rectangle2D.Double(x, y, width, height)
+		return x + width > limits.x && y + height > limits.y
+				&& x < limits.x + limits.width && y < limits.y + limits.height;
 	}
 	
 	/** Keeps this Sprite in the screen
