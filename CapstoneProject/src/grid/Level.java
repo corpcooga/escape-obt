@@ -12,7 +12,7 @@ import sprites.*;
 
 /** This class represents the game's grid
  * @author Boon Chew, Nikunj Govil, Yashasvi Chitela
- * @version 5/12/24
+ * @version 5/13/24
  */
 public class Level extends Rectangle2D.Double {
 	
@@ -148,6 +148,9 @@ public class Level extends Rectangle2D.Double {
 		for (Tickler tickler : ticklers)
 			if (tickler.inLimits(visible))
 				tickler.draw(marker);
+		
+		if (allFragmentsCollected())
+			exit.setImage("resources/img/dooropen.gif");
 		
 		exit.draw(marker);
 		player.draw(marker);

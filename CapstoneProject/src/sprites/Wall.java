@@ -2,7 +2,7 @@ package sprites;
 
 /** This class represents a wall that cannot be walked through
  * @author Nikunj Govil, Boon Chew, Yashasvi Chitela
- * @version 5/12/2024
+ * @version 5/13/2024
  */
 public class Wall extends Sprite {
 

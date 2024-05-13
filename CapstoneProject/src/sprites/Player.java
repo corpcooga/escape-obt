@@ -6,7 +6,7 @@ import grid.Level;
 
 /** This class represents the playable character
  * @author Boon Chew, Nikunj Govil, Yashasvi Chitela
- * @version 5/12/24
+ * @version 5/13/24
  */
 public class Player extends Sprite {
 	
@@ -99,6 +99,7 @@ public class Player extends Sprite {
 		
 		if (level.getExit().intersects(this))
 			if (level.allFragmentsCollected())
+//				TODO make this progress to the next level
 				yVel = -100;
 		
 		yVel *= 0.8;

@@ -8,7 +8,7 @@ import screens.*;
 
 /** This class draws everything in the program
  * @author Boon Chew, Nikunj Govil, Yashasvi Chitela
- * @version 5/12/24
+ * @version 5/13/24
  */
 public class DrawingSurface extends PApplet implements ScreenSwitcher {
 	
@@ -101,20 +101,6 @@ public class DrawingSurface extends PApplet implements ScreenSwitcher {
 		activeScreen.mousePressed();
 	}
 	
-	/** Executes a mouse move
-	 */
-	public void mouseMoved()
-	{
-		activeScreen.mouseMoved();
-	}
-	
-	/** Executes a mouse drag
-	 */
-	public void mouseDragged()
-	{
-		activeScreen.mouseDragged();
-	}
-	
 	/** Executes a mouse release
 	 */
 	public void mouseReleased()
@@ -126,14 +112,14 @@ public class DrawingSurface extends PApplet implements ScreenSwitcher {
 	 */
 	public Point assumedCoordinatesToActual(Point assumed)
 	{
-		return new Point((int)(assumed.getX()*ratioX), (int)(assumed.getY()*ratioY));
+		return new Point((int)(assumed.getX() * ratioX), (int)(assumed.getY() * ratioY));
 	}
 	
 	/** Scales the proper coordinates on the screen to the literal click coordinates
 	 */
 	public Point actualCoordinatesToAssumed(Point actual)
 	{
-		return new Point((int)(actual.getX()/ratioX) , (int)(actual.getY()/ratioY));
+		return new Point((int)(actual.getX() / ratioX), (int)(actual.getY() / ratioY));
 	}
 
 	@Override

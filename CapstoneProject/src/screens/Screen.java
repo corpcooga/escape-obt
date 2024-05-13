@@ -2,7 +2,7 @@ package screens;
 
 /** The container class for game screens
  * @author Boon Chew, Nikunj Govil, Yashasvi Chitela
- * @version 5/5/24
+ * @version 5/13/24
  */
 public abstract class Screen {
 	
@@ -33,14 +33,6 @@ public abstract class Screen {
 	/** Executes a mouse press
 	 */
 	public void mousePressed() {}
-	
-	/** Executes a mouse move
-	 */
-	public void mouseMoved() {}
-	
-	/** Executes a mouse drag
-	 */
-	public void mouseDragged() {}
 	
 	/** Executes a mouse release
 	 */

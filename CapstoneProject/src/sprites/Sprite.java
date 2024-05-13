@@ -7,7 +7,7 @@ import processing.core.PImage;
 
 /** This class represents a sprite in the game
 * @author Nikunj Govil, Boon Chew, Yashavi Chitela
-* @version 5/12/2024
+* @version 5/13/2024
 */
 public class Sprite extends Rectangle2D.Double {
 	
@@ -90,9 +90,12 @@ public class Sprite extends Rectangle2D.Double {
 		return new Point2D.Double(x + width / 2, y + height / 2);
 	}
 	
-	public void setImage(String imageFile)
+	public void setImage(String newImage)
 	{
-		this.imageFile = imageFile;
+		if (!imageFile.equals(newImage)) {
+			imageFile = newImage;
+			this.image = null;
+		}
 	}
 	
 	/** Draws this Sprite

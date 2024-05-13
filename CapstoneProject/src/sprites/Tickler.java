@@ -5,7 +5,7 @@ import grid.Level;
 
 /** This class represents an enemy entity
  * @author Nikunj Govil, Yashasvi Chitela, Boon Chew
- * @version 5/12/24
+ * @version 5/13/24
  */
 public class Tickler extends Sprite {
 	
