@@ -64,6 +64,11 @@ public class Level extends Rectangle2D.Double {
 		return walls;
 	}
 	
+	public Player getPlayer()
+	{
+		return player;
+	}
+	
 	public void readSprites()
 	{
 //		Sprite width and heights

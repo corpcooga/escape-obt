@@ -26,7 +26,6 @@ public class GameScreen extends Screen {
 	private Rectangle2D.Double playerSpace;
 	
 	private DrawingSurface surface;
-	private Player player;
 	private Level level;
 	
 	
@@ -42,18 +41,10 @@ public class GameScreen extends Screen {
 	}
 	
 	
-	/** Spawns new Player into the game
-	 */
-	public void spawnNewPlayer()
-	{
-		player = new Player(120, 120);
-	}
-	
 	/** Sets up this GameScreen
 	 */
 	public void setup()
 	{
-		spawnNewPlayer();
 		visibleSpace = new Rectangle2D.Double(0, 0, DRAWING_WIDTH, DRAWING_HEIGHT);
 		playerSpace = new Rectangle2D.Double(visibleSpace.getX() + visibleSpace.getWidth() * (1 - characterFractionOfWindow) * 0.5,
 												visibleSpace.getY() + visibleSpace.getHeight() * (1 - characterFractionOfWindow) * 0.5,
@@ -106,7 +97,8 @@ public class GameScreen extends Screen {
 		surface.background(0, 0, 0);
 		
 		level.draw(surface, visibleSpace);
-
+		
+		Player player = level.getPlayer();
 		if (surface.isPressed(KeyEvent.VK_W))
 			player.accelerate(0, 1);
 		if (surface.isPressed(KeyEvent.VK_S))
