@@ -12,6 +12,7 @@ import processing.core.PImage;
 public class Sprite extends Rectangle2D.Double {
 	
 	private String imageFile;
+	private PImage image;
 	
 	
 	/** Constructs a Sprite
@@ -94,8 +95,12 @@ public class Sprite extends Rectangle2D.Double {
 	 */
 	public void draw(PApplet g)
 	{
-		if (imageFile != null)
-			g.image(g.loadImage(imageFile), (float)x, (float)y, (float)width, (float)height);
+		
+		if (image == null && imageFile != null)
+			image = g.loadImage(imageFile);
+		
+		if (image != null)
+			g.image(image, (float)x, (float)y, (float)width, (float)height);
 		else {
 			g.fill(50);
 			g.rect((float)x, (float)y, (float)width, (float)height);
