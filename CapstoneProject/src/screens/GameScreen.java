@@ -15,20 +15,17 @@ import grid.Level;
  */
 public class GameScreen extends Screen {
 	
-//	private List<Sprite> obstacles;
-	
-	// Bigger = panning happens closer to the edge of window. 1 = right at edge, 0 = panning happens always
+	// Bigger = panning happens closer to the edge of window (1 = panning at edge, 0 = panning constantly)
 	private static final double characterFractionOfWindow = 0;
-	// Bigger = follow char more slowly. 1 = immediately pan
+	// Bigger = follow char more slowly (1 = pan immediately)
 	private static final double panningLag = 10;
 	
-	// Area of the level that we can see
+	// Area of the level that can be seen
 	private Rectangle2D.Double visibleSpace;
-	// Area of the window that the character can move freely in
-	private Rectangle2D.Double characterSpace;
+	// Area of the window that the player can move freely in
+	private Rectangle2D.Double playerSpace;
 	
 	private DrawingSurface surface;
-	private Player player;
 	private Level level;
 	
 	
@@ -41,30 +38,15 @@ public class GameScreen extends Screen {
 		this.surface = surface;
 		
 		level = new Level(21, 21, "resources/levels/level1.txt");
-		
-//		obstacles = new ArrayList<Sprite>();
-//		obstacles.add(new Sprite(0, 250, 100, 50));
-//		obstacles.add(new Sprite(700, 250, 100, 50));
-//		obstacles.add(new Sprite(200, 400, 400, 50));
-//		obstacles.add(new Sprite(375, 300, 50, 100));
-//		obstacles.add(new Sprite(300, 250, 200, 50));
 	}
 	
-	
-	/** Spawns new Player into the game
-	 */
-	public void spawnNewPlayer()
-	{
-		player = new Player(120, 120);
-	}
 	
 	/** Sets up this GameScreen
 	 */
 	public void setup()
 	{
-		spawnNewPlayer();
 		visibleSpace = new Rectangle2D.Double(0, 0, DRAWING_WIDTH, DRAWING_HEIGHT);
-		characterSpace = new Rectangle2D.Double(visibleSpace.getX() + visibleSpace.getWidth() * (1 - characterFractionOfWindow) * 0.5,
+		playerSpace = new Rectangle2D.Double(visibleSpace.getX() + visibleSpace.getWidth() * (1 - characterFractionOfWindow) * 0.5,
 												visibleSpace.getY() + visibleSpace.getHeight() * (1 - characterFractionOfWindow) * 0.5,
 												visibleSpace.getWidth() * characterFractionOfWindow,
 												visibleSpace.getHeight() * characterFractionOfWindow);
@@ -74,20 +56,20 @@ public class GameScreen extends Screen {
 	{
 		Point2D.Double center = img.getCenter();
 		
-		if (!characterSpace.contains(center))
+		if (!playerSpace.contains(center))
 		{
 			double newX = visibleSpace.getX();
 			double newY = visibleSpace.getY();
 
-			if (center.getX() < characterSpace.getX())
-				newX -= (characterSpace.getX() - center.getX()) / panningLag;
-			else if (center.getX() > characterSpace.getX() + characterSpace.getWidth())
-				newX += (center.getX() - (characterSpace.getX() + characterSpace.getWidth())) / panningLag;
+			if (center.getX() < playerSpace.getX())
+				newX -= (playerSpace.getX() - center.getX()) / panningLag;
+			else if (center.getX() > playerSpace.getX() + playerSpace.getWidth())
+				newX += (center.getX() - (playerSpace.getX() + playerSpace.getWidth())) / panningLag;
 
-			if (center.getY() < characterSpace.getY())
-				newY -= (characterSpace.getY() - center.getY()) / panningLag;
-			else if (center.getY() > characterSpace.getY() + characterSpace.getHeight())
-				newY += (center.getY() - characterSpace.getY() - characterSpace.getHeight()) / panningLag;
+			if (center.getY() < playerSpace.getY())
+				newY -= (playerSpace.getY() - center.getY()) / panningLag;
+			else if (center.getY() > playerSpace.getY() + playerSpace.getHeight())
+				newY += (center.getY() - playerSpace.getY() - playerSpace.getHeight()) / panningLag;
 			
 			newX = Math.max(newX, 0);
 			newY = Math.max(newY, 0);
@@ -95,7 +77,7 @@ public class GameScreen extends Screen {
 			newY = Math.min(newY, level.getHeight() - visibleSpace.getHeight());
 
 			visibleSpace.setRect(newX, newY, visibleSpace.getWidth(), visibleSpace.getHeight());
-			characterSpace.setRect(visibleSpace.getX() + visibleSpace.getWidth() * (1 - characterFractionOfWindow) * 0.5, 
+			playerSpace.setRect(visibleSpace.getX() + visibleSpace.getWidth() * (1 - characterFractionOfWindow) * 0.5, 
 									visibleSpace.getY() + visibleSpace.getHeight() * (1 - characterFractionOfWindow) * 0.5, 
 									visibleSpace.getWidth() * characterFractionOfWindow,
 									visibleSpace.getHeight() * characterFractionOfWindow);
@@ -115,10 +97,8 @@ public class GameScreen extends Screen {
 		surface.background(0, 0, 0);
 		
 		level.draw(surface, visibleSpace);
-		player.draw(surface);
-//		for (Sprite s : obstacles)
-//			s.draw(surface);
-
+		
+		Player player = level.getPlayer();
 		if (surface.isPressed(KeyEvent.VK_W))
 			player.accelerate(0, 1);
 		if (surface.isPressed(KeyEvent.VK_S))
@@ -131,9 +111,8 @@ public class GameScreen extends Screen {
 			player.sneak(true);
 		else 
 			player.sneak(false);
-//		player.changeImage(surface.loadImage("resources/img/mainchar.png"));
-		
 		player.act(level);
+		
 		slideWorldToImage(player);
 	}
 
