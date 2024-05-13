@@ -40,7 +40,7 @@ public class GameScreen extends Screen {
 		super(DrawingSurface.DRAWING_WIDTH, DrawingSurface.DRAWING_HEIGHT);
 		this.surface = surface;
 		
-		level = new Level(21, 21, "resources/levels/test1.txt");
+		level = new Level(21, 21, "resources/levels/level1.txt");
 		
 //		obstacles = new ArrayList<Sprite>();
 //		obstacles.add(new Sprite(0, 250, 100, 50));
