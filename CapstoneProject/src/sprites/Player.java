@@ -1,7 +1,6 @@
 package sprites;
 
-import java.awt.geom.Rectangle2D;
-import java.util.List;
+import grid.Level;
 
 /** This class represents the playable character
  * @author Boon Chew, Nikunj Govil, Yashasvi Chitela
@@ -58,39 +57,30 @@ public class Player extends Sprite {
 		else
 			speed = 0.6;
 	}
-
+	
 	/** Handles natural Player movement
-	 * @param limits A Rectangle2D representing the limits in game
-	 * @param walls Walls that this Player could collide with
+	 * @param level Represents the level that this Player is in
 	 */
-	public void act(Rectangle2D.Double limits, List<Wall> walls)
+	public void act(Level level)
 	{
 		x += xVel;
-		for(Wall w : walls)
-			if(w.intersects(this)) {
+		for(Wall w : level.getWalls())
+			if (w.intersects(this)) {
 				x -= xVel;
 				xVel = 0;
 			}
 		
 		y -= yVel;
-		for(Wall w : walls)
-			if(w.intersects(this)) {
+		for(Wall w : level.getWalls())
+			if (w.intersects(this)) {
 				y += yVel;
 				yVel = 0;
 			}
 		
-		applyWindowLimits(limits);
+		applyWindowLimits(level);
 		
 		yVel *= 0.8;
 		xVel *= 0.8;
 	}
-	
-//	/** Calling this method makes the player pick up certain objects present within the game
-//	 * @param obj Object that the character picks up
-//	 * 
-//	 */
-//	public void pickUp(Sprite obj) {
-//		
-//	}
 	
 }
