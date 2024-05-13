@@ -1,4 +1,3 @@
-
 package sprites;
 
 import grid.Level;
@@ -41,7 +40,8 @@ public class Tickler extends Sprite {
 		
 	}
 	
-	public boolean isInRange() {
+	public boolean isInRange()
+	{
 		return false;
 	}
 
