@@ -41,13 +41,8 @@ public class Level extends Rectangle2D.Double {
 		this.width = width * 100;
 		this.height = height * 100;
 		
+		setupSprites();
 		numLevel = 1;
-		walls = new ArrayList<Wall>();
-		keyFragments = new ArrayList<KeyFragment>();
-		ticklers = new ArrayList<Tickler>();
-		readSprites();
-		
-		levelFragments = keyFragments.size();
 	}
 	
 	/** Construct an empty 2D array with some default dimensions
@@ -67,11 +62,19 @@ public class Level extends Rectangle2D.Double {
 	}
 	
 	/** Gets all KeyFragments in this Level
-	 * @return An ArrayList containing all KeyFragmentsin this Level
+	 * @return An ArrayList containing all KeyFragments in this Level
 	 */
 	public ArrayList<KeyFragment> getKeyFragments()
 	{
 		return keyFragments;
+	}
+	
+	/** Gets all Ticklers in this Level
+	 * @return An ArrayList containing all Ticklers in this Level
+	 */
+	public ArrayList<Tickler> getTicklers()
+	{
+		return ticklers;
 	}
 	
 	public Player getPlayer()
@@ -99,15 +102,21 @@ public class Level extends Rectangle2D.Double {
 	
 	/** Progresses to the next level
 	 */
-	public void nextLevel()
+	public void changeLevel(int levelChange)
 	{
 //		TODO find way to make grid have proper size based on level txt file
 		grid = new char[100][100];
-		readData("resources/levels/level" + ++numLevel + ".txt", grid);
+		numLevel += levelChange;
+		readData("resources/levels/level" + numLevel + ".txt", grid);
 		
 		width = grid.length * 100;
 		height = grid[0].length * 100;
 		
+		setupSprites();
+	}
+	
+	public void setupSprites()
+	{
 		walls = new ArrayList<Wall>();
 		keyFragments = new ArrayList<KeyFragment>();
 		ticklers = new ArrayList<Tickler>();

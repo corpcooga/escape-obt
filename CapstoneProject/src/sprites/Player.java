@@ -74,6 +74,7 @@ public class Player extends Sprite {
 	 */
 	public void act(Level level)
 	{
+//		Movement + movement collision handling
 		x += xVel;
 		for (Wall w : level.getWalls())
 			if (w.intersects(this)) {
@@ -89,7 +90,10 @@ public class Player extends Sprite {
 			}
 		
 		applyWindowLimits(level);
+		yVel *= 0.8;
+		xVel *= 0.8;
 		
+//		Other sprite interaction
 		ArrayList<KeyFragment> keyFragments = level.getKeyFragments();
 		for (int i = 0; i < keyFragments.size(); i++)
 			if (keyFragments.get(i).intersects(this)) {
@@ -98,12 +102,13 @@ public class Player extends Sprite {
 				i--;
 			}
 		
+		for (Tickler t : level.getTicklers())
+			if (t.intersects(this))
+				level.changeLevel(0);
+		
 		if (level.getExit().intersects(this))
 			if (level.allFragmentsCollected())
-				level.nextLevel();
-		
-		yVel *= 0.8;
-		xVel *= 0.8;
+				level.changeLevel(1);
 	}
 	
 }
