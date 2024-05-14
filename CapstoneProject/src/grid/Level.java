@@ -12,7 +12,7 @@ import sprites.*;
 
 /** This class represents the game's grid
  * @author Boon Chew, Nikunj Govil, Yashasvi Chitela
- * @version 5/13/24
+ * @version 5/14/24
  */
 public class Level extends Rectangle2D.Double {
 	
@@ -32,7 +32,7 @@ public class Level extends Rectangle2D.Double {
 	 */
 	public Level(int width, int height)
 	{
-//		TODO maye find way to get rid of width/height parameters?
+//		TODO maybe find way to get rid of width/height parameters?
 		grid = new char[width][height];
 		readData("resources/levels/level1.txt", grid);
 		
@@ -95,12 +95,16 @@ public class Level extends Rectangle2D.Double {
 		keyFragments.remove(idx);
 	}
 	
+	/** Checks if all KeyFragments in this level have been collected 
+	 * @return true if all KeyFragments have been collected, false otherwise
+	 */
 	public boolean allFragmentsCollected()
 	{
 		return player.getNumFragments() == levelFragments;
 	}
 	
-	/** Progresses to the next level
+	/** Changes the level and sets it up
+	 * @param levelChange The amount to change the current level by
 	 */
 	public void changeLevel(int levelChange)
 	{
@@ -115,7 +119,7 @@ public class Level extends Rectangle2D.Double {
 		setupSprites();
 	}
 	
-	public void setupSprites()
+	private void setupSprites()
 	{
 		walls = new ArrayList<Wall>();
 		keyFragments = new ArrayList<KeyFragment>();
@@ -125,7 +129,9 @@ public class Level extends Rectangle2D.Double {
 		levelFragments = keyFragments.size();
 	}
 	
-	public void readSprites()
+	/** Reads through grids and adds all Sprites to the corresponding ArrayList
+	 */
+	private void readSprites()
 	{
 //		Sprite width and heights
 		float sw = (float)width / grid[0].length;
@@ -172,6 +178,10 @@ public class Level extends Rectangle2D.Double {
 	{
 		player.act(this);
 		
+		if (allFragmentsCollected())
+			exit.setImage("resources/img/dooropen.gif");
+		exit.draw(marker);
+		
 		for (Wall wall : walls)
 			if (wall.inLimits(visible))
 				wall.draw(marker);
@@ -184,9 +194,6 @@ public class Level extends Rectangle2D.Double {
 				tickler.draw(marker);
 			}
 		
-		if (allFragmentsCollected())
-			exit.setImage("resources/img/dooropen.gif");
-		exit.draw(marker);
 		player.draw(marker);
 	}
 	
