@@ -1,5 +1,6 @@
 package screens;
 
+import java.awt.Point;
 import java.awt.Rectangle;
 
 import main.DrawingSurface;
@@ -56,6 +57,16 @@ public class LevelScreen extends Screen {
 			surface.textAlign(DrawingSurface.CENTER, DrawingSurface.CENTER);
 			surface.text("Level " + (i + 1), levelButtons[i].x + levelButtons[i].width / 2,
 					levelButtons[i].y + levelButtons[i].height / 2);
+		}
+	}
+	
+	public void mousePressed()
+	{
+		Point p = surface.actualCoordinatesToAssumed(new Point(surface.mouseX,surface.mouseY));
+		for(int i = 0; i < levelButtons.length; i++) {
+			if(levelButtons[i].contains(p)) {
+				surface.switchScreen(ScreenSwitcher.GAME_SCREEN);
+			}
 		}
 	}
 
