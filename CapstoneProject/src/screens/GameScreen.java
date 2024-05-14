@@ -114,9 +114,7 @@ public class GameScreen extends Screen {
 			player.sneak(true);
 		else 
 			player.sneak(false);
-		
-		if(player.act(level))
-			surface.switchScreen(ScreenSwitcher.LEVEL_SCREEN);
+		player.act(level);
 		
 		slideWorldToImage(player);
 	}
