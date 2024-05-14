@@ -160,12 +160,14 @@ public class Level extends Rectangle2D.Double {
 			}
 	}
 	
-	/** Draws this Level
+	/** Draws this Level and handles Sprite behavior
 	 * @param marker The PApplet used for drawing
 	 * @param visible A Rectangle2D representing the visible in-game area
 	 */
 	public void draw(PApplet marker, Rectangle2D.Double visible)
 	{
+		player.act(this);
+		
 		for (Wall wall : walls)
 			if (wall.inLimits(visible))
 				wall.draw(marker);
@@ -173,12 +175,13 @@ public class Level extends Rectangle2D.Double {
 			if (key.inLimits(visible))
 				key.draw(marker);
 		for (Tickler tickler : ticklers)
-			if (tickler.inLimits(visible))
+			if (tickler.inLimits(visible)) {
+				tickler.act(this);
 				tickler.draw(marker);
+			}
 		
 		if (allFragmentsCollected())
 			exit.setImage("resources/img/dooropen.gif");
-		
 		exit.draw(marker);
 		player.draw(marker);
 	}

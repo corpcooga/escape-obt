@@ -8,6 +8,8 @@ import grid.Level;
  */
 public class Tickler extends Sprite {
 	
+	private double speed;
+	
 
 	/** Constructs a Tickler
 	 * @param img image to use for this Tickler
@@ -19,6 +21,7 @@ public class Tickler extends Sprite {
 	public Tickler(String img, int x, int y, int w, int h)
 	{
 		super(img, x, y, w, h);
+		speed = 0.2;
 	}
 	
 	/** Constructs a Tickler with the image specified
@@ -33,13 +36,35 @@ public class Tickler extends Sprite {
 	}
 	
 	/** Handles Tickler movement
-	 * @param level Represents the level that this Tickler
+	 * @param level Represents the level that this Tickler is in
 	 */
 	public void act(Level level)
 	{
+		int dirX = level.getPlayer().x - x > 0 ? 1 : -1;
+		int dirY = level.getPlayer().y - y > 0 ? 1 : -1;
+		double moveX = dirX * speed;
+		double moveY = dirY * speed;
 		
+		x += moveX;
+		for (Wall w : level.getWalls())
+			if (w.intersects(this))
+				x -= moveX;
+		for (Tickler t : level.getTicklers())
+			if (t != this && t.intersects(this))
+				x -= moveX;
+		
+		y += moveY;
+		for (Wall w : level.getWalls())
+			if (w.intersects(this))
+				y -= moveY;
+		for (Tickler t : level.getTicklers())
+			if (t != this && t.intersects(this))
+				y -= moveY;
 	}
 	
+	/** Determines if this Tickler is able to see the Player
+	 * @return true if this Tickler is in range of the Player, false otherwise
+	 */
 	public boolean isInRange()
 	{
 		return false;

@@ -113,7 +113,6 @@ public class GameScreen extends Screen {
 			player.sneak(true);
 		else 
 			player.sneak(false);
-		player.act(level);
 		
 		slideWorldToImage(player);
 	}
