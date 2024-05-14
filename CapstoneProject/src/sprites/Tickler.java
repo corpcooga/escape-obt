@@ -74,7 +74,8 @@ public class Tickler extends Sprite {
 	public boolean isInRange(Player player)
 	{
 //		TODO find a more solid distance to be seen in
-		return Math.sqrt(Math.pow(player.x - x, 2) + Math.pow(player.y - y, 2)) < 300;
+		double range = player.isSneaking() ? 100 : 300;
+		return Math.sqrt(Math.pow(player.x - x, 2) + Math.pow(player.y - y, 2)) < range;
 	}
 
 }

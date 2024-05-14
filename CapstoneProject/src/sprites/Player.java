@@ -11,7 +11,7 @@ import grid.Level;
 public class Player extends Sprite {
 	
 	private double xVel, yVel, speed;
-	private boolean isSneaking;
+	private boolean sneaking;
 	private int numFragments;
 
 	
@@ -27,7 +27,7 @@ public class Player extends Sprite {
 		xVel = 0;
 		yVel = 0;
 		numFragments = 0;
-		isSneaking = false;
+		sneaking = false;
 	}
 	
 	/** Constructs a Player with the image specified
@@ -57,11 +57,16 @@ public class Player extends Sprite {
 	public void sneak(boolean doSneak)
 	{
 //		TODO add all necessary features to sneaking
-		isSneaking = doSneak;
-		if (isSneaking)
+		sneaking = doSneak;
+		if (sneaking)
 			speed = 0.1;
 		else
 			speed = 0.6;
+	}
+	
+	public boolean isSneaking()
+	{
+		return sneaking;
 	}
 	
 	public int getNumFragments()
