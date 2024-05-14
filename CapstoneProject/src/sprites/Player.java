@@ -56,6 +56,7 @@ public class Player extends Sprite {
 	 */
 	public void sneak(boolean doSneak)
 	{
+//		TODO add all necessary features to sneaking
 		isSneaking = doSneak;
 		if (isSneaking)
 			speed = 0.1;
@@ -68,7 +69,7 @@ public class Player extends Sprite {
 		return numFragments;
 	}
 	
-	/** Handles natural Player movement
+	/** Handles Player movement and collisions
 	 * @param level Represents the level that this Player is in
 	 */
 	public void act(Level level)
@@ -99,8 +100,7 @@ public class Player extends Sprite {
 		
 		if (level.getExit().intersects(this))
 			if (level.allFragmentsCollected())
-//				TODO make this progress to the next level
-				yVel = -100;
+				level.nextLevel();
 		
 		yVel *= 0.8;
 		xVel *= 0.8;

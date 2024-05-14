@@ -27,7 +27,6 @@ public class GameScreen extends Screen {
 	
 	private DrawingSurface surface;
 	private Level level;
-	private int numLevel;
 	
 	
 	/** Constructs a GameScreen
@@ -38,8 +37,7 @@ public class GameScreen extends Screen {
 		super(DrawingSurface.DRAWING_WIDTH, DrawingSurface.DRAWING_HEIGHT);
 		this.surface = surface;
 		
-		numLevel = 1;
-		level = new Level(21, 21, "resources/levels/level" + numLevel + ".txt");
+		level = new Level();
 	}
 	
 	
@@ -47,6 +45,7 @@ public class GameScreen extends Screen {
 	 */
 	public void setup()
 	{
+//		TODO make visible space spawn using player x and y in the center
 		visibleSpace = new Rectangle2D.Double(0, 0, DRAWING_WIDTH, DRAWING_HEIGHT);
 		playerSpace = new Rectangle2D.Double(visibleSpace.getX() + visibleSpace.getWidth() * (1 - characterFractionOfWindow) * 0.5,
 												visibleSpace.getY() + visibleSpace.getHeight() * (1 - characterFractionOfWindow) * 0.5,
@@ -117,12 +116,6 @@ public class GameScreen extends Screen {
 		player.act(level);
 		
 		slideWorldToImage(player);
-	}
-	
-	public void advanceLevel()
-	{
-		numLevel++;
-		level = new Level(21, 21, "resources/levels/level" + numLevel + ".txt");
 	}
 
 }

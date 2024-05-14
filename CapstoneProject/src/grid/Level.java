@@ -23,26 +23,25 @@ public class Level extends Rectangle2D.Double {
 	private Exit exit;
 	
 	private char[][] grid;
-	private int levelFragments;
+	private int numLevel, levelFragments;
 	
 	
-	/** Construct an empty 2D array with dimensions width and height, then fill it with data from 
-	 * the file filename
+	/** Constructs a Level based on a text file
 	 * @param width The width of the grid
 	 * @param height The height of the grid
-	 * @param filename The text file to read from
 	 */
-	public Level(int width, int height, String filename)
+	public Level(int width, int height)
 	{
+//		TODO maye find way to get rid of width/height parameters?
 		grid = new char[width][height];
-		if (filename != null)
-			readData(filename, grid);
+		readData("resources/levels/level1.txt", grid);
 		
 		x = 0;
 		y = 0;
 		this.width = width * 100;
 		this.height = height * 100;
 		
+		numLevel = 1;
 		walls = new ArrayList<Wall>();
 		keyFragments = new ArrayList<KeyFragment>();
 		ticklers = new ArrayList<Tickler>();
@@ -55,7 +54,7 @@ public class Level extends Rectangle2D.Double {
 	 */
 	public Level()
 	{
-		this(20, 20, null);
+		this(21, 21);
 	}
 	
 	
@@ -75,14 +74,6 @@ public class Level extends Rectangle2D.Double {
 		return keyFragments;
 	}
 	
-	/** Removes the KeyFragment at the specified index
-	 * @param idx The index of the KeyFragment to remove
-	 */
-	public void removeKeyFragment(int idx)
-	{
-		keyFragments.remove(idx);
-	}
-	
 	public Player getPlayer()
 	{
 		return player;
@@ -93,9 +84,36 @@ public class Level extends Rectangle2D.Double {
 		return exit;
 	}
 	
+	/** Removes the KeyFragment at the specified index
+	 * @param idx The index of the KeyFragment to remove
+	 */
+	public void removeKeyFragment(int idx)
+	{
+		keyFragments.remove(idx);
+	}
+	
 	public boolean allFragmentsCollected()
 	{
 		return player.getNumFragments() == levelFragments;
+	}
+	
+	/** Progresses to the next level
+	 */
+	public void nextLevel()
+	{
+		numLevel++;
+		grid = new char[100][100];
+		readData("resources/levels/level" + numLevel + ".txt", grid);
+		
+		width = grid.length * 100;
+		height = grid[0].length * 100;
+		
+		walls = new ArrayList<Wall>();
+		keyFragments = new ArrayList<KeyFragment>();
+		ticklers = new ArrayList<Tickler>();
+		readSprites();
+		
+		levelFragments = keyFragments.size();
 	}
 	
 	public void readSprites()
@@ -135,7 +153,7 @@ public class Level extends Rectangle2D.Double {
 	
 	/** Draws this Level
 	 * @param marker The PApplet used for drawing
-	 * @param visible A Rectangle2D representing the visible in game
+	 * @param visible A Rectangle2D representing the visible in-game area
 	 */
 	public void draw(PApplet marker, Rectangle2D.Double visible)
 	{
@@ -155,21 +173,6 @@ public class Level extends Rectangle2D.Double {
 		exit.draw(marker);
 		player.draw(marker);
 	}
-	
-//	/** Converts click coordinates to index values that correspond to the grid
-//	 * @param p A Point object containing a graphical pixel coordinate
-//	 * @param x The x-coordinate of the upper left corner of the grid drawing
-//	 * @param y The y-coordinate of the upper left corner of the grid drawing
-//	 * @param width The pixel width of the grid drawing
-//	 * @param height The pixel height of the grid drawing
-//	 * @return A Point object representing a coordinate within the grid, or null if the pixel
-//	 * coordinate falls completely outside of the grid
-//	 */
-//	public Point clickToIndex(Point p, float x, float y, float width, float height)
-//	{
-//		return new Point((int)((p.getX() - x) / (width / grid.length)), 
-//				(int)((p.getY() - y) / (height / grid[0].length)));
-//	}
 	
 	/** Reads data from a text file and loads it into an array
 	 * @param filename The text file to read from
