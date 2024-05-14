@@ -71,7 +71,7 @@ public class Player extends Sprite {
 	/** Handles natural Player movement
 	 * @param level Represents the level that this Player is in
 	 */
-	public void act(Level level)
+	public boolean act(Level level)
 	{
 		x += xVel;
 		for (Wall w : level.getWalls())
@@ -99,11 +99,11 @@ public class Player extends Sprite {
 		
 		if (level.getExit().intersects(this))
 			if (level.allFragmentsCollected())
-//				TODO make this progress to the next level
-				yVel = -100;
+				return true;
 		
 		yVel *= 0.8;
 		xVel *= 0.8;
+		return false;
 	}
 	
 }
