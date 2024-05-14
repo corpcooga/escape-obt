@@ -4,14 +4,16 @@ import java.awt.Rectangle;
 
 import main.DrawingSurface;
 
-public class GameoverScreen extends Screen {
+public class DeathScreen extends Screen {
 	
 	private DrawingSurface surface;
+	private Rectangle restartButton;
 	
-	public GameoverScreen(DrawingSurface surface)
+	public DeathScreen(DrawingSurface surface)
 	{
 		super(DrawingSurface.DRAWING_WIDTH, DrawingSurface.DRAWING_HEIGHT);
 		this.surface = surface;
+		
 	}
 
 }
