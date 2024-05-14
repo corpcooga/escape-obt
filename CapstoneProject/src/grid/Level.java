@@ -154,9 +154,8 @@ public class Level extends Rectangle2D.Double {
 				
 //				Player
 				else if (grid[i][j] == 'P')
-//					TODO center Player in tile properly
 					player = new Player(
-							(int)sx + (int)(sw * 0.2), (int)sy + (int)(sh * 0.2), 
+							(int)sx + (int)(sw * 0.3), (int)sy + (int)(sh * 0.3), 
 							(int)(sw * 0.4), (int)(sh * 0.4));
 				
 //				Exit
