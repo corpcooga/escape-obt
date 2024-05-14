@@ -25,17 +25,16 @@ public class LevelScreen extends Screen {
 		int buttonWidth = 200;
         int buttonHeight = 50;
         int buttonSpacing = 20;
-        int totalButtonWidth = 3 * buttonWidth + 2 * buttonSpacing; // Total width of all buttons on one line
-        int startX = (surface.width - totalButtonWidth) / 2; // Calculate starting x position for buttons on one line
-        int startY = (surface.height - 2 * buttonHeight - buttonSpacing) / 2; // Calculate starting y position for the first line of buttons
+        int totalButtonWidth = 3 * buttonWidth + 2 * buttonSpacing;
+        int startX = (surface.width - totalButtonWidth) / 2;
+        int startY = (surface.height - 2 * buttonHeight - buttonSpacing) / 2;
         
-        // Create rectangle objects for level buttons
         for (int i = 0; i < 5; i++) {
             int x, y;
-            if (i < 3) { // Levels 1, 2, and 3 on the first line
+            if (i < 3) {
                 x = startX + i * (buttonWidth + buttonSpacing);
                 y = startY;
-            } else { // Levels 4 and 5 on the second line
+            } else {
                 x = startX + (i - 3) * (buttonWidth + buttonSpacing);
                 y = startY + buttonHeight + buttonSpacing;
             }
