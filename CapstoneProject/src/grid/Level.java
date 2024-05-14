@@ -101,9 +101,9 @@ public class Level extends Rectangle2D.Double {
 	 */
 	public void nextLevel()
 	{
-		numLevel++;
+//		TODO find way to make grid have proper size based on level txt file
 		grid = new char[100][100];
-		readData("resources/levels/level" + numLevel + ".txt", grid);
+		readData("resources/levels/level" + ++numLevel + ".txt", grid);
 		
 		width = grid.length * 100;
 		height = grid[0].length * 100;
