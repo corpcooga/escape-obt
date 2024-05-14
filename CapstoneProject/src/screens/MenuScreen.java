@@ -6,7 +6,7 @@ import main.DrawingSurface;
 
 /** This class represents the menu screen
  * @author Boon Chew, Nikunj Govil, Yashasvi Chitela
- * @version 5/12/24
+ * @version 5/13/24
  */
 public class MenuScreen extends Screen {
 

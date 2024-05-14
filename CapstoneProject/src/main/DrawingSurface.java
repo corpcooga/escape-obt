@@ -12,7 +12,7 @@ import screens.*;
  */
 public class DrawingSurface extends PApplet implements ScreenSwitcher {
 	
-	public static final int DRAWING_WIDTH = 1000, DRAWING_HEIGHT = 800;
+	public static final int DRAWING_WIDTH = 800, DRAWING_HEIGHT = 800;
 	
 	private ArrayList<Integer> keys;
 	private ArrayList<Screen> screens;

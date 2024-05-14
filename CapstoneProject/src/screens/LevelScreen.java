@@ -4,12 +4,18 @@ import java.awt.Rectangle;
 
 import main.DrawingSurface;
 
+/** This class represents the levels screen
+ * @author Boon Chew, Nikunj Govil, Yashasvi Chitela
+ * @version 5/13/24
+ */
 public class LevelScreen extends Screen {
 
 	private DrawingSurface surface;
 	private Rectangle[] levelButtons;
+	
 
-	public LevelScreen(DrawingSurface surface) {
+	public LevelScreen(DrawingSurface surface)
+	{
 		super(DrawingSurface.DRAWING_WIDTH, DrawingSurface.DRAWING_HEIGHT);
 		this.surface = surface;
 
@@ -35,8 +41,10 @@ public class LevelScreen extends Screen {
             levelButtons[i] = new Rectangle(x, y, buttonWidth, buttonHeight);
         }
 	}
+	
 
-	public void draw() {
+	public void draw()
+	{
 		surface.background(255);
 
 		// Draw level buttons
@@ -45,7 +53,7 @@ public class LevelScreen extends Screen {
 			surface.rect(levelButtons[i].x, levelButtons[i].y, levelButtons[i].width, levelButtons[i].height);
 
 			surface.fill(0);
-			surface.textAlign(surface.CENTER, surface.CENTER);
+			surface.textAlign(DrawingSurface.CENTER, DrawingSurface.CENTER);
 			surface.text("Level " + (i + 1), levelButtons[i].x + levelButtons[i].width / 2,
 					levelButtons[i].y + levelButtons[i].height / 2);
 		}

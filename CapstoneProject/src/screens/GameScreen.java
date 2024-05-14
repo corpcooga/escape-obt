@@ -119,7 +119,8 @@ public class GameScreen extends Screen {
 		slideWorldToImage(player);
 	}
 	
-	public void advanceLevel() {
+	public void advanceLevel()
+	{
 		numLevel++;
 		level = new Level(21, 21, "resources/levels/level" + numLevel + ".txt");
 	}
