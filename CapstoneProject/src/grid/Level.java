@@ -144,15 +144,20 @@ public class Level extends Rectangle2D.Double {
 				
 //				Key Fragment
 				else if (grid[i][j] == '*')
-					keyFragments.add(new KeyFragment((int)sx, (int)sy, (int)sw / 2, (int)sh / 2));
+					keyFragments.add(new KeyFragment(
+							(int)sx + (int)sw / 4, (int)sy + (int)sh / 4, (int)sw / 2, (int)sh / 2));
 				
 //				Tickler
 				else if (grid[i][j] == 'T')
-					ticklers.add(new Tickler((int)sx, (int)sy, (int)sw / 2, (int)sh / 2));
+					ticklers.add(new Tickler(
+							(int)sx + (int)sw / 4, (int)sy + (int)sh / 4, (int)sw / 2, (int)sh / 2));
 				
 //				Player
 				else if (grid[i][j] == 'P')
-					player = new Player((int)sx, (int)sy);
+//					TODO center Player in tile properly
+					player = new Player(
+							(int)sx + (int)(sw * 0.2), (int)sy + (int)(sh * 0.2), 
+							(int)(sw * 0.4), (int)(sh * 0.4));
 				
 //				Exit
 				else if (grid[i][j] == 'X')

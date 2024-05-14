@@ -18,11 +18,13 @@ public class Player extends Sprite {
 	/** Constructs a Player
 	 * @param img image to use for this Player
 	 * @param x x-coordinate of this Player
-	 * @param y y-coordinate of this Player 
+	 * @param y y-coordinate of this Player
+	 * @param w width of this Player
+	 * @param h height of this Player
 	 */
-	public Player(String img, int x, int y)
+	public Player(String img, int x, int y, int w, int h)
 	{
-		super(img, x, y, 40, 60);
+		super(img, x, y, w, (int)(h * 1.5));
 		speed = 0.6;
 		xVel = 0;
 		yVel = 0;
@@ -33,10 +35,12 @@ public class Player extends Sprite {
 	/** Constructs a Player with the image specified
 	 * @param x x-coordinate of this Player
 	 * @param y y-coordinate of this Player
+	 * @param w width of this Player
+	 * @param h height of this Player
 	 */
-	public Player(int x, int y)
+	public Player(int x, int y, int w, int h)
 	{
-		this("resources/img/player.gif", x, y);
+		this("resources/img/player.gif", x, y, w, h);
 	}
 	
 	
