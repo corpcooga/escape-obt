@@ -21,7 +21,7 @@ public class Tickler extends Sprite {
 	public Tickler(String img, int x, int y, int w, int h)
 	{
 		super(img, x, y, w, h);
-		speed = 0.2;
+		speed = 0.4;
 	}
 	
 	/** Constructs a Tickler with the image specified
@@ -41,30 +41,36 @@ public class Tickler extends Sprite {
 	public void act(Level level)
 	{
 		Player player = level.getPlayer();
+		int dirX, dirY;
+		double moveX, moveY;
+		
 		if (isInRange(player)) {
-			int dirX = player.x - x > 0 ? 1 : -1;
-			int dirY = player.y - y > 0 ? 1 : -1;
-			double moveX = dirX * speed;
-			double moveY = dirY * speed;
-			
-			x += moveX;
-			for (Wall w : level.getWalls())
-				if (w.intersects(this))
-					x -= moveX;
-			for (Tickler t : level.getTicklers())
-				if (t != this && t.intersects(this))
-					x -= moveX;
-			
-			y += moveY;
-			for (Wall w : level.getWalls())
-				if (w.intersects(this))
-					y -= moveY;
-			for (Tickler t : level.getTicklers())
-				if (t != this && t.intersects(this))
-					y -= moveY;
+			dirX = player.x - x > 0 ? 1 : -1;
+			dirY = player.y - y > 0 ? 1 : -1;
+			moveX = dirX * speed;
+			moveY = dirY * speed;
 		} else {
-//			TODO Random movement
+			dirX = (int)(Math.random() * 3) - 1;
+			dirY = (int)(Math.random() * 3) - 1;
+			moveX = dirX * speed * 0.4;
+			moveY = dirY * speed * 0.4;
 		}
+		
+		x += moveX;
+		for (Wall w : level.getWalls())
+			if (w.intersects(this))
+				x -= moveX;
+		for (Tickler t : level.getTicklers())
+			if (t != this && t.intersects(this))
+				x -= moveX;
+		
+		y += moveY;
+		for (Wall w : level.getWalls())
+			if (w.intersects(this))
+				y -= moveY;
+		for (Tickler t : level.getTicklers())
+			if (t != this && t.intersects(this))
+				y -= moveY;
 	}
 	
 	/** Determines if this Tickler is able to see the Player
