@@ -3,7 +3,6 @@ package sprites;
 import java.util.ArrayList;
 
 import grid.Level;
-import jay.jaysound.JayLayer;
 
 /** This class represents the playable character
  * @author Boon Chew, Nikunj Govil, Yashasvi Chitela
@@ -13,10 +12,7 @@ public class Player extends Sprite {
 	
 	private double xVel, yVel, speed;
 	private boolean sneaking;
-	private int numFragments;
-	
-	private JayLayer sound;
-	private final int caught = 0;
+	private int numFragments, visionRange;
 
 	
 	/** Constructs a Player
@@ -33,14 +29,8 @@ public class Player extends Sprite {
 		xVel = 0;
 		yVel = 0;
 		numFragments = 0;
+		visionRange = 1;
 		sneaking = false;
-		
-		String[] soundEffects = new String[]{"resources/sound/tickletickle4.mp3"};
-		
-		sound=new JayLayer("audio/","audio/",false);
-		sound.addPlayList();
-		sound.addSoundEffects(soundEffects);
-		sound.changePlayList(0);
 	}
 	
 	/** Constructs a Player with the image specified
@@ -95,6 +85,14 @@ public class Player extends Sprite {
 		return numFragments;
 	}
 	
+	/** Gets the distance that this Player can see
+	 * @return The distance that this Player can see
+	 */
+	public int getVisionRange()
+	{
+		return visionRange;
+	}
+	
 	/** Handles Player movement and collisions
 	 * @param level Represents the level that this Player is in
 	 */
@@ -129,10 +127,8 @@ public class Player extends Sprite {
 			}
 		
 		for (Tickler t : level.getTicklers())
-			if (t.intersects(this)) {
+			if (t.intersects(this))
 				level.changeLevel(0);
-				sound.playSoundEffect(caught);
-			}
 		
 		if (level.getExit().intersects(this))
 			if (level.allFragmentsCollected())
