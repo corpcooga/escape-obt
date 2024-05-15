@@ -97,15 +97,15 @@ public class Player extends Sprite {
 	{
 //		Movement + movement collision handling
 		x += xVel;
-		for (Wall w : level.getWalls())
-			if (w.intersects(this)) {
+		for (Wall wall : level.getWalls())
+			if (wall.intersects(this)) {
 				x -= xVel;
 				xVel = 0;
 			}
 		
 		y -= yVel;
-		for (Wall w : level.getWalls())
-			if (w.intersects(this)) {
+		for (Wall wall : level.getWalls())
+			if (wall.intersects(this)) {
 				y += yVel;
 				yVel = 0;
 			}
@@ -128,12 +128,13 @@ public class Player extends Sprite {
 				i--;
 			}
 		
-		for (Tickler t : level.getTicklers())
-			if (t.intersects(this))
+		for (Tickler tickler : level.getTicklers())
+			if (tickler.intersects(this))
 				level.changeLevel(0);
 		
-		if (level.getExit().intersects(this))
-			if (level.allFragmentsCollected())
+		Exit exit = level.getExit();
+		if (exit.intersects(this))
+			if (exit.isOpen())
 				level.changeLevel(1);
 	}
 	

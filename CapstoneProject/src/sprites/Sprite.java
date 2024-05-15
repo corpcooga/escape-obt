@@ -90,6 +90,9 @@ public class Sprite extends Rectangle2D.Double {
 		return new Point2D.Double(x + width / 2, y + height / 2);
 	}
 	
+	/** Changes this Sprite's image
+	 * @param newImage The image to change to
+	 */
 	public void setImage(String newImage)
 	{
 		if (!imageFile.equals(newImage)) {

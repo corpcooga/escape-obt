@@ -45,7 +45,6 @@ public class GameScreen extends Screen {
 	 */
 	public void setup()
 	{
-//		TODO make visible space spawn using player x and y in the center
 		visibleSpace = new Rectangle2D.Double(level.getPlayer().getX(), level.getPlayer().getY(), DRAWING_WIDTH, DRAWING_HEIGHT);
 		playerSpace = new Rectangle2D.Double(visibleSpace.getX() + visibleSpace.getWidth() * (1 - characterFractionOfWindow) * 0.5,
 												visibleSpace.getY() + visibleSpace.getHeight() * (1 - characterFractionOfWindow) * 0.5,

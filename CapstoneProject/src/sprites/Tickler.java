@@ -59,19 +59,19 @@ public class Tickler extends Sprite {
 		}
 		
 		x += moveX;
-		for (Wall w : level.getWalls())
-			if (w.intersects(this))
+		for (Wall wall : level.getWalls())
+			if (wall.intersects(this))
 				x -= moveX;
-		for (Tickler t : level.getTicklers())
-			if (t != this && t.intersects(this))
+		for (Tickler tickler : level.getTicklers())
+			if (tickler != this && tickler.intersects(this))
 				x -= moveX;
 		
 		y += moveY;
-		for (Wall w : level.getWalls())
-			if (w.intersects(this))
+		for (Wall wall : level.getWalls())
+			if (wall.intersects(this))
 				y -= moveY;
-		for (Tickler t : level.getTicklers())
-			if (t != this && t.intersects(this))
+		for (Tickler tickler : level.getTicklers())
+			if (tickler != this && tickler.intersects(this))
 				y -= moveY;
 	}
 	

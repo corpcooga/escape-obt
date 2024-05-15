@@ -123,20 +123,14 @@ public class Level extends Rectangle2D.Double {
 		return Math.max(xDist, yDist);
 	}
 	
-	/** Removes the KeyFragment at the specified index
+	/** Removes the KeyFragment at the specified index, then updates exit status
 	 * @param idx The index of the KeyFragment to remove
 	 */
 	public void removeKeyFragment(int idx)
 	{
 		keyFragments.remove(idx);
-	}
-	
-	/** Checks if all KeyFragments in this level have been collected 
-	 * @return true if all KeyFragments have been collected, false otherwise
-	 */
-	public boolean allFragmentsCollected()
-	{
-		return player.getNumFragments() == levelFragments;
+		if (player.getNumFragments() == levelFragments)
+			exit.open();
 	}
 	
 	/** Changes the level and sets it up
@@ -215,10 +209,6 @@ public class Level extends Rectangle2D.Double {
 		player.act(this);
 		
 		int playerVision = player.getVisionRange();
-		
-//		TODO make exit not change image more than once
-		if (allFragmentsCollected())
-			exit.setImage("resources/img/dooropen.gif");
 		
 		if (getSpriteDistance(player, exit) <= playerVision)
 			exit.draw(marker);
