@@ -12,7 +12,7 @@ public class Player extends Sprite {
 	
 	private double xVel, yVel, speed;
 	private boolean sneaking;
-	private int numFragments;
+	private int numFragments, visionRange;
 
 	
 	/** Constructs a Player
@@ -29,6 +29,7 @@ public class Player extends Sprite {
 		xVel = 0;
 		yVel = 0;
 		numFragments = 0;
+		visionRange = 1;
 		sneaking = false;
 	}
 	
@@ -82,6 +83,14 @@ public class Player extends Sprite {
 	public int getNumFragments()
 	{
 		return numFragments;
+	}
+	
+	/** Gets the distance that this Player can see
+	 * @return The distance that this Player can see
+	 */
+	public int getVisionRange()
+	{
+		return visionRange;
 	}
 	
 	/** Handles Player movement and collisions
