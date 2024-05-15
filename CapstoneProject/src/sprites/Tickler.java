@@ -8,6 +8,7 @@ import grid.Level;
  */
 public class Tickler extends Sprite {
 	
+	private int aggroRange;
 	private double speed;
 	
 
@@ -21,6 +22,7 @@ public class Tickler extends Sprite {
 	public Tickler(String img, int x, int y, int w, int h)
 	{
 		super(img, x, y, w, h);
+		aggroRange = 3;
 		speed = 0.4;
 	}
 	
@@ -44,7 +46,7 @@ public class Tickler extends Sprite {
 		int dirX, dirY;
 		double moveX, moveY;
 		
-		if (isInRange(player)) {
+		if (isInRange(level)) {
 			dirX = player.x - x > 0 ? 1 : -1;
 			dirY = player.y - y > 0 ? 1 : -1;
 			moveX = dirX * speed;
@@ -74,14 +76,15 @@ public class Tickler extends Sprite {
 	}
 	
 	/** Determines if this Tickler is able to see the Player
-	 * @param player The Player to check if this Tickler is in range of
+	 * @param level The level that this Tickler is in
 	 * @return true if this Tickler is in range of the Player, false otherwise
 	 */
-	public boolean isInRange(Player player)
+	public boolean isInRange(Level level)
 	{
-//		TODO find a more solid distance to be seen in
-		double range = player.isSneaking() ? 100 : 300;
-		return Math.sqrt(Math.pow(player.x - x, 2) + Math.pow(player.y - y, 2)) < range;
+		Player player = level.getPlayer();
+		int distance = level.getSpriteDistance(this, player);
+		int range = !player.isSneaking() ? aggroRange : aggroRange / 2;
+		return distance <= range;
 	}
 
 }
