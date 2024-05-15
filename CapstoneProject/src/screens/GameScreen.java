@@ -16,9 +16,9 @@ import grid.Level;
 public class GameScreen extends Screen {
 	
 	// Bigger = panning happens closer to the edge of window (1 = panning at edge, 0 = panning constantly)
-	private static final double characterFractionOfWindow = 0;
+	private static final double characterFractionOfWindow = 0.1;
 	// Bigger = follow char more slowly (1 = pan immediately)
-	private static final double panningLag = 30;
+	private static final double panningLag = 15;
 	
 	// Area of the level that can be seen
 	private Rectangle2D.Double visibleSpace;
@@ -46,7 +46,7 @@ public class GameScreen extends Screen {
 	public void setup()
 	{
 //		TODO make visible space spawn using player x and y in the center
-		visibleSpace = new Rectangle2D.Double(0, 0, DRAWING_WIDTH, DRAWING_HEIGHT);
+		visibleSpace = new Rectangle2D.Double(level.getPlayer().getX(), level.getPlayer().getY(), DRAWING_WIDTH, DRAWING_HEIGHT);
 		playerSpace = new Rectangle2D.Double(visibleSpace.getX() + visibleSpace.getWidth() * (1 - characterFractionOfWindow) * 0.5,
 												visibleSpace.getY() + visibleSpace.getHeight() * (1 - characterFractionOfWindow) * 0.5,
 												visibleSpace.getWidth() * characterFractionOfWindow,
@@ -75,8 +75,8 @@ public class GameScreen extends Screen {
 			else if (center.getY() > playerSpace.getY() + playerSpace.getHeight())
 				newY += (center.getY() - playerSpace.getY() - playerSpace.getHeight()) / panningLag;
 			
-			newX = Math.max(newX, 0);
-			newY = Math.max(newY, 0);
+			newX = Math.max(newX, level.getX());
+			newY = Math.max(newY, level.getY());
 			newX = Math.min(newX, level.getWidth() - visibleSpace.getWidth());
 			newY = Math.min(newY, level.getHeight() - visibleSpace.getHeight());
 
@@ -113,9 +113,9 @@ public class GameScreen extends Screen {
 		if (surface.isPressed(KeyEvent.VK_D))
 			player.accelerate(1, 0);
 		if (surface.isPressed(KeyEvent.VK_SHIFT))
-			player.sneak(true);
+			player.setSneak(true);
 		else 
-			player.sneak(false);
+			player.setSneak(false);
 		
 		slideWorldToImage(player);
 	}

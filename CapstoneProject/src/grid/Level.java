@@ -18,8 +18,7 @@ import sprites.*;
  */
 public class Level extends Rectangle2D.Double {
 	
-//	TODO make other Sprite speed based on tileSize
-	private static final int tileSize = 100;
+	public static final int TILE_SIZE = 80;
 	
 	private ArrayList<Wall> walls;
 	private ArrayList<KeyFragment> keyFragments;
@@ -43,8 +42,8 @@ public class Level extends Rectangle2D.Double {
 		
 		x = 0;
 		y = 0;
-		this.width = width * tileSize;
-		this.height = height * tileSize;
+		this.width = width * TILE_SIZE;
+		this.height = height * TILE_SIZE;
 		
 		setupSprites();
 		numLevel = 1;
@@ -105,8 +104,8 @@ public class Level extends Rectangle2D.Double {
 	public Point getSpriteArrayCoordinates(Sprite sprite)
 	{
 		Point2D.Double spriteCenter = sprite.getCenter();
-		int realX = (int)(spriteCenter.getX() / tileSize);
-		int realY = (int)(spriteCenter.getY() / tileSize);
+		int realX = (int)(spriteCenter.getX() / TILE_SIZE);
+		int realY = (int)(spriteCenter.getY() / TILE_SIZE);
 		return new Point(realX, realY);
 	}
 	
@@ -150,8 +149,8 @@ public class Level extends Rectangle2D.Double {
 		numLevel += levelChange;
 		readData("resources/levels/level" + numLevel + ".txt", grid);
 		
-		width = grid.length * tileSize;
-		height = grid[0].length * tileSize;
+		width = grid.length * TILE_SIZE;
+		height = grid[0].length * TILE_SIZE;
 		
 		setupSprites();
 	}

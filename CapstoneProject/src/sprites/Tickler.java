@@ -4,12 +4,12 @@ import grid.Level;
 
 /** This class represents an enemy entity
  * @author Nikunj Govil, Yashasvi Chitela, Boon Chew
- * @version 5/13/24
+ * @version 5/15/24
  */
 public class Tickler extends Sprite {
 	
-	private int aggroRange;
-	private double speed;
+	private final double speed;
+	private final int aggroRange;
 	
 
 	/** Constructs a Tickler
@@ -22,8 +22,8 @@ public class Tickler extends Sprite {
 	public Tickler(String img, int x, int y, int w, int h)
 	{
 		super(img, x, y, w, h);
+		speed = Level.TILE_SIZE * 0.005;
 		aggroRange = 2;
-		speed = 0.5;
 	}
 	
 	/** Constructs a Tickler with the image specified
@@ -83,7 +83,7 @@ public class Tickler extends Sprite {
 	{
 		Player player = level.getPlayer();
 		int distance = level.getSpriteDistance(this, player);
-		int range = !player.isSneaking() ? aggroRange : aggroRange / 2;
+		int range = !player.isSneaking() ? aggroRange : 0;
 		return distance <= range;
 	}
 

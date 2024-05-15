@@ -10,7 +10,9 @@ import grid.Level;
  */
 public class Player extends Sprite {
 	
-	private double xVel, yVel, speed;
+	private final double speed;
+	
+	private double xVel, yVel;
 	private boolean sneaking;
 	private int numFragments, visionRange;
 
@@ -25,7 +27,7 @@ public class Player extends Sprite {
 	public Player(String img, int x, int y, int w, int h)
 	{
 		super(img, x, y, w, (int)(h * 1.5));
-		speed = 0.6;
+		speed = Level.TILE_SIZE * 0.005;
 		xVel = 0;
 		yVel = 0;
 		numFragments = 0;
@@ -51,22 +53,17 @@ public class Player extends Sprite {
 	 */
 	public void accelerate(int xChange, int yChange)
 	{
-		xVel += xChange * speed;
-		yVel += yChange * speed;
+		double slowFactor = sneaking ? 0.2 : 1;
+		xVel += xChange * speed * slowFactor;
+		yVel += yChange * speed * slowFactor;
 	}
 	
-	/** Makes this Player move slower, decreases range of vision, and makes it harder for entities 
-	 * to see this Player
-	 * @param doSneak Determines whether this Player should sneak or not
+	/** Sets this Player's sneaking status
+	 * @param doSneak What to set this Player's sneaking status to
 	 */
-	public void sneak(boolean doSneak)
+	public void setSneak(boolean doSneak)
 	{
-//		TODO add all necessary features to sneaking
 		sneaking = doSneak;
-		if (sneaking)
-			speed = 0.1;
-		else
-			speed = 0.6;
 	}
 	
 	/** Checks if this Player is sneaking
@@ -116,6 +113,11 @@ public class Player extends Sprite {
 		applyWindowLimits(level);
 		yVel *= 0.8;
 		xVel *= 0.8;
+		
+		if (sneaking)
+			visionRange = 0;
+		else
+			visionRange = 1;
 		
 //		Other sprite interaction
 		ArrayList<KeyFragment> keyFragments = level.getKeyFragments();
