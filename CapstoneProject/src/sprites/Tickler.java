@@ -54,8 +54,8 @@ public class Tickler extends Sprite {
 		} else {
 			dirX = (int)(Math.random() * 3) - 1;
 			dirY = (int)(Math.random() * 3) - 1;
-			moveX = dirX * speed * 0.4;
-			moveY = dirY * speed * 0.4;
+			moveX = dirX * speed * 3;
+			moveY = dirY * speed * 3;
 		}
 		
 		x += moveX;
