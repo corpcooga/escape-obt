@@ -98,8 +98,8 @@ public class Level extends Rectangle2D.Double {
 		return exit;
 	}
 	
-	/** Gets a Sprite's coordinates in the array using their literal coordinates
-	 * @param sprite the Sprite to get the array coordinates of
+	/** Gets a Sprite's coordinates in this Level using their literal coordinates
+	 * @param sprite the Sprite to get the Level coordinates of
 	 * @return a Point object containing array coordinates of a Sprite
 	 */
 	public Point getSpriteArrayCoordinates(Sprite sprite)
@@ -108,6 +108,20 @@ public class Level extends Rectangle2D.Double {
 		int realX = (int)(spriteCenter.getX() / tileSize);
 		int realY = (int)(spriteCenter.getY() / tileSize);
 		return new Point(realX, realY);
+	}
+	
+	/** Gets the distance between two Sprites in this Level
+	 * @param s1 The first Sprite used to calculate the distance
+	 * @param s2 The second Sprite used to calculate the distance
+	 * @return The maximum of the x-distance and y-distance between the Sprites
+	 */
+	public int getSpriteDistance(Sprite s1, Sprite s2)
+	{
+		Point coord1 = getSpriteArrayCoordinates(s1);
+		Point coord2 = getSpriteArrayCoordinates(s2);
+		int xDist = Math.abs(coord1.x - coord2.x);
+		int yDist = Math.abs(coord1.y - coord2.y);
+		return Math.max(xDist, yDist);
 	}
 	
 	/** Removes the KeyFragment at the specified index
