@@ -89,7 +89,6 @@ public class Player extends Sprite {
 	 */
 	public void act(Level level)
 	{
-		System.out.println("x: " + Math.round(x) + "\ty: " + Math.round(y));
 //		Movement + movement collision handling
 		x += xVel;
 		for (Wall w : level.getWalls())

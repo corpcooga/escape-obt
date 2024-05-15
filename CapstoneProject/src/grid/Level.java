@@ -6,6 +6,7 @@ import java.io.IOException;
 import java.util.Scanner;
 import java.util.ArrayList;
 import java.awt.Point;
+import java.awt.geom.Point2D;
 import java.awt.geom.Rectangle2D;
 
 import processing.core.PApplet;
@@ -16,6 +17,9 @@ import sprites.*;
  * @version 5/15/24
  */
 public class Level extends Rectangle2D.Double {
+	
+//	TODO make other Sprite speed based on tileSize
+	private static final int tileSize = 100;
 	
 	private ArrayList<Wall> walls;
 	private ArrayList<KeyFragment> keyFragments;
@@ -39,8 +43,8 @@ public class Level extends Rectangle2D.Double {
 		
 		x = 0;
 		y = 0;
-		this.width = width * 100;
-		this.height = height * 100;
+		this.width = width * tileSize;
+		this.height = height * tileSize;
 		
 		setupSprites();
 		numLevel = 1;
@@ -100,7 +104,10 @@ public class Level extends Rectangle2D.Double {
 	 */
 	public Point getSpriteArrayCoordinates(Sprite sprite)
 	{
-		return null;
+		Point2D.Double spriteCenter = sprite.getCenter();
+		int realX = (int)(spriteCenter.getX() / tileSize);
+		int realY = (int)(spriteCenter.getY() / tileSize);
+		return new Point(realX, realY);
 	}
 	
 	/** Removes the KeyFragment at the specified index
@@ -129,8 +136,8 @@ public class Level extends Rectangle2D.Double {
 		numLevel += levelChange;
 		readData("resources/levels/level" + numLevel + ".txt", grid);
 		
-		width = grid.length * 100;
-		height = grid[0].length * 100;
+		width = grid.length * tileSize;
+		height = grid[0].length * tileSize;
 		
 		setupSprites();
 	}
