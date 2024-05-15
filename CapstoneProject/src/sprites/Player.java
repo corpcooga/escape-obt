@@ -6,7 +6,7 @@ import grid.Level;
 
 /** This class represents the playable character
  * @author Boon Chew, Nikunj Govil, Yashasvi Chitela
- * @version 5/13/24
+ * @version 5/15/24
  */
 public class Player extends Sprite {
 	
@@ -68,11 +68,17 @@ public class Player extends Sprite {
 			speed = 0.6;
 	}
 	
+	/** Checks if this Player is sneaking
+	 * @return true if this Player is sneaking, false otherwise
+	 */
 	public boolean isSneaking()
 	{
 		return sneaking;
 	}
 	
+	/** Gets the number of KeyFragments this Player has collected
+	 * @return The number of KeyFragments this Player has collected
+	 */
 	public int getNumFragments()
 	{
 		return numFragments;
@@ -83,6 +89,7 @@ public class Player extends Sprite {
 	 */
 	public void act(Level level)
 	{
+		System.out.println("x: " + Math.round(x) + "\ty: " + Math.round(y));
 //		Movement + movement collision handling
 		x += xVel;
 		for (Wall w : level.getWalls())

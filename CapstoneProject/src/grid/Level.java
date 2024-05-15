@@ -5,6 +5,7 @@ import java.io.FileReader;
 import java.io.IOException;
 import java.util.Scanner;
 import java.util.ArrayList;
+import java.awt.Point;
 import java.awt.geom.Rectangle2D;
 
 import processing.core.PApplet;
@@ -12,7 +13,7 @@ import sprites.*;
 
 /** This class represents the game's grid
  * @author Boon Chew, Nikunj Govil, Yashasvi Chitela
- * @version 5/14/24
+ * @version 5/15/24
  */
 public class Level extends Rectangle2D.Double {
 	
@@ -77,14 +78,29 @@ public class Level extends Rectangle2D.Double {
 		return ticklers;
 	}
 	
+	/** Gets the Player in this Level
+	 * @return A Player object that represents this Level's Player
+	 */
 	public Player getPlayer()
 	{
 		return player;
 	}
 	
+	/** Gets the Exit in this Level
+	 * @return An Exit object that represents this Level's Exit
+	 */
 	public Exit getExit()
 	{
 		return exit;
+	}
+	
+	/** Gets a Sprite's coordinates in the array using their literal coordinates
+	 * @param sprite the Sprite to get the array coordinates of
+	 * @return a Point object containing array coordinates of a Sprite
+	 */
+	public Point getSpriteArrayCoordinates(Sprite sprite)
+	{
+		return null;
 	}
 	
 	/** Removes the KeyFragment at the specified index

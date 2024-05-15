@@ -11,7 +11,7 @@ import grid.Level;
 
 /** This class represents the game screen
  * @author Boon Chew, Nikunj Govil, Yashasvi Chitela
- * @version 5/13/24
+ * @version 5/15/24
  */
 public class GameScreen extends Screen {
 	
@@ -53,9 +53,12 @@ public class GameScreen extends Screen {
 												visibleSpace.getHeight() * characterFractionOfWindow);
 	}
 	
-	public void slideWorldToImage(Sprite img)
+	/** Moves the game's visible space to a specified Sprite
+	 * @param sprite The Sprite to move the visible space towards
+	 */
+	public void slideWorldToImage(Sprite sprite)
 	{
-		Point2D.Double center = img.getCenter();
+		Point2D.Double center = sprite.getCenter();
 		
 		if (!playerSpace.contains(center))
 		{
