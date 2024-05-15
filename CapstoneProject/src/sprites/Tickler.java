@@ -22,8 +22,8 @@ public class Tickler extends Sprite {
 	public Tickler(String img, int x, int y, int w, int h)
 	{
 		super(img, x, y, w, h);
-		aggroRange = 3;
-		speed = 0.4;
+		aggroRange = 2;
+		speed = 0.5;
 	}
 	
 	/** Constructs a Tickler with the image specified

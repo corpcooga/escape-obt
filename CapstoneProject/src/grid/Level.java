@@ -220,21 +220,20 @@ public class Level extends Rectangle2D.Double {
 //		TODO make exit not change image more than once
 		if (allFragmentsCollected())
 			exit.setImage("resources/img/dooropen.gif");
+		
 		if (getSpriteDistance(player, exit) <= playerVision)
 			exit.draw(marker);
-		
 		for (Wall wall : walls)
 			if (getSpriteDistance(player, wall) <= playerVision)
 				wall.draw(marker);
 		for (KeyFragment key : keyFragments)
 			if (getSpriteDistance(player, key) <= playerVision)
 				key.draw(marker);
-		for (Tickler tickler : ticklers)
-			if (getSpriteDistance(player, tickler) <= playerVision) {
-				tickler.act(this);
+		for (Tickler tickler : ticklers) {
+			tickler.act(this);
+			if (getSpriteDistance(player, tickler) <= playerVision)
 				tickler.draw(marker);
-			}
-		
+		}
 		player.draw(marker);
 	}
 	
