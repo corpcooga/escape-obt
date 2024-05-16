@@ -3,6 +3,7 @@ package screens;
 import java.awt.Point;
 import java.awt.Rectangle;
 import main.DrawingSurface;
+import processing.core.PImage;
 
 /** This class represents the menu screen
  * @author Boon Chew, Nikunj Govil, Yashasvi Chitela
@@ -12,7 +13,7 @@ public class MenuScreen extends Screen {
 
 	private DrawingSurface surface;
 	private Rectangle playButton, levelButton;
-	
+	//private PImage image = "resources/img/mainscreen.gif";
 	
 	/** Constructs a MenuScreen
 	 * @param surface The DrawingSurface this FirstScreen uses
@@ -32,7 +33,7 @@ public class MenuScreen extends Screen {
 	public void draw()
 	{
 		surface.background(255, 255, 255);
-		
+//		surface.background(null);
 		surface.fill(255);
 		surface.rect(playButton.x, playButton.y, playButton.width, playButton.height, 10, 10, 10, 10);
 		surface.fill(0);
