@@ -113,10 +113,7 @@ public class Player extends Sprite {
 		yVel *= 0.8;
 		xVel *= 0.8;
 		
-		if (sneaking)
-			visionRange = 0;
-		else
-			visionRange = 1;
+		visionRange = sneaking ? 0 : 1;
 		
 //		Other sprite interaction
 		ArrayList<KeyFragment> keyFragments = level.getKeyFragments();
