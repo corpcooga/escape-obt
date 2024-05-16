@@ -14,7 +14,7 @@ public class Player extends Sprite {
 	private final double speed;
 	
 	private double xVel, yVel;
-	private boolean sneaking;
+	private boolean sneaking, hasWeapon;
 	private int numFragments, visionRange;
 	
 	private JayLayer sound;
@@ -37,6 +37,7 @@ public class Player extends Sprite {
 		yVel = 0;
 		numFragments = 0;
 		sneaking = false;
+		hasWeapon = false;
 		
 		String[] soundEffects = new String[]{"tickletickle4.mp3", "Jumpscare Sound Effect.mp3"};
 		sound=new JayLayer("resources/sound/","resources/sound/",false);
@@ -141,6 +142,11 @@ public class Player extends Sprite {
 				sound.playSoundEffect(caught);
 				sound.playSoundEffect(creepy);
 			}
+		
+		if (!hasWeapon && level.getWeapon().intersects(this)) {
+			level.pickUpWeapon();
+			hasWeapon = true;
+		}
 		
 		Exit exit = level.getExit();
 		if (exit.intersects(this))
