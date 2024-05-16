@@ -28,5 +28,11 @@ public class Weapon extends Sprite {
 	{
 		this("resources/img/sword.gif", x, y, w, h);
 	}
+	
+	
+	public void slice()
+	{
+		
+	}
 
 }
