@@ -1,6 +1,7 @@
 package sprites;
 
 import grid.Level;
+import jay.jaysound.JayLayer;
 
 /** This class represents an enemy entity
  * @author Nikunj Govil, Yashasvi Chitela, Boon Chew
@@ -11,6 +12,8 @@ public class Tickler extends Sprite {
 	private final double speed;
 	private final int aggroRange;
 	
+	private JayLayer sound;
+	private final int nearby = 0;
 
 	/** Constructs a Tickler
 	 * @param img image to use for this Tickler
@@ -24,6 +27,12 @@ public class Tickler extends Sprite {
 		super(img, x, y, w, h);
 		speed = Level.TILE_SIZE * 0.005;
 		aggroRange = 2;
+		
+		String[] soundEffects = new String[]{"eerie_close.mp3"};
+		sound=new JayLayer("resources/sound/","resources/sound/",false);
+		sound.addPlayList();
+		sound.addSoundEffects(soundEffects);
+		sound.changePlayList(0);
 	}
 	
 	/** Constructs a Tickler with the image specified
@@ -51,6 +60,7 @@ public class Tickler extends Sprite {
 			dirY = player.y - y > 0 ? 1 : -1;
 			moveX = dirX * speed;
 			moveY = dirY * speed;
+			sound.playSoundEffect(nearby);
 		} else {
 			dirX = (int)(Math.random() * 3) - 1;
 			dirY = (int)(Math.random() * 3) - 1;
