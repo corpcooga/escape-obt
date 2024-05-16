@@ -104,8 +104,8 @@ public class Level extends Rectangle2D.Double {
 	public Point getSpriteArrayCoordinates(Sprite sprite)
 	{
 		Point2D.Double spriteCenter = sprite.getCenter();
-		int realX = (int)(spriteCenter.getX() / TILE_SIZE);
-		int realY = (int)(spriteCenter.getY() / TILE_SIZE);
+		int realX = (int)((spriteCenter.getX() + x) / TILE_SIZE);
+		int realY = (int)((spriteCenter.getY() + y) / TILE_SIZE);
 		return new Point(realX, realY);
 	}
 	

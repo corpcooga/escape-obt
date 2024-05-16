@@ -31,7 +31,6 @@ public class Player extends Sprite {
 		xVel = 0;
 		yVel = 0;
 		numFragments = 0;
-		visionRange = 1;
 		sneaking = false;
 	}
 	
