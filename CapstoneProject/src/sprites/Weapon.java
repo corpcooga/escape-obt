@@ -2,7 +2,7 @@ package sprites;
 
 /** This class represents a weapon
  * @author Nikunj Govil, Boon Chew, Yashasvi Chitela
- * @version 5/5/2024
+ * @version 5/16/2024
  */
 public class Weapon extends Sprite {
 
@@ -26,7 +26,7 @@ public class Weapon extends Sprite {
 	 */
 	public Weapon(int x, int y, int w, int h)
 	{
-		this(null, x, y, w, h);
+		this("resources/img/sword.gif", x, y, w, h);
 	}
 
 }
