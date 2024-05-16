@@ -21,6 +21,7 @@ public class Player extends Sprite {
 	private JayLayer sound;
 	private final int caught = 0;
 	private final int creepy = 1;
+	private final int shing = 2;
 
 	
 	/** Constructs a Player
@@ -39,7 +40,7 @@ public class Player extends Sprite {
 		numFragments = 0;
 		sneaking = false;
 		
-		String[] soundEffects = new String[]{"tickletickle4.mp3", "Jumpscare Sound Effect.mp3"};
+		String[] soundEffects = new String[]{"tickletickle4.mp3", "Jumpscare Sound Effect.mp3", "shing.mp3"};
 		sound=new JayLayer("resources/sound/","resources/sound/",false);
 		sound.addPlayList();
 		sound.addSoundEffects(soundEffects);
@@ -71,8 +72,10 @@ public class Player extends Sprite {
 	
 	public void attack()
 	{
-		if (weapon != null)
+		if (weapon != null) {
 			weapon.slice();
+			sound.playSoundEffect(shing);
+		}
 	}
 	
 	/** Sets this Player's sneaking status
