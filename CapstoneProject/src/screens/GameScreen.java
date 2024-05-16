@@ -11,7 +11,7 @@ import grid.Level;
 
 /** This class represents the game screen
  * @author Boon Chew, Nikunj Govil, Yashasvi Chitela
- * @version 5/15/24
+ * @version 5/16/24
  */
 public class GameScreen extends Screen {
 	
@@ -119,7 +119,7 @@ public class GameScreen extends Screen {
 		else 
 			player.setSneak(false);
 		if (surface.isPressed(KeyEvent.VK_SPACE))
-			player.attack();
+			player.attack(surface);
 		
 		slideWorldToImage(player);
 	}

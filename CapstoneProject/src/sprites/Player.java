@@ -4,6 +4,7 @@ import java.util.ArrayList;
 
 import grid.Level;
 import jay.jaysound.JayLayer;
+import processing.core.PApplet;
 
 /** This class represents the playable character
  * @author Boon Chew, Nikunj Govil, Yashasvi Chitela
@@ -69,10 +70,10 @@ public class Player extends Sprite {
 		yVel += yChange * speed * slowFactor;
 	}
 	
-	public void attack()
+	public void attack(PApplet surface)
 	{
 		if (weapon != null)
-			weapon.slice();
+			weapon.slice(surface, x, y);
 	}
 	
 	/** Sets this Player's sneaking status

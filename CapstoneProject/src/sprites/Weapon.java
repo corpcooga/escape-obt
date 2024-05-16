@@ -1,5 +1,7 @@
 package sprites;
 
+import processing.core.PApplet;
+
 /** This class represents a weapon
  * @author Nikunj Govil, Boon Chew, Yashasvi Chitela
  * @version 5/16/2024
@@ -30,9 +32,11 @@ public class Weapon extends Sprite {
 	}
 	
 	
-	public void slice()
+	public void slice(PApplet surface, double x, double y)
 	{
-		
+		this.x = x;
+		this.y = y;
+		draw(surface);
 	}
 
 }
