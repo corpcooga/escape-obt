@@ -3,6 +3,7 @@ package sprites;
 import java.util.ArrayList;
 
 import grid.Level;
+import jay.jaysound.JayLayer;
 
 /** This class represents the playable character
  * @author Boon Chew, Nikunj Govil, Yashasvi Chitela
@@ -15,6 +16,10 @@ public class Player extends Sprite {
 	private double xVel, yVel;
 	private boolean sneaking;
 	private int numFragments, visionRange;
+	
+	private JayLayer sound;
+	private final int caught = 0;
+	private final int creepy = 1;
 
 	
 	/** Constructs a Player
@@ -32,6 +37,12 @@ public class Player extends Sprite {
 		yVel = 0;
 		numFragments = 0;
 		sneaking = false;
+		
+		String[] soundEffects = new String[]{"tickletickle4.mp3", "Jumpscare Sound Effect.mp3"};
+		sound=new JayLayer("resources/sound/","resources/sound/",false);
+		sound.addPlayList();
+		sound.addSoundEffects(soundEffects);
+		sound.changePlayList(0);
 	}
 	
 	/** Constructs a Player with the image specified
@@ -125,8 +136,11 @@ public class Player extends Sprite {
 			}
 		
 		for (Tickler tickler : level.getTicklers())
-			if (tickler.intersects(this))
+			if (tickler.intersects(this)) {
 				level.setupLevel(level.getLevel());
+				sound.playSoundEffect(caught);
+				sound.playSoundEffect(creepy);
+			}
 		
 		Exit exit = level.getExit();
 		if (exit.intersects(this))
