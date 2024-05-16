@@ -14,7 +14,7 @@ import sprites.*;
 
 /** This class represents the game's grid
  * @author Boon Chew, Nikunj Govil, Yashasvi Chitela
- * @version 5/15/24
+ * @version 5/16/24
  */
 public class Level extends Rectangle2D.Double {
 	
@@ -53,7 +53,7 @@ public class Level extends Rectangle2D.Double {
 	 */
 	public Level()
 	{
-		this(21, 21);
+		this(13, 13);
 	}
 	
 	

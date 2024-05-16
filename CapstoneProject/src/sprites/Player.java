@@ -6,7 +6,7 @@ import grid.Level;
 
 /** This class represents the playable character
  * @author Boon Chew, Nikunj Govil, Yashasvi Chitela
- * @version 5/15/24
+ * @version 5/16/24
  */
 public class Player extends Sprite {
 	
