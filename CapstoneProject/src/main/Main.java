@@ -4,7 +4,7 @@ import processing.core.PApplet;
 
 /** This class runs the program
  * @author Boon Chew, Nikunj Govil, Yashasvi Chitela
- * @version 5/5/24
+ * @version 5/16/24
  */
 public class Main {
 	
@@ -15,7 +15,6 @@ public class Main {
 	{
 		DrawingSurface drawing = new DrawingSurface();
 		PApplet.runSketch(new String[]{""}, drawing);
-		drawing.windowResizable(true);
 	}
 	
 }

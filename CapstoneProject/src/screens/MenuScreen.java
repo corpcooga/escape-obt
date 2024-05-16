@@ -13,7 +13,7 @@ public class MenuScreen extends Screen {
 
 	private DrawingSurface surface;
 	private Rectangle playButton, levelButton;
-	//private PImage image = "resources/img/mainscreen.gif";
+	private PImage backgroundImage;
 	
 	/** Constructs a MenuScreen
 	 * @param surface The DrawingSurface this FirstScreen uses
@@ -28,12 +28,18 @@ public class MenuScreen extends Screen {
 	}
 	
 	
+	public void setup()
+	{
+		backgroundImage = surface.loadImage("resources/img/mainscreen.gif");
+		backgroundImage.resize(DRAWING_WIDTH, DRAWING_HEIGHT);
+	}
+	
 	/** Draws this MenuScreen
 	 */
 	public void draw()
 	{
 		surface.background(255, 255, 255);
-//		surface.background(null);
+		surface.background(backgroundImage);
 		surface.fill(255);
 		surface.rect(playButton.x, playButton.y, playButton.width, playButton.height, 10, 10, 10, 10);
 		surface.fill(0);
