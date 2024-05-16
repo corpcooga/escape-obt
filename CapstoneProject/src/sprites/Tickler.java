@@ -46,6 +46,7 @@ public class Tickler extends Sprite {
 		this("resources/img/tickler.gif", x, y, w, h);
 	}
 	
+	
 	/** Handles Tickler movement
 	 * @param level Represents the level that this Tickler is in
 	 */

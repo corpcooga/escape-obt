@@ -118,6 +118,8 @@ public class GameScreen extends Screen {
 			player.setSneak(true);
 		else 
 			player.setSneak(false);
+		if (surface.isPressed(KeyEvent.VK_SPACE))
+			player.attack();
 		
 		slideWorldToImage(player);
 	}

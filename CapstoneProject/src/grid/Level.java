@@ -25,6 +25,7 @@ public class Level extends Rectangle2D.Double {
 	private ArrayList<Tickler> ticklers;
 	private Player player;
 	private Exit exit;
+	private Weapon weapon;
 	
 	private char[][] grid;
 	private int numLevel, levelFragments;
@@ -62,9 +63,6 @@ public class Level extends Rectangle2D.Double {
 		width = dimensions.x * TILE_SIZE;
 		height = dimensions.y * TILE_SIZE;
 		
-		walls = new ArrayList<Wall>();
-		keyFragments = new ArrayList<KeyFragment>();
-		ticklers = new ArrayList<Tickler>();
 		loadSprites();
 		
 		levelFragments = keyFragments.size();
@@ -104,9 +102,10 @@ public class Level extends Rectangle2D.Double {
 	public void draw(PApplet marker, Rectangle2D.Double visible)
 	{
 		player.act(this);
-		
 		int playerVision = player.getVisionRange();
 		
+		if (weapon != null && getSpriteDistance(player, weapon) <= playerVision)
+			weapon.draw(marker);
 		if (getSpriteDistance(player, exit) <= playerVision)
 			exit.draw(marker);
 		for (Wall wall : walls)
@@ -131,6 +130,11 @@ public class Level extends Rectangle2D.Double {
 		keyFragments.remove(idx);
 		if (player.getNumFragments() == levelFragments)
 			exit.open();
+	}
+	
+	public void pickUpWeapon()
+	{
+		weapon = null;
 	}
 	
 	/** Gets all Walls in this Level
@@ -173,6 +177,14 @@ public class Level extends Rectangle2D.Double {
 		return exit;
 	}
 	
+	/** Gets the Weapon in this Level
+	 * @return A Weapon object that represents this Level's Weapon
+	 */
+	public Weapon getWeapon()
+	{
+		return weapon;
+	}
+	
 	/** Gets the level number of this Level
 	 * @return The level number of this Level
 	 */
@@ -198,6 +210,10 @@ public class Level extends Rectangle2D.Double {
 	 */
 	private void loadSprites()
 	{
+		walls = new ArrayList<Wall>();
+		keyFragments = new ArrayList<KeyFragment>();
+		ticklers = new ArrayList<Tickler>();
+		
 //		Sprite width and heights
 		float sw = (float)width / grid[0].length;
 		float sh = (float)height / grid.length;
@@ -232,6 +248,10 @@ public class Level extends Rectangle2D.Double {
 //				Exit
 				else if (grid[i][j] == 'X')
 					exit = new Exit((int)sx, (int)sy, (int)sw, (int)sh);
+				
+//				Weapon
+				else if (grid[i][j] == 'W')
+					weapon = new Weapon((int)sx, (int)sy, (int)sw, (int)sh);
 			}
 	}
 	

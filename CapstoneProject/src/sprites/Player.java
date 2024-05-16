@@ -13,6 +13,7 @@ public class Player extends Sprite {
 	
 	private final double speed;
 	
+	private Weapon weapon;
 	private double xVel, yVel;
 	private boolean sneaking;
 	private int numFragments, visionRange;
@@ -66,6 +67,12 @@ public class Player extends Sprite {
 		double slowFactor = sneaking ? 0.2 : 1;
 		xVel += xChange * speed * slowFactor;
 		yVel += yChange * speed * slowFactor;
+	}
+	
+	public void attack()
+	{
+		if (weapon != null)
+			weapon.slice();
 	}
 	
 	/** Sets this Player's sneaking status
@@ -141,6 +148,12 @@ public class Player extends Sprite {
 				sound.playSoundEffect(caught);
 				sound.playSoundEffect(creepy);
 			}
+		
+		Weapon levelWeapon = level.getWeapon();
+		if (levelWeapon != null && levelWeapon.intersects(this)) {
+			level.pickUpWeapon();
+			weapon = levelWeapon;
+		}
 		
 		Exit exit = level.getExit();
 		if (exit.intersects(this))
