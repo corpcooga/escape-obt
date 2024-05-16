@@ -30,32 +30,108 @@ public class Level extends Rectangle2D.Double {
 	private int numLevel, levelFragments;
 	
 	
-	/** Constructs a Level based on a text file
-	 * @param width The width of the grid
-	 * @param height The height of the grid
+	/** Constructs a Level of a specified number
+	 * @param numLevel
 	 */
-	public Level(int width, int height)
+	public Level(int numLevel)
 	{
-//		TODO maybe find way to get rid of width/height parameters?
-		grid = new char[width][height];
-		readData("resources/levels/level1.txt", grid);
-		
-		x = 0;
-		y = 0;
-		this.width = width * TILE_SIZE;
-		this.height = height * TILE_SIZE;
-		
-		setupSprites();
-		numLevel = 1;
+		setupLevel(numLevel);
 	}
 	
-	/** Construct an empty 2D array with some default dimensions
+	/** Construct a level 1 Level
 	 */
 	public Level()
 	{
-		this(13, 13);
+		this(1);
 	}
 	
+	
+	/** Sets up this Level with the specified number level
+	 * @param numLevel The level number to set up
+	 */
+	public void setupLevel(int numLevel)
+	{
+		String fileName = "resources/levels/level" + numLevel + ".txt";
+		Point dimensions = readDataDimensions(fileName);
+		
+		grid = new char[dimensions.x][dimensions.y];
+		readData(fileName, grid);
+		
+		x = 0;
+		y = 0;
+		width = dimensions.x * TILE_SIZE;
+		height = dimensions.y * TILE_SIZE;
+		
+		walls = new ArrayList<Wall>();
+		keyFragments = new ArrayList<KeyFragment>();
+		ticklers = new ArrayList<Tickler>();
+		loadSprites();
+		
+		levelFragments = keyFragments.size();
+		this.numLevel = numLevel;
+	}
+	
+	/** Gets a Sprite's coordinates in this Level using their literal coordinates
+	 * @param sprite the Sprite to get the Level coordinates of
+	 * @return a Point object containing array coordinates of a Sprite
+	 */
+	public Point getSpriteArrayCoordinates(Sprite sprite)
+	{
+		Point2D.Double spriteCenter = sprite.getCenter();
+		int realX = (int)((spriteCenter.getX() + x) / TILE_SIZE);
+		int realY = (int)((spriteCenter.getY() + y) / TILE_SIZE);
+		return new Point(realX, realY);
+	}
+	
+	/** Gets the distance between two Sprites in this Level
+	 * @param s1 The first Sprite used to calculate the distance
+	 * @param s2 The second Sprite used to calculate the distance
+	 * @return The maximum of the x-distance and y-distance between the Sprites
+	 */
+	public int getSpriteDistance(Sprite s1, Sprite s2)
+	{
+		Point coord1 = getSpriteArrayCoordinates(s1);
+		Point coord2 = getSpriteArrayCoordinates(s2);
+		int xDist = Math.abs(coord1.x - coord2.x);
+		int yDist = Math.abs(coord1.y - coord2.y);
+		return Math.max(xDist, yDist);
+	}
+	
+	/** Draws this Level and handles Sprite behavior
+	 * @param marker The PApplet used for drawing
+	 * @param visible A Rectangle2D representing the visible in-game area
+	 */
+	public void draw(PApplet marker, Rectangle2D.Double visible)
+	{
+		player.act(this);
+		
+		int playerVision = player.getVisionRange();
+		
+		if (getSpriteDistance(player, exit) <= playerVision)
+			exit.draw(marker);
+		for (Wall wall : walls)
+			if (getSpriteDistance(player, wall) <= playerVision)
+				wall.draw(marker);
+		for (KeyFragment key : keyFragments)
+			if (getSpriteDistance(player, key) <= playerVision)
+				key.draw(marker);
+		for (Tickler tickler : ticklers) {
+			tickler.act(this);
+			if (getSpriteDistance(player, tickler) <= playerVision)
+				tickler.draw(marker);
+		}
+		player.draw(marker);
+	}
+	
+	/** Removes the KeyFragment at the specified index, then updates exit status
+	 * @param idx The index of the KeyFragment to remove
+	 */
+	public void removeKeyFragment(int idx)
+	{
+		keyFragments.remove(idx);
+		if (player.getNumFragments() == levelFragments)
+			exit.open();
+	}
 	
 	/** Gets all Walls in this Level
 	 * @return An ArrayList containing all Walls in this Level
@@ -97,71 +173,30 @@ public class Level extends Rectangle2D.Double {
 		return exit;
 	}
 	
-	/** Gets a Sprite's coordinates in this Level using their literal coordinates
-	 * @param sprite the Sprite to get the Level coordinates of
-	 * @return a Point object containing array coordinates of a Sprite
+	/** Gets the level number of this Level
+	 * @return The level number of this Level
 	 */
-	public Point getSpriteArrayCoordinates(Sprite sprite)
+	public int getLevel()
 	{
-		Point2D.Double spriteCenter = sprite.getCenter();
-		int realX = (int)((spriteCenter.getX() + x) / TILE_SIZE);
-		int realY = (int)((spriteCenter.getY() + y) / TILE_SIZE);
-		return new Point(realX, realY);
+		return numLevel;
 	}
 	
-	/** Gets the distance between two Sprites in this Level
-	 * @param s1 The first Sprite used to calculate the distance
-	 * @param s2 The second Sprite used to calculate the distance
-	 * @return The maximum of the x-distance and y-distance between the Sprites
+	/**	Prints out a formatted version of this Level
 	 */
-	public int getSpriteDistance(Sprite s1, Sprite s2)
+	public String toString()
 	{
-		Point coord1 = getSpriteArrayCoordinates(s1);
-		Point coord2 = getSpriteArrayCoordinates(s2);
-		int xDist = Math.abs(coord1.x - coord2.x);
-		int yDist = Math.abs(coord1.y - coord2.y);
-		return Math.max(xDist, yDist);
+		StringBuffer out = new StringBuffer("");
+		for (char[] row : grid) {
+			for (char c : row)
+				out.append(c);
+			out.append("\n");
+		}
+		return out.toString();
 	}
 	
-	/** Removes the KeyFragment at the specified index, then updates exit status
-	 * @param idx The index of the KeyFragment to remove
+	/** Loads all Sprites from the grid to the corresponding ArrayList
 	 */
-	public void removeKeyFragment(int idx)
-	{
-		keyFragments.remove(idx);
-		if (player.getNumFragments() == levelFragments)
-			exit.open();
-	}
-	
-	/** Changes the level and sets it up
-	 * @param levelChange The amount to change the current level by
-	 */
-	public void changeLevel(int levelChange)
-	{
-//		TODO find way to make grid have proper size based on level txt file
-		grid = new char[100][100];
-		numLevel += levelChange;
-		readData("resources/levels/level" + numLevel + ".txt", grid);
-		
-		width = grid.length * TILE_SIZE;
-		height = grid[0].length * TILE_SIZE;
-		
-		setupSprites();
-	}
-	
-	private void setupSprites()
-	{
-		walls = new ArrayList<Wall>();
-		keyFragments = new ArrayList<KeyFragment>();
-		ticklers = new ArrayList<Tickler>();
-		readSprites();
-		
-		levelFragments = keyFragments.size();
-	}
-	
-	/** Reads through grids and adds all Sprites to the corresponding ArrayList
-	 */
-	private void readSprites()
+	private void loadSprites()
 	{
 //		Sprite width and heights
 		float sw = (float)width / grid[0].length;
@@ -200,37 +235,11 @@ public class Level extends Rectangle2D.Double {
 			}
 	}
 	
-	/** Draws this Level and handles Sprite behavior
-	 * @param marker The PApplet used for drawing
-	 * @param visible A Rectangle2D representing the visible in-game area
-	 */
-	public void draw(PApplet marker, Rectangle2D.Double visible)
-	{
-		player.act(this);
-		
-		int playerVision = player.getVisionRange();
-		
-		if (getSpriteDistance(player, exit) <= playerVision)
-			exit.draw(marker);
-		for (Wall wall : walls)
-			if (getSpriteDistance(player, wall) <= playerVision)
-				wall.draw(marker);
-		for (KeyFragment key : keyFragments)
-			if (getSpriteDistance(player, key) <= playerVision)
-				key.draw(marker);
-		for (Tickler tickler : ticklers) {
-			tickler.act(this);
-			if (getSpriteDistance(player, tickler) <= playerVision)
-				tickler.draw(marker);
-		}
-		player.draw(marker);
-	}
-	
 	/** Reads data from a text file and loads it into an array
 	 * @param filename The text file to read from
 	 * @param gameData The array to load the information into
 	 */
-	public void readData(String filename, char[][] gameData)
+	private void readData(String filename, char[][] gameData)
 	{
 		File dataFile = new File(filename);
 
@@ -240,17 +249,16 @@ public class Level extends Rectangle2D.Double {
 			int count = 0;
 			
 			try {
-					reader = new FileReader(dataFile);
-					in = new Scanner(reader);
-					
-					while (in.hasNext()) {
-						String line = in.nextLine();
-						for(int i = 0; i < line.length(); i++)
-							if (count < gameData.length && i < gameData[count].length)
-								gameData[count][i] = line.charAt(i);
-						count++;
-					}
-
+				reader = new FileReader(dataFile);
+				in = new Scanner(reader);
+				
+				while (in.hasNext()) {
+					String line = in.nextLine();
+					for(int i = 0; i < line.length(); i++)
+						if (count < gameData.length && i < gameData[count].length)
+							gameData[count][i] = line.charAt(i);
+					count++;
+				}
 			} catch (IOException ex) {
 				throw new IllegalArgumentException("Data file " + filename + " cannot be read.");
 			} finally {
@@ -261,17 +269,37 @@ public class Level extends Rectangle2D.Double {
 			throw new IllegalArgumentException("Data file " + filename + " does not exist.");
 	}
 	
-	/**	Prints out a formatted version of this Level
+	/** Gets the dimensions of a data file
+	 * @param filename The text file to read from
+	 * @return A Point object containing the bottom right corner of the file
 	 */
-	public String toString()
+	private Point readDataDimensions(String filename)
 	{
-		StringBuffer out = new StringBuffer("");
-		for (char[] row : grid) {
-			for (char c : row)
-				out.append(c);
-			out.append("\n");
-		}
-		return out.toString();
+		File dataFile = new File(filename);
+		
+		if (dataFile.exists()) {
+			int rows = 0, cols = 0;
+			Scanner in = null;
+			
+			try {
+				in = new Scanner(new FileReader(dataFile));
+				String lastLine = "";
+				
+				while (in.hasNext()) {
+					lastLine = in.nextLine();
+					rows++;
+				}
+				cols = lastLine.length();
+				return new Point(rows, cols);
+
+			} catch (IOException ex) {
+				throw new IllegalArgumentException("Data file " + filename + " cannot be read.");
+			} finally {
+				if (in != null)
+					in.close();
+			}
+		} else
+			throw new IllegalArgumentException("Data file " + filename + " does not exist.");
 	}
 	
 }

@@ -126,12 +126,12 @@ public class Player extends Sprite {
 		
 		for (Tickler tickler : level.getTicklers())
 			if (tickler.intersects(this))
-				level.changeLevel(0);
+				level.setupLevel(level.getLevel());
 		
 		Exit exit = level.getExit();
 		if (exit.intersects(this))
 			if (exit.isOpen())
-				level.changeLevel(1);
+				level.setupLevel(level.getLevel() + 1);
 	}
 	
 }
