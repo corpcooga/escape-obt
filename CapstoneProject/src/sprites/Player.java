@@ -41,7 +41,7 @@ public class Player extends Sprite {
 		numFragments = 0;
 		sneaking = false;
 		
-		String[] soundEffects = new String[]{"tickletickle4.mp3", "Jumpscare Sound Effect.mp3", "shing.mp3"};
+		String[] soundEffects = new String[]{"tickletickle4.mp3", "Jumpscare Sound Effect.mp3", "shing.mp3", "footsteps.mp3"};
 		sound=new JayLayer("resources/sound/","resources/sound/",false);
 		sound.addPlayList();
 		sound.addSoundEffects(soundEffects);
@@ -130,6 +130,8 @@ public class Player extends Sprite {
 				y += yVel;
 				yVel = 0;
 			}
+		
+//		sound.playSoundEffect(3);
 		
 		applyWindowLimits(level);
 		yVel *= 0.8;
