@@ -8,9 +8,6 @@ import processing.core.PApplet;
  */
 public class Weapon extends Sprite {
 	
-	private float rotation;
-	
-
 	/** Constructs a Weapon
 	 * @param img image to use for this Weapon
 	 * @param x x-coordinate of this Weapon
@@ -21,7 +18,6 @@ public class Weapon extends Sprite {
 	public Weapon(String img, int x, int y, int w, int h)
 	{
 		super(img, x, y, w, h);
-		rotation = 0;
 	}
 	
 	/** Constructs a Weapon with the image specified
@@ -36,14 +32,46 @@ public class Weapon extends Sprite {
 	}
 	
 	
-	public void slice(PApplet surface, double x, double y)
+	/** Executes an attack with this Weapon
+	 * @param surface The PApplet to draw on
+	 * @param x The x-coordinate to use for this Weapon
+	 * @param y The y-coordinate to use for this Weapon
+	 * @param dirX The direction pointed for x (-1, 0, 1)
+	 * @param dirY The direction pointed for y (-1, 0, 1)
+	 */
+	public void slice(PApplet surface, double x, double y, int dirX, int dirY)
 	{
 		this.x = 0;
 		this.y = 0;
 		
-		surface.translate((float)(x + width / 2), (float)(y + height / 2));
-		rotation++;
-		surface.rotate((float)Math.toRadians(rotation));
+		int direction;
+		if (dirX > 0) {
+			if (dirY > 0)
+				direction = 45;
+			else if (dirY < 0)
+				direction = 135;
+			else
+				direction = 90;
+		} else if (dirX < 0) {
+			if (dirY > 0)
+				direction = -45;
+			else if (dirY < 0)
+				direction = -135;
+			else
+				direction = -90;
+		} else {
+			if (dirY > 0)
+				direction = 0;
+			else if (dirY < 0)
+				direction = 180;
+			else
+				direction = 0;
+		}
+		
+		direction += 45;
+				
+		surface.translate((float)x, (float)y);
+		surface.rotate((float)Math.toRadians(direction));
 		draw(surface);
 	}
 

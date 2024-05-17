@@ -71,10 +71,10 @@ public class Player extends Sprite {
 		yVel += yChange * speed * slowFactor;
 	}
 	
-	public void attack(PApplet surface)
+	public void attack(PApplet surface, int dirX, int dirY)
 	{
 		if (weapon != null) {
-			weapon.slice(surface, x, y);
+			weapon.slice(surface, x, y, dirX, dirY);
 			sound.playSoundEffect(shing);
 		}
 	}

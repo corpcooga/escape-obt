@@ -98,26 +98,26 @@ public class GameScreen extends Screen {
 		}
 		
 		surface.translate((float)-visibleSpace.getX(), (float)-visibleSpace.getY());
-		surface.background(0, 0, 0);
+		surface.background(0);
 		
 		level.draw(surface, visibleSpace);
 		
 //		Player controls
 		Player player = level.getPlayer();
+		int dirX = 0, dirY = 0;
+		
 		if (surface.isPressed(KeyEvent.VK_W))
-			player.accelerate(0, 1);
+			dirY += 1;
 		if (surface.isPressed(KeyEvent.VK_S))
-			player.accelerate(0, -1);
+			dirY -= 1;
 		if (surface.isPressed(KeyEvent.VK_A))
-			player.accelerate(-1, 0);
+			dirX -= 1;
 		if (surface.isPressed(KeyEvent.VK_D))
-			player.accelerate(1, 0);
-		if (surface.isPressed(KeyEvent.VK_SHIFT))
-			player.setSneak(true);
-		else 
-			player.setSneak(false);
+			dirX += 1;
+		player.setSneak(surface.isPressed(KeyEvent.VK_SHIFT));
 		if (surface.isPressed(KeyEvent.VK_SPACE))
-			player.attack(surface);
+			player.attack(surface, dirX, dirY);
+		player.accelerate(dirX, dirY);
 		
 		slideWorldToImage(player);
 	}
