@@ -44,28 +44,17 @@ public class Weapon extends Sprite {
 		this.x = 0;
 		this.y = 0;
 		
-		int direction;
-		if (dirX > 0) {
+		int direction, multiplier = dirX > 0 ? 1 : -1;
+		if (dirX == 0)
+			direction = dirY < 0 ? 180 : 0;
+		else {
 			if (dirY > 0)
-				direction = 45;
+				direction = 45 * multiplier;
 			else if (dirY < 0)
-				direction = 135;
+				direction = 135 * multiplier;
 			else
-				direction = 90;
-		} else if (dirX < 0) {
-			if (dirY > 0)
-				direction = -45;
-			else if (dirY < 0)
-				direction = -135;
-			else
-				direction = -90;
-		} else {
-			if (dirY < 0)
-				direction = 180;
-			else
-				direction = 0;
+				direction = 90 * multiplier;
 		}
-		
 		direction += 45;
 				
 		surface.translate((float)x, (float)y);
