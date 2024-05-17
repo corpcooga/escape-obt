@@ -60,9 +60,7 @@ public class Weapon extends Sprite {
 			else
 				direction = -90;
 		} else {
-			if (dirY > 0)
-				direction = 0;
-			else if (dirY < 0)
+			if (dirY < 0)
 				direction = 180;
 			else
 				direction = 0;
