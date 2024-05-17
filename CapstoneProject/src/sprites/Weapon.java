@@ -56,8 +56,8 @@ public class Weapon extends Sprite {
 				direction = 90 * multiplier;
 		}
 		direction += 45;
-				
-		surface.translate((float)x, (float)y);
+		
+		surface.translate((float)(x + width * 0.4), (float)(y + height * 0.4));
 		surface.rotate((float)Math.toRadians(direction));
 		draw(surface);
 	}
