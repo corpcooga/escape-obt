@@ -4,9 +4,12 @@ import processing.core.PApplet;
 
 /** This class represents a weapon
  * @author Nikunj Govil, Boon Chew, Yashasvi Chitela
- * @version 5/16/2024
+ * @version 5/17/2024
  */
 public class Weapon extends Sprite {
+	
+	private float rotation;
+	
 
 	/** Constructs a Weapon
 	 * @param img image to use for this Weapon
@@ -18,6 +21,7 @@ public class Weapon extends Sprite {
 	public Weapon(String img, int x, int y, int w, int h)
 	{
 		super(img, x, y, w, h);
+		rotation = 0;
 	}
 	
 	/** Constructs a Weapon with the image specified
@@ -34,8 +38,12 @@ public class Weapon extends Sprite {
 	
 	public void slice(PApplet surface, double x, double y)
 	{
-		this.x = x;
-		this.y = y;
+		this.x = 0;
+		this.y = 0;
+		
+		surface.translate((float)(x + width / 2), (float)(y + height / 2));
+		rotation++;
+		surface.rotate((float)Math.toRadians(rotation));
 		draw(surface);
 	}
 

@@ -14,7 +14,7 @@ import sprites.*;
 
 /** This class represents the game's grid
  * @author Boon Chew, Nikunj Govil, Yashasvi Chitela
- * @version 5/16/24
+ * @version 5/17/24
  */
 public class Level extends Rectangle2D.Double {
 	
@@ -241,9 +241,8 @@ public class Level extends Rectangle2D.Double {
 				
 //				Player
 				else if (grid[i][j] == 'P')
-					player = new Player(
-							(int)sx + (int)(sw * 0.3), (int)sy + (int)(sh * 0.3), 
-							(int)(sw * 0.4), (int)(sh * 0.4));
+					player = new Player((int)(sx + sw * 0.3), (int)(sy + sh * 0.3), 
+										(int)(sw * 0.4), (int)(sh * 0.4));
 				
 //				Exit
 				else if (grid[i][j] == 'X')
@@ -251,7 +250,8 @@ public class Level extends Rectangle2D.Double {
 				
 //				Weapon
 				else if (grid[i][j] == 'W')
-					weapon = new Weapon((int)sx, (int)sy, (int)sw, (int)sh);
+					weapon = new Weapon((int)(sx + sw * 0.2), (int)(sy + sh * 0.2), 
+										(int)(sw * 0.6), (int)(sh * 0.6));
 			}
 	}
 	
