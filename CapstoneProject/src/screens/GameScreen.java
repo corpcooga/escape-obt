@@ -46,9 +46,7 @@ public class GameScreen extends Screen {
 	public void setup()
 	{
 		Point2D.Double playerCoords = level.getPlayer().getCenter();
-		visibleSpace = new Rectangle2D.Double(playerCoords.getX() - DrawingSurface.DRAWING_WIDTH / 2, 
-												playerCoords.getY() - DrawingSurface.DRAWING_HEIGHT / 2, 
-												DRAWING_WIDTH, DRAWING_HEIGHT);
+		visibleSpace = new Rectangle2D.Double(playerCoords.getX(), playerCoords.getY(), DRAWING_WIDTH, DRAWING_HEIGHT);
 		playerSpace = new Rectangle2D.Double(visibleSpace.getX() + visibleSpace.getWidth() * (1 - characterFractionOfWindow) * 0.5,
 												visibleSpace.getY() + visibleSpace.getHeight() * (1 - characterFractionOfWindow) * 0.5,
 												visibleSpace.getWidth() * characterFractionOfWindow,
