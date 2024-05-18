@@ -29,7 +29,7 @@ public class Tickler extends Sprite {
 		speed = Level.TILE_SIZE * 0.005;
 		aggroRange = 2;
 		
-		String[] soundEffects = new String[]{"eerie_close.mp3"};
+		String[] soundEffects = new String[]{"ticklerclose.mp3"};
 		sound=new JayLayer("resources/sound/","resources/sound/",false);
 		sound.addPlayList();
 		sound.addSoundEffects(soundEffects);

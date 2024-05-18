@@ -20,9 +20,7 @@ public class Player extends Sprite {
 	private int numFragments, visionRange;
 	
 	private JayLayer sound;
-	private final int caught = 0;
-	private final int creepy = 1;
-	private final int shing = 2;
+	private final int walk = 0, tickle = 1, jumpscare = 2, shing = 3;
 
 	
 	/** Constructs a Player
@@ -42,8 +40,8 @@ public class Player extends Sprite {
 		numFragments = 0;
 		sneaking = false;
 		
-		String[] soundEffects = new String[]{"tickletickle4.mp3", "Jumpscare Sound Effect.mp3", "shing.mp3", "footsteps.mp3"};
-		sound=new JayLayer("resources/sound/","resources/sound/",false);
+		String[] soundEffects = new String[] {"walk.mp3", "tickle.mp3", "jumpscare.mp3", "shing.mp3"};
+		sound = new JayLayer("resources/sound/", "resources/sound/", false);
 		sound.addPlayList();
 		sound.addSoundEffects(soundEffects);
 		sound.changePlayList(0);
@@ -70,6 +68,8 @@ public class Player extends Sprite {
 		double slowFactor = sneaking ? 0.2 : 1;
 		xVel += xChange * speed * slowFactor;
 		yVel += yChange * speed * slowFactor;
+		if (xChange != 0 || yChange != 0)
+			sound.playSoundEffect(walk);
 	}
 	
 	public void attack(PApplet surface, int dirX, int dirY)
@@ -131,8 +131,6 @@ public class Player extends Sprite {
 				yVel = 0;
 			}
 		
-//		sound.playSoundEffect(3);
-		
 		applyWindowLimits(level);
 		yVel *= 0.8;
 		xVel *= 0.8;
@@ -151,8 +149,8 @@ public class Player extends Sprite {
 		for (Tickler tickler : level.getTicklers())
 			if (tickler.intersects(this)) {
 				level.setupLevel(level.getLevel());
-				sound.playSoundEffect(caught);
-				sound.playSoundEffect(creepy);
+				sound.playSoundEffect(tickle);
+				sound.playSoundEffect(jumpscare);
 			}
 		
 		Weapon levelWeapon = level.getWeapon();
