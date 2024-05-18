@@ -101,7 +101,7 @@ public class Level extends Rectangle2D.Double {
 	 */
 	public void draw(PApplet marker, Rectangle2D.Double visible)
 	{
-		player.act(this);
+		player.act();
 		int playerVision = player.getVisionRange();
 		
 		if (weapon != null && getSpriteDistance(player, weapon) <= playerVision)
@@ -115,7 +115,7 @@ public class Level extends Rectangle2D.Double {
 			if (getSpriteDistance(player, key) <= playerVision)
 				key.draw(marker);
 		for (Tickler tickler : ticklers) {
-			tickler.act(this);
+			tickler.act();
 			if (getSpriteDistance(player, tickler) <= playerVision)
 				tickler.draw(marker);
 		}
@@ -130,6 +130,14 @@ public class Level extends Rectangle2D.Double {
 		keyFragments.remove(idx);
 		if (player.getNumFragments() == levelFragments)
 			exit.open();
+	}
+	
+	/** Removes the Tickler at the specified index
+	 * @param idx The index of the Tickler to remove
+	 */
+	public void killTickler(int idx)
+	{
+		ticklers.remove(idx);
 	}
 	
 	public void pickUpWeapon()
@@ -231,17 +239,17 @@ public class Level extends Rectangle2D.Double {
 				
 //				Key Fragment
 				else if (grid[i][j] == '*')
-					keyFragments.add(new KeyFragment(
-							(int)sx + (int)sw / 4, (int)sy + (int)sh / 4, (int)sw / 2, (int)sh / 2));
+					keyFragments.add(new KeyFragment((int)(sx + sw / 4), (int)(sy + sh / 4), 
+													(int)sw / 2, (int)sh / 2));
 				
 //				Tickler
 				else if (grid[i][j] == 'T')
-					ticklers.add(new Tickler(
-							(int)sx + (int)sw / 4, (int)sy + (int)sh / 4, (int)sw / 2, (int)sh / 2));
+					ticklers.add(new Tickler(this, (int)(sx + sw / 4), (int)(sy + sh / 4), 
+											(int)sw / 2, (int)sh / 2));
 				
 //				Player
 				else if (grid[i][j] == 'P')
-					player = new Player((int)(sx + sw * 0.3), (int)(sy + sh * 0.3), 
+					player = new Player(this, (int)(sx + sw * 0.3), (int)(sy + sh * 0.3), 
 										(int)(sw * 0.4), (int)(sh * 0.4));
 				
 //				Exit
@@ -250,7 +258,7 @@ public class Level extends Rectangle2D.Double {
 				
 //				Weapon
 				else if (grid[i][j] == 'W')
-					weapon = new Weapon((int)(sx + sw * 0.2), (int)(sy + sh * 0.2), 
+					weapon = new Weapon(this, (int)(sx + sw * 0.2), (int)(sy + sh * 0.2), 
 										(int)(sw * 0.6), (int)(sh * 0.6));
 			}
 	}

@@ -2,7 +2,7 @@ package sprites;
 
 /** This class represents the exit to a level
  * @author Nikunj Govil, Boon Chew, Yashasvi Chitela
- * @version 5/15/2024
+ * @version 5/17/2024
  */
 public class Exit extends Sprite {
 	
@@ -22,7 +22,7 @@ public class Exit extends Sprite {
 		open = false;
 	}
 	
-	/** Constructs a Exit with the image specified
+	/** Constructs a Exit with an automatic image
 	 * @param x x-coordinate of this Exit
 	 * @param y y-coordinate of this Exit
 	 * @param w width of this Exit

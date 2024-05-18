@@ -1,6 +1,8 @@
 package sprites;
 
+import java.util.ArrayList;
 import processing.core.PApplet;
+import grid.Level;
 
 /** This class represents a weapon
  * @author Nikunj Govil, Boon Chew, Yashasvi Chitela
@@ -10,25 +12,27 @@ public class Weapon extends Sprite {
 	
 	/** Constructs a Weapon
 	 * @param img image to use for this Weapon
+	 * @param level The Level of this Weapon
 	 * @param x x-coordinate of this Weapon
 	 * @param y y-coordinate of this Weapon
 	 * @param w width of this Weapon
 	 * @param h height of this Weapon
 	 */
-	public Weapon(String img, int x, int y, int w, int h)
+	public Weapon(String img, Level level, int x, int y, int w, int h)
 	{
-		super(img, x, y, w, h);
+		super(img, level, x, y, w, h);
 	}
 	
-	/** Constructs a Weapon with the image specified
+	/** Constructs a Weapon with an automatic image
+	 * @param level The Level of this weapon
 	 * @param x x-coordinate of this Weapon
 	 * @param y y-coordinate of this Weapon
 	 * @param w width of this Weapon
 	 * @param h height of this Weapon
 	 */
-	public Weapon(int x, int y, int w, int h)
+	public Weapon(Level level, int x, int y, int w, int h)
 	{
-		this("resources/img/sword.gif", x, y, w, h);
+		this("resources/img/sword.gif", level, x, y, w, h);
 	}
 	
 	
@@ -41,9 +45,6 @@ public class Weapon extends Sprite {
 	 */
 	public void slice(PApplet surface, double x, double y, int dirX, int dirY)
 	{
-		this.x = 0;
-		this.y = 0;
-		
 		int direction, multiplier = dirX > 0 ? 1 : -1;
 		if (dirX == 0)
 			direction = dirY < 0 ? 180 : 0;
@@ -57,9 +58,18 @@ public class Weapon extends Sprite {
 		}
 		direction += 45;
 		
-		surface.translate((float)(x + width * 0.4 + 1.5 * dirX * width), 
-							(float)(y + height * 0.4 - 1.5 * dirY * height));
+		this.x = x + width * 0.4 + 1.5 * dirX * width;
+		this.y = y + height * 0.4 - 1.5 * dirY * height;
+		ArrayList<Tickler> ticklers = level.getTicklers();
+		for (int i = 0; i < ticklers.size(); i++)
+			if (ticklers.get(i).intersects(this)) {
+				level.killTickler(i);
+				i--;
+			}
+		
+		surface.translate((float)this.x, (float)this.y);
 		surface.rotate((float)Math.toRadians(direction));
+		surface.translate((float)-this.x, (float)-this.y);
 		draw(surface);
 	}
 

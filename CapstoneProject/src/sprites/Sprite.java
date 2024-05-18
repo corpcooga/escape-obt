@@ -2,41 +2,72 @@ package sprites;
 
 import java.awt.geom.Point2D;
 import java.awt.geom.Rectangle2D;
+
 import processing.core.PApplet;
 import processing.core.PImage;
+import grid.Level;
 
 /** This class represents a sprite in the game
 * @author Nikunj Govil, Boon Chew, Yashavi Chitela
-* @version 5/13/2024
+* @version 5/17/2024
 */
 public class Sprite extends Rectangle2D.Double {
 	
+	/** The Level that this Sprite belongs to
+	 */
+	protected Level level;
 	private String imageFile;
 	private PImage image;
 	
 	
 	/** Constructs a Sprite
-	 * @param img image to use for Sprite
-	 * @param x x-coordinate of Sprite
-	 * @param y y-coordinate of Sprite
-	 * @param w width of Sprite
-	 * @param h height of SPrite
+	 * @param img image to use for this Sprite
+	 * @param level The Level of this Sprite
+	 * @param x x-coordinate of this Sprite
+	 * @param y y-coordinate of this Sprite
+	 * @param w width of this Sprite
+	 * @param h height of this SPrite
 	 */
-	public Sprite(String img, int x, int y, int w, int h)
+	public Sprite(String img, Level level, int x, int y, int w, int h)
 	{
 		super(x, y, w, h);
 		imageFile = img;
+		this.level = level;
 	}
 	
 	/** Constructs a Sprite without an image
-	 * @param x x-coordinate of Sprite
-	 * @param y y-coordinate of Sprite
-	 * @param w width of Sprite
-	 * @param h weight of Sprite
+	 * @param level The Level of this Sprite
+	 * @param x x-coordinate of this Sprite
+	 * @param y y-coordinate of this Sprite
+	 * @param w width of this Sprite
+	 * @param h weight of this Sprite
+	 */
+	public Sprite(Level level, int x, int y, int w, int h)
+	{
+		this(null, level, x, y, w, h);
+	}
+	
+	/** Constructs a Sprite without a Level
+	 * @param img image to use for this Sprite
+	 * @param x x-coordinate of this Sprite
+	 * @param y y-coordinate of this Sprite
+	 * @param w width of this Sprite
+	 * @param h weight of this Sprite
+	 */
+	public Sprite(String img, int x, int y, int w, int h)
+	{
+		this(img, null, x, y, w, h);
+	}
+	
+	/** Constructs a Sprite without an image or Level
+	 * @param x x-coordinate of this Sprite
+	 * @param y y-coordinate of this Sprite
+	 * @param w width of this Sprite
+	 * @param h weight of this Sprite
 	 */
 	public Sprite(int x, int y, int w, int h)
 	{
-		this(null, x, y, w, h);
+		this(null, null, x, y, w, h);
 	}
 	
 	

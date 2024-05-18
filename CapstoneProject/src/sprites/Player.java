@@ -8,7 +8,7 @@ import processing.core.PApplet;
 
 /** This class represents the playable character
  * @author Boon Chew, Nikunj Govil, Yashasvi Chitela
- * @version 5/16/24
+ * @version 5/17/24
  */
 public class Player extends Sprite {
 	
@@ -27,14 +27,15 @@ public class Player extends Sprite {
 	
 	/** Constructs a Player
 	 * @param img image to use for this Player
+	 * @param level The Level of this Player
 	 * @param x x-coordinate of this Player
 	 * @param y y-coordinate of this Player
 	 * @param w width of this Player
 	 * @param h height of this Player
 	 */
-	public Player(String img, int x, int y, int w, int h)
+	public Player(String img, Level level, int x, int y, int w, int h)
 	{
-		super(img, x, y, w, (int)(h * 1.5));
+		super(img, level, x, y, w, (int)(h * 1.5));
 		speed = Level.TILE_SIZE * 0.005;
 		xVel = 0;
 		yVel = 0;
@@ -48,15 +49,15 @@ public class Player extends Sprite {
 		sound.changePlayList(0);
 	}
 	
-	/** Constructs a Player with the image specified
+	/** Constructs a Player with an automatic image
 	 * @param x x-coordinate of this Player
 	 * @param y y-coordinate of this Player
 	 * @param w width of this Player
 	 * @param h height of this Player
 	 */
-	public Player(int x, int y, int w, int h)
+	public Player(Level level, int x, int y, int w, int h)
 	{
-		this("resources/img/player.gif", x, y, w, h);
+		this("resources/img/player.gif", level, x, y, w, h);
 	}
 	
 	
@@ -112,9 +113,8 @@ public class Player extends Sprite {
 	}
 	
 	/** Handles Player movement and collisions
-	 * @param level Represents the level that this Player is in
 	 */
-	public void act(Level level)
+	public void act()
 	{
 //		Movement + movement collision handling
 		x += xVel;

@@ -2,7 +2,7 @@ package sprites;
 
 /** This class represents a wall that cannot be walked through
  * @author Nikunj Govil, Boon Chew, Yashasvi Chitela
- * @version 5/13/2024
+ * @version 5/17/2024
  */
 public class Wall extends Sprite {
 
@@ -18,7 +18,7 @@ public class Wall extends Sprite {
 		super(img, x, y, w, h);
 	}
 	
-	/** Constructs a Wall with the image specified
+	/** Constructs a Wall with an automatic image
 	 * @param x x-coordinate of this Wall
 	 * @param y y-coordinate of this Wall
 	 * @param w width of this Wall
