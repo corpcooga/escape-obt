@@ -115,6 +115,7 @@ public class GameScreen extends Screen {
 		if (surface.isPressed(KeyEvent.VK_D))
 			dirX += 1;
 		player.setSneak(surface.isPressed(KeyEvent.VK_SHIFT));
+//		TODO make key only be pressed once (cannot be held) and attack only lasts for a second
 		if (surface.isPressed(KeyEvent.VK_SPACE))
 			player.attack(surface, dirX, dirY);
 		player.accelerate(dirX, dirY);
