@@ -21,6 +21,7 @@ public class Player extends Sprite {
 	
 	private JayLayer sound;
 	private final int walk = 0, tickle = 1, jumpscare = 2, shing = 3;
+	private long frames;
 
 	
 	/** Constructs a Player
@@ -40,6 +41,7 @@ public class Player extends Sprite {
 		numFragments = 0;
 		sneaking = false;
 		hasLantern = false;
+		frames = 0;
 		
 		String[] soundEffects = new String[] {"walk.mp3", "tickle.mp3", "jumpscare.mp3", "shing.mp3"};
 		sound = new JayLayer("resources/sound/", "resources/sound/", false);
@@ -69,10 +71,14 @@ public class Player extends Sprite {
 		double slowFactor = sneaking ? 0.2 : 1;
 		xVel += xChange * speed * slowFactor;
 		yVel += yChange * speed * slowFactor;
-		if (xChange != 0 || yChange != 0)
-			sound.playSoundEffect(walk);
+		if (xChange != 0 || yChange != 0) {
+			frames++;
+			if(frames % 30 == 0) {
+				sound.playSoundEffect(walk);
+			}
+		}
 	}
-	
+		
 	public void attack(PApplet surface, int dirX, int dirY)
 	{
 		if (weapon != null) {
