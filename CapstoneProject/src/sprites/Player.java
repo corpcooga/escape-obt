@@ -73,9 +73,8 @@ public class Player extends Sprite {
 		yVel += yChange * speed * slowFactor;
 		if (xChange != 0 || yChange != 0) {
 			frames++;
-			if(frames % 30 == 0) {
+			if (frames % 30 == 0)
 				sound.playSoundEffect(walk);
-			}
 		}
 	}
 		
