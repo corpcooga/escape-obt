@@ -28,6 +28,8 @@ public class GameScreen extends Screen {
 	private DrawingSurface surface;
 	private Level level;
 	
+	private int sneakTimer;
+	
 	
 	/** Constructs a GameScreen
 	 * @param surface The DrawingSurface this GameScreen uses
@@ -38,6 +40,7 @@ public class GameScreen extends Screen {
 		this.surface = surface;
 		
 		level = new Level();
+		sneakTimer = 0;
 	}
 	
 	
@@ -114,7 +117,16 @@ public class GameScreen extends Screen {
 			dirX -= 1;
 		if (surface.isPressed(KeyEvent.VK_D))
 			dirX += 1;
-		player.setSneak(surface.isPressed(KeyEvent.VK_SHIFT));
+		if (sneakTimer <= 300 && surface.isPressed(KeyEvent.VK_SHIFT)) {
+			sneakTimer++;
+			player.setSneak(true);
+		} else {
+			player.setSneak(false);
+			if (sneakTimer > 300)
+				sneakTimer++;
+			if (sneakTimer > 600)
+				sneakTimer = 0;
+		}
 //		TODO make key only be pressed once (cannot be held) and attack only lasts for a second
 		if (surface.isPressed(KeyEvent.VK_SPACE))
 			player.attack(surface, dirX, dirY);
