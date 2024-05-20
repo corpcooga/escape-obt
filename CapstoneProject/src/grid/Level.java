@@ -14,7 +14,7 @@ import sprites.*;
 
 /** This class represents the game's grid
  * @author Boon Chew, Nikunj Govil, Yashasvi Chitela
- * @version 5/17/24
+ * @version 5/20/24
  */
 public class Level extends Rectangle2D.Double {
 	
@@ -26,6 +26,7 @@ public class Level extends Rectangle2D.Double {
 	private Player player;
 	private Exit exit;
 	private Weapon weapon;
+	private Lantern lantern;
 	
 	private char[][] grid;
 	private int numLevel, levelFragments;
@@ -104,8 +105,11 @@ public class Level extends Rectangle2D.Double {
 		player.act();
 		int playerVision = player.getVisionRange();
 		
+//		TODO make objects near lantern be able to be seen
 		if (weapon != null && getSpriteDistance(player, weapon) <= playerVision)
 			weapon.draw(marker);
+		if (lantern != null && getSpriteDistance(player, lantern) <= playerVision)
+			lantern.draw(marker);
 		if (getSpriteDistance(player, exit) <= playerVision)
 			exit.draw(marker);
 		for (Wall wall : walls)
@@ -140,9 +144,18 @@ public class Level extends Rectangle2D.Double {
 		ticklers.remove(idx);
 	}
 	
+	/** Sets this Level's weapon to null
+	 */
 	public void pickUpWeapon()
 	{
 		weapon = null;
+	}
+	
+	/** Sets this Level's lantern to null
+	 */
+	public void pickUpLantern()
+	{
+		lantern = null;
 	}
 	
 	/** Gets all Walls in this Level
@@ -191,6 +204,14 @@ public class Level extends Rectangle2D.Double {
 	public Weapon getWeapon()
 	{
 		return weapon;
+	}
+	
+	/** Gets the Lantern in this Level
+	 * @return A Lantern object that represents this Level's Lantern
+	 */
+	public Lantern getLantern()
+	{
+		return lantern;
 	}
 	
 	/** Gets the level number of this Level
@@ -259,6 +280,11 @@ public class Level extends Rectangle2D.Double {
 //				Weapon
 				else if (grid[i][j] == 'W')
 					weapon = new Weapon(this, (int)(sx + sw * 0.2), (int)(sy + sh * 0.2), 
+										(int)(sw * 0.6), (int)(sh * 0.6));
+				
+//				Lantern
+				else if (grid[i][j] == 'L')
+					lantern = new Lantern((int)(sx + sw * 0.2), (int)(sy + sh * 0.2), 
 										(int)(sw * 0.6), (int)(sh * 0.6));
 			}
 	}

@@ -8,7 +8,7 @@ import processing.core.PApplet;
 
 /** This class represents the playable character
  * @author Boon Chew, Nikunj Govil, Yashasvi Chitela
- * @version 5/17/24
+ * @version 5/20/24
  */
 public class Player extends Sprite {
 	
@@ -16,7 +16,7 @@ public class Player extends Sprite {
 	
 	private Weapon weapon;
 	private double xVel, yVel;
-	private boolean sneaking;
+	private boolean sneaking, hasLantern;
 	private int numFragments, visionRange;
 	
 	private JayLayer sound;
@@ -39,6 +39,7 @@ public class Player extends Sprite {
 		yVel = 0;
 		numFragments = 0;
 		sneaking = false;
+		hasLantern = false;
 		
 		String[] soundEffects = new String[] {"walk.mp3", "tickle.mp3", "jumpscare.mp3", "shing.mp3"};
 		sound = new JayLayer("resources/sound/", "resources/sound/", false);
@@ -136,6 +137,8 @@ public class Player extends Sprite {
 		xVel *= 0.8;
 		
 		visionRange = sneaking ? 0 : 1;
+		if (hasLantern)
+			visionRange++;
 		
 //		Other sprite interaction
 		ArrayList<KeyFragment> keyFragments = level.getKeyFragments();
@@ -157,6 +160,13 @@ public class Player extends Sprite {
 		if (levelWeapon != null && levelWeapon.intersects(this)) {
 			level.pickUpWeapon();
 			weapon = levelWeapon;
+		}
+		
+//		TODO add sound for picking up item
+		Lantern lantern = level.getLantern();
+		if (lantern != null && lantern.intersects(this)) {
+			level.pickUpLantern();
+			hasLantern = true;
 		}
 		
 		Exit exit = level.getExit();
