@@ -5,7 +5,7 @@ import jay.jaysound.JayLayer;
 
 /** This class represents an enemy entity
  * @author Nikunj Govil, Yashasvi Chitela, Boon Chew
- * @version 5/17/24
+ * @version 5/20/24
  */
 public class Tickler extends Sprite {
 	
@@ -26,7 +26,7 @@ public class Tickler extends Sprite {
 	public Tickler(String img, Level level, int x, int y, int w, int h)
 	{
 		super(img, level, x, y, w, h);
-		speed = Level.TILE_SIZE * 0.005;
+		speed = Level.TILE_SIZE * 0.005 * (1 + level.getLevel() * 0.2);
 		aggroRange = 2;
 		
 		String[] soundEffects = new String[]{"ticklerclose.mp3"};

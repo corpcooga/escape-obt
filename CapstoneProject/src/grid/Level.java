@@ -63,11 +63,11 @@ public class Level extends Rectangle2D.Double {
 		y = 0;
 		width = dimensions.x * TILE_SIZE;
 		height = dimensions.y * TILE_SIZE;
+		this.numLevel = numLevel;
 		
 		loadSprites();
 		
 		levelFragments = keyFragments.size();
-		this.numLevel = numLevel;
 	}
 	
 	/** Gets a Sprite's coordinates in this Level using their literal coordinates
