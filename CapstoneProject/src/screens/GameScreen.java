@@ -100,7 +100,7 @@ public class GameScreen extends Screen {
 		surface.translate((float)-visibleSpace.getX(), (float)-visibleSpace.getY());
 		surface.background(0);
 		
-		level.draw(surface, visibleSpace);
+		level.draw(surface);
 		
 //		Player controls
 		Player player = level.getPlayer();

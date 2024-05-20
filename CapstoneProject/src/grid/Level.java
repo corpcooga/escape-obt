@@ -96,31 +96,41 @@ public class Level extends Rectangle2D.Double {
 		return Math.max(xDist, yDist);
 	}
 	
+	/** Determines if a Sprite can be seen in a given range
+	 * @param Sprite The Sprite to test if it can be seen
+	 * @return true if Sprite can be seen, false otherwise
+	 */
+	public boolean canBeSeen(Sprite sprite)
+	{
+		if (getSpriteDistance(sprite, player) <= player.getVisionRange())
+			return true;
+		if (lantern != null && getSpriteDistance(sprite, lantern) <= 1)
+			return true;
+		return false;
+	}
+	
 	/** Draws this Level and handles Sprite behavior
 	 * @param marker The PApplet used for drawing
-	 * @param visible A Rectangle2D representing the visible in-game area
 	 */
-	public void draw(PApplet marker, Rectangle2D.Double visible)
+	public void draw(PApplet marker)
 	{
 		player.act();
-		int playerVision = player.getVisionRange();
 		
-//		TODO make objects near lantern be able to be seen
-		if (weapon != null && getSpriteDistance(player, weapon) <= playerVision)
+		if (weapon != null && canBeSeen(weapon))
 			weapon.draw(marker);
-		if (lantern != null && getSpriteDistance(player, lantern) <= playerVision)
+		if (lantern != null && canBeSeen(lantern))
 			lantern.draw(marker);
-		if (getSpriteDistance(player, exit) <= playerVision)
+		if (canBeSeen(exit))
 			exit.draw(marker);
 		for (Wall wall : walls)
-			if (getSpriteDistance(player, wall) <= playerVision)
+			if (canBeSeen(wall))
 				wall.draw(marker);
 		for (KeyFragment key : keyFragments)
-			if (getSpriteDistance(player, key) <= playerVision)
+			if (canBeSeen(key))
 				key.draw(marker);
 		for (Tickler tickler : ticklers) {
 			tickler.act();
-			if (getSpriteDistance(player, tickler) <= playerVision)
+			if (canBeSeen(tickler))
 				tickler.draw(marker);
 		}
 		player.draw(marker);

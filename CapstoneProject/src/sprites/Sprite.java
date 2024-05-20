@@ -9,7 +9,7 @@ import grid.Level;
 
 /** This class represents a sprite in the game
 * @author Nikunj Govil, Boon Chew, Yashavi Chitela
-* @version 5/17/2024
+* @version 5/20/2024
 */
 public class Sprite extends Rectangle2D.Double {
 	
@@ -91,7 +91,7 @@ public class Sprite extends Rectangle2D.Double {
 		super.y += y;
 	}
 	
-	/** Determines whether or not this Sprite is in specified limits
+	/** Determines if this Sprite is in specified limits
 	 * @param limits The limits to check for the Sprite
 	 * @return true if this Sprite is in the limits, false otherwise
 	 */
