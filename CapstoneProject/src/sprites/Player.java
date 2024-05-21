@@ -20,7 +20,7 @@ public class Player extends Sprite {
 	private int numFragments, visionRange, walkFrame;
 	
 	private JayLayer sound;
-	private final int walk = 0, tickle = 1, jumpscare = 2, shing = 3;
+	private final int walk = 0, tickle = 1, jumpscare = 2, shing = 3, pickKey = 4;
 
 	
 	/** Constructs a Player
@@ -42,7 +42,8 @@ public class Player extends Sprite {
 		hasLantern = false;
 		walkFrame = 0;
 		
-		String[] soundEffects = new String[] {"walk.mp3", "tickle.mp3", "jumpscare.mp3", "shing.mp3"};
+		String[] soundEffects = new String[] {"walk.mp3", "tickle.mp3", "jumpscare.mp3", 
+												"shing.mp3", "pickupkey.mp3"};
 		sound = new JayLayer("resources/sound/", "resources/sound/", false);
 		sound.addPlayList();
 		sound.addSoundEffects(soundEffects);
@@ -153,6 +154,7 @@ public class Player extends Sprite {
 				numFragments++;
 				level.removeKeyFragment(i);
 				i--;
+				sound.playSoundEffect(pickKey);
 			}
 		
 		for (Tickler tickler : level.getTicklers())
@@ -169,7 +171,6 @@ public class Player extends Sprite {
 			weapon = levelWeapon;
 		}
 		
-//		TODO add sound for picking up item
 		Lantern lantern = level.getLantern();
 		if (lantern != null && lantern.intersects(this)) {
 			level.pickUpLantern();
