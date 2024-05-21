@@ -40,7 +40,7 @@ public class GameScreen extends Screen {
 		super(DrawingSurface.DRAWING_WIDTH, DrawingSurface.DRAWING_HEIGHT);
 		this.surface = surface;
 		
-		level = new Level(3);
+		level = new Level();
 		sneakFrame = 0;
 		weaponFrame = 0;
 	}

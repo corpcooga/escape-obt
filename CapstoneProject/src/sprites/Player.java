@@ -158,6 +158,7 @@ public class Player extends Sprite {
 		for (Tickler tickler : level.getTicklers())
 			if (tickler.intersects(this)) {
 				level.setupLevel(level.getLevel());
+//				TODO find out how to stop other sound effects before playing these
 				sound.playSoundEffect(tickle);
 				sound.playSoundEffect(jumpscare);
 			}
