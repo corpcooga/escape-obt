@@ -63,7 +63,7 @@ public class LevelScreen extends Screen {
 	public void mousePressed()
 	{
 		Point p = surface.actualCoordinatesToAssumed(new Point(surface.mouseX,surface.mouseY));
-		for(int i = 0; i < levelButtons.length; i++) {
+		for(int i = 1; i <= levelButtons.length; i++) {
 			if(levelButtons[i].contains(p)) {
 				surface.switchScreen(ScreenSwitcher.GAME_SCREEN);
 				sc.setupLevel(i);
