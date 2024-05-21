@@ -138,12 +138,16 @@ public class Level extends Rectangle2D.Double {
 	
 	/** Removes the KeyFragment at the specified index, then updates exit status
 	 * @param idx The index of the KeyFragment to remove
+	 * @return true if the indicated KeyFragment is the last one in the level, false otherwise
 	 */
-	public void removeKeyFragment(int idx)
+	public boolean pickUpKeyFragment(int idx)
 	{
 		keyFragments.remove(idx);
-		if (player.getNumFragments() == levelFragments)
+		if (player.getNumFragments() == levelFragments) {
 			exit.open();
+			return true;
+		}
+		return false;
 	}
 	
 	/** Removes the Tickler at the specified index
