@@ -72,11 +72,11 @@ public class Player extends Sprite {
 	public void accelerate(int xChange, int yChange)
 	{
 //		TODO make Player point in direction based on movement direction (use scale method)
-		double slowFactor = sneaking ? 0.2 : 1;
+		double slowFactor = sneaking ? 0.4 : 1;
 		xVel += xChange * speed * slowFactor;
 		yVel += yChange * speed * slowFactor;
 		if (xChange != 0 || yChange != 0) {
-			if (walkFrame % 30 == 10)
+			if (walkFrame % (30 * (2 - slowFactor)) == 10)
 				sound.playSoundEffect(walk);
 			walkFrame++;
 		} else
