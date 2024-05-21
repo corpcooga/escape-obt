@@ -18,10 +18,7 @@ public class DrawingSurface extends PApplet implements ScreenSwitcher {
 	private ArrayList<Screen> screens;
 	
 	private Screen activeScreen;
-	
-	/** The scaling factor of the screen's original to current dimensions
-	 */
-	public float ratioX, ratioY;
+	private float ratioX, ratioY;
 
 	
 	/** Constructs a DrawingSurface with multiple screens
