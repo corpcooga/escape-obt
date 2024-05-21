@@ -8,7 +8,7 @@ import processing.core.PApplet;
 
 /** This class represents the playable character
  * @author Boon Chew, Nikunj Govil, Yashasvi Chitela
- * @version 5/20/24
+ * @version 5/21/24
  */
 public class Player extends Sprite {
 	
@@ -82,7 +82,13 @@ public class Player extends Sprite {
 		} else
 			walkFrame = 0;
 	}
-		
+	
+	/** Executes an attack if this Player has a Weapon
+	 * @param surface The PApplet used to draw
+	 * @param dirX The direction pointed for x (-1, 0, 1)
+	 * @param dirY The direction pointed for y (-1, 0, 1)
+	 * @param firstAttack Determines if this is the first time this method has been called
+	 */
 	public void attack(PApplet surface, int dirX, int dirY, boolean firstAttack)
 	{
 		if (weapon != null) {
