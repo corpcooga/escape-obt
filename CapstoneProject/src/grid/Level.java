@@ -53,6 +53,7 @@ public class Level extends Rectangle2D.Double {
 	}
 	
 	
+//	TODO make it so that the game doesn't error when on a nonexistent level
 	/** Sets up this Level with the specified number level
 	 * @param numLevel The level number to set up
 	 */
