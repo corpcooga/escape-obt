@@ -7,20 +7,20 @@ import main.DrawingSurface;
 
 /** This class represents the levels screen
  * @author Boon Chew, Nikunj Govil, Yashasvi Chitela
- * @version 5/13/24
+ * @version 5/21/24
  */
 public class LevelScreen extends Screen {
 
 	private DrawingSurface surface;
 	private Rectangle[] levelButtons;
-	private GameScreen sc;
+	private GameScreen gameScreen;
 	
 
-	public LevelScreen(DrawingSurface surface, Screen screen)
+	public LevelScreen(DrawingSurface surface, GameScreen screen)
 	{
 		super(DrawingSurface.DRAWING_WIDTH, DrawingSurface.DRAWING_HEIGHT);
 		this.surface = surface;
-		sc = (GameScreen)screen;
+		gameScreen = screen;
 
 		levelButtons = new Rectangle[5];
 
@@ -63,12 +63,11 @@ public class LevelScreen extends Screen {
 	public void mousePressed()
 	{
 		Point p = surface.actualCoordinatesToAssumed(new Point(surface.mouseX,surface.mouseY));
-		for(int i = 1; i <= levelButtons.length; i++) {
-			if(levelButtons[i].contains(p)) {
+		for (int i = 0; i < levelButtons.length; i++)
+			if (levelButtons[i].contains(p)) {
+				gameScreen.setupLevel(i + 1);
 				surface.switchScreen(ScreenSwitcher.GAME_SCREEN);
-				sc.setupLevel(i);
 			}
-		}
 	}
-
+	
 }

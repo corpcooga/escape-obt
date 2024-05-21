@@ -12,7 +12,7 @@ import grid.Level;
 
 /** This class represents the game screen
  * @author Boon Chew, Nikunj Govil, Yashasvi Chitela
- * @version 5/20/24
+ * @version 5/21/24
  */
 public class GameScreen extends Screen {
 	
@@ -39,6 +39,8 @@ public class GameScreen extends Screen {
 	{
 		super(DrawingSurface.DRAWING_WIDTH, DrawingSurface.DRAWING_HEIGHT);
 		this.surface = surface;
+		
+		level = new Level(this);
 	}
 	
 	
@@ -46,7 +48,6 @@ public class GameScreen extends Screen {
 	 */
 	public void setup()
 	{
-		level = new Level(this);
 		sneakFrame = 0;
 		weaponFrame = 0;
 		
@@ -162,7 +163,8 @@ public class GameScreen extends Screen {
 		surface.switchScreen(ScreenSwitcher.DEATH_SCREEN);
 	}
 	
-	public void setupLevel(int numLevel) {
+	public void setupLevel(int numLevel)
+	{
 		level.setupLevel(numLevel);
 	}
 
