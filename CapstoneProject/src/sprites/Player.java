@@ -20,7 +20,9 @@ public class Player extends Sprite {
 	private int numFragments, visionRange, walkFrame;
 	
 	private JayLayer sound;
-	private final int walk = 0, tickle = 1, jumpscare = 2, shing = 3, pickKey = 4, pickWeapon = 5;
+	private final int walk = 0, tickle = 1, jumpscare = 2, 
+					shing = 3, pickKey = 4, pickWeapon = 5, 
+					exitLevel = 6;
 
 	
 	/** Constructs a Player
@@ -43,7 +45,8 @@ public class Player extends Sprite {
 		walkFrame = 0;
 		
 		String[] soundEffects = new String[] {"walk.mp3", "tickle.mp3", "jumpscare.mp3", 
-											"shing.mp3", "pickupkey.mp3", "equipweapon.mp3"};
+											"shing.mp3", "pickupkey.mp3", "equipweapon.mp3",
+											"levelfinished.mp3"};
 		sound = new JayLayer("resources/sound/", "resources/sound/", false);
 		sound.addPlayList();
 		sound.addSoundEffects(soundEffects);
@@ -180,8 +183,10 @@ public class Player extends Sprite {
 		
 		Exit exit = level.getExit();
 		if (exit.intersects(this))
-			if (exit.isOpen())
+			if (exit.isOpen()) {
 				level.setupLevel(level.getLevel() + 1);
+				sound.playSoundEffect(exitLevel);
+			}
 	}
 	
 }
