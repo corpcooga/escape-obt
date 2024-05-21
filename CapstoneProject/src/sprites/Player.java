@@ -155,11 +155,11 @@ public class Player extends Sprite {
 		for (int i = 0; i < keyFragments.size(); i++)
 			if (keyFragments.get(i).intersects(this)) {
 				numFragments++;
-				i--;
 //				Add text that says that exit has been opened
 				if (level.pickUpKeyFragment(i))
 					sound.playSoundEffect(openExit);
 				sound.playSoundEffect(pickKey);
+				i--;
 			}
 		
 		for (Tickler tickler : level.getTicklers())
