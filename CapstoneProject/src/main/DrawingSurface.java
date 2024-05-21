@@ -8,7 +8,7 @@ import screens.*;
 
 /** This class draws everything in the program
  * @author Boon Chew, Nikunj Govil, Yashasvi Chitela
- * @version 5/20/24
+ * @version 5/21/24
  */
 public class DrawingSurface extends PApplet implements ScreenSwitcher {
 	
@@ -18,10 +18,7 @@ public class DrawingSurface extends PApplet implements ScreenSwitcher {
 	private ArrayList<Screen> screens;
 	
 	private Screen activeScreen;
-	
-	/** The scaling factor of the screen's original to current dimensions
-	 */
-	public float ratioX, ratioY;
+	private float ratioX, ratioY;
 
 	
 	/** Constructs a DrawingSurface with multiple screens
