@@ -12,6 +12,8 @@ public class Tickler extends Sprite {
 	private final double speed;
 	private final int aggroRange;
 	
+	private int closeFrame;
+	
 	private JayLayer sound;
 	private final int nearby = 0;
 
@@ -28,9 +30,10 @@ public class Tickler extends Sprite {
 		super(img, level, x, y, w, h);
 		speed = Level.TILE_SIZE * 0.005 * (1 + level.getLevel() * 0.2);
 		aggroRange = 2;
+		closeFrame = 0;
 		
-		String[] soundEffects = new String[]{"ticklerclose.mp3"};
-		sound=new JayLayer("resources/sound/","resources/sound/",false);
+		String[] soundEffects = new String[] {"ticklerclose.mp3"};
+		sound = new JayLayer("resources/sound/", "resources/sound/", false);
 		sound.addPlayList();
 		sound.addSoundEffects(soundEffects);
 		sound.changePlayList(0);
@@ -54,16 +57,24 @@ public class Tickler extends Sprite {
 	public void act()
 	{
 		Player player = level.getPlayer();
-		
 		int dirX, dirY;
 		double moveX, moveY;
+		
+		if (closeFrame > 0) {
+			closeFrame++;
+			closeFrame %= 180;
+		}
 		if (isInRange()) {
 			dirX = player.x - x > 0 ? 1 : -1;
 			dirY = player.y - y > 0 ? 1 : -1;
 			moveX = dirX * speed;
 			moveY = dirY * speed;
-			sound.playSoundEffect(nearby);
+			if (closeFrame == 0) {
+				sound.playSoundEffect(nearby);
+				closeFrame++;
+			}
 		} else {
+			
 			dirX = (int)(Math.random() * 3) - 1;
 			dirY = (int)(Math.random() * 3) - 1;
 			moveX = dirX * speed * 3;
