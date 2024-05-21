@@ -13,12 +13,14 @@ public class LevelScreen extends Screen {
 
 	private DrawingSurface surface;
 	private Rectangle[] levelButtons;
+	private GameScreen sc;
 	
 
-	public LevelScreen(DrawingSurface surface)
+	public LevelScreen(DrawingSurface surface, Screen screen)
 	{
 		super(DrawingSurface.DRAWING_WIDTH, DrawingSurface.DRAWING_HEIGHT);
 		this.surface = surface;
+		sc = (GameScreen)screen;
 
 		levelButtons = new Rectangle[5];
 
@@ -64,7 +66,7 @@ public class LevelScreen extends Screen {
 		for(int i = 0; i < levelButtons.length; i++) {
 			if(levelButtons[i].contains(p)) {
 				surface.switchScreen(ScreenSwitcher.GAME_SCREEN);
-				
+				sc.setupLevel(i);
 			}
 		}
 	}

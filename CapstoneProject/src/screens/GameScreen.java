@@ -156,5 +156,9 @@ public class GameScreen extends Screen {
 			dirX += 1;
 		return new Point(dirX, dirY);
 	}
+	
+	public void setupLevel(int numLevel) {
+		level.setupLevel(numLevel);
+	}
 
 }
