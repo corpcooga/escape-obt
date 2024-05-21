@@ -13,30 +13,31 @@ public class LevelScreen extends Screen {
 
 	private DrawingSurface surface;
 	private Rectangle[] levelButtons;
+	private GameScreen sc;
 	
 
-	public LevelScreen(DrawingSurface surface)
+	public LevelScreen(DrawingSurface surface, Screen screen)
 	{
 		super(DrawingSurface.DRAWING_WIDTH, DrawingSurface.DRAWING_HEIGHT);
 		this.surface = surface;
+		sc = (GameScreen)screen;
 
 		levelButtons = new Rectangle[5];
 
 		int buttonWidth = 200;
         int buttonHeight = 50;
         int buttonSpacing = 20;
-        int totalButtonWidth = 3 * buttonWidth + 2 * buttonSpacing;
-        int startX = (surface.width - totalButtonWidth) / 2;
-        int startY = (surface.height - 2 * buttonHeight - buttonSpacing) / 2;
+        double startX = (surface.width) / 2;
+        double startY = (surface.height + 2 * buttonHeight + buttonSpacing) / 2;
         
         for (int i = 0; i < 5; i++) {
             int x, y;
             if (i < 3) {
-                x = startX + i * (buttonWidth + buttonSpacing);
-                y = startY;
+                x = (int)(startX + i * (buttonWidth + buttonSpacing));
+                y = (int)startY;
             } else {
-                x = startX + (i - 3) * (buttonWidth + buttonSpacing);
-                y = startY + buttonHeight + buttonSpacing;
+                x = (int)(startX + (i - 3) * (buttonWidth + buttonSpacing));
+                y = (int)(startY + buttonHeight + buttonSpacing);
             }
             levelButtons[i] = new Rectangle(x, y, buttonWidth, buttonHeight);
         }
@@ -65,6 +66,7 @@ public class LevelScreen extends Screen {
 		for(int i = 0; i < levelButtons.length; i++) {
 			if(levelButtons[i].contains(p)) {
 				surface.switchScreen(ScreenSwitcher.GAME_SCREEN);
+				sc.setupLevel(i);
 			}
 		}
 	}

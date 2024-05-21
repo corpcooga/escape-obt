@@ -161,5 +161,9 @@ public class GameScreen extends Screen {
 	{
 		surface.switchScreen(ScreenSwitcher.DEATH_SCREEN);
 	}
+	
+	public void setupLevel(int numLevel) {
+		level.setupLevel(numLevel);
+	}
 
 }
