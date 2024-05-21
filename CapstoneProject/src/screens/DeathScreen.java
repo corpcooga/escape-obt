@@ -6,6 +6,10 @@ import java.awt.Rectangle;
 import main.DrawingSurface;
 import processing.core.PImage;
 
+/** This class represents the death screen
+ * @author Boon Chew, Nikunj Govil, Yashasvi Chitela
+ * @version 5/21/24
+ */
 public class DeathScreen extends Screen {
 	
 	private DrawingSurface surface;
@@ -63,7 +67,7 @@ public class DeathScreen extends Screen {
 	{
 		Point p = surface.actualCoordinatesToAssumed(new Point(surface.mouseX,surface.mouseY));
 		if (restartButton.contains(p)) {
-			gameScreen.setup();
+			gameScreen.resetLevel();
 			surface.switchScreen(ScreenSwitcher.GAME_SCREEN);
 		} else if (levelButton.contains(p))
 			surface.switchScreen(ScreenSwitcher.LEVEL_SCREEN);

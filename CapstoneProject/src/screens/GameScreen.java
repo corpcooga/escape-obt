@@ -167,5 +167,10 @@ public class GameScreen extends Screen {
 	{
 		level.setupLevel(numLevel);
 	}
+	
+	public void resetLevel()
+	{
+		setupLevel(level.getLevel());
+	}
 
 }
