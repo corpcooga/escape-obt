@@ -168,9 +168,9 @@ public class GameScreen extends Screen {
 		level.setupLevel(numLevel);
 	}
 	
-	public void resetLevel()
+	public int getLevel()
 	{
-		setupLevel(level.getLevel());
+		return level.getLevel();
 	}
 
 }

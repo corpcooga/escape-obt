@@ -67,7 +67,7 @@ public class DeathScreen extends Screen {
 	{
 		Point p = surface.actualCoordinatesToAssumed(new Point(surface.mouseX,surface.mouseY));
 		if (restartButton.contains(p)) {
-			gameScreen.resetLevel();
+			gameScreen.setupLevel(gameScreen.getLevel());
 			surface.switchScreen(ScreenSwitcher.GAME_SCREEN);
 		} else if (levelButton.contains(p))
 			surface.switchScreen(ScreenSwitcher.LEVEL_SCREEN);
