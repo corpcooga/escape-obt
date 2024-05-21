@@ -22,7 +22,7 @@ public class Player extends Sprite {
 	private JayLayer sound;
 	private final int walk = 0, tickle = 1, jumpscare = 2, 
 					shing = 3, pickKey = 4, pickWeapon = 5, 
-					exitLevel = 6, openExit = 7;
+					exitLevel = 6, openExit = 7, pickLantern = 8;
 
 	
 	/** Constructs a Player
@@ -46,7 +46,7 @@ public class Player extends Sprite {
 		
 		String[] soundEffects = new String[] {"walk.mp3", "tickle.mp3", "jumpscare.mp3", 
 											"shing.mp3", "pickupkey.mp3", "equipweapon.mp3",
-											"levelfinished.mp3", "openexit.mp3"};
+											"levelfinished.mp3", "openexit.mp3", "equiplantern.mp3"};
 		sound = new JayLayer("resources/sound/", "resources/sound/", false);
 		sound.addPlayList();
 		sound.addSoundEffects(soundEffects);
@@ -181,6 +181,7 @@ public class Player extends Sprite {
 		if (lantern != null && lantern.intersects(this)) {
 			level.pickUpLantern();
 			hasLantern = true;
+			sound.playSoundEffect(pickLantern);
 		}
 		
 		Exit exit = level.getExit();
