@@ -50,9 +50,12 @@ public class LevelScreen extends Screen {
 
 		// Draw level buttons
 		for (int i = 0; i < levelButtons.length; i++) {
-			surface.fill(200);
+			if (i < gameScreen.getHighestLevel())
+				surface.fill(255);
+			else
+				surface.fill(100);
 			surface.rect(levelButtons[i].x, levelButtons[i].y, levelButtons[i].width, levelButtons[i].height);
-
+			
 			surface.fill(0);
 			surface.textAlign(DrawingSurface.CENTER, DrawingSurface.CENTER);
 			surface.text("Level " + (i + 1), levelButtons[i].x + levelButtons[i].width / 2,
