@@ -1,5 +1,6 @@
 package screens;
 
+import java.awt.Point;
 import java.awt.event.*;
 import java.awt.geom.Point2D;
 import java.awt.geom.Rectangle2D;
@@ -11,7 +12,7 @@ import grid.Level;
 
 /** This class represents the game screen
  * @author Boon Chew, Nikunj Govil, Yashasvi Chitela
- * @version 5/16/24
+ * @version 5/20/24
  */
 public class GameScreen extends Screen {
 	
@@ -39,8 +40,9 @@ public class GameScreen extends Screen {
 		super(DrawingSurface.DRAWING_WIDTH, DrawingSurface.DRAWING_HEIGHT);
 		this.surface = surface;
 		
-		level = new Level();
-		sneakTimer = 0;
+		level = new Level(3);
+		sneakFrame = 0;
+		weaponFrame = 0;
 	}
 	
 	
@@ -107,8 +109,43 @@ public class GameScreen extends Screen {
 		
 //		Player controls
 		Player player = level.getPlayer();
-		int dirX = 0, dirY = 0;
+		if (sneakFrame < 300 && surface.isPressed(KeyEvent.VK_SHIFT)) {
+			sneakFrame++;
+			player.setSneak(true);
+		} else {
+			player.setSneak(false);
+			if (sneakFrame >= 300)
+				sneakFrame++;
+			if (sneakFrame >= 600)
+				sneakFrame = 0;
+		}
+		Point dir = calcDirection();
+		player.accelerate(dir.x, dir.y);
+		if (weaponFrame > 0 && weaponFrame < 20) {
+			player.attack(surface, dir.x, dir.y, false);
+			weaponFrame++;
+		} else {
+			if (weaponFrame >= 20)
+				weaponFrame++;
+			if (weaponFrame >= 180)
+				weaponFrame = 0;
+		}
 		
+		slideWorldToImage(player);
+	}
+	
+	public void keyPressed()
+	{
+		if (weaponFrame == 0 && surface.key == KeyEvent.VK_SPACE && !surface.isPressed(KeyEvent.VK_SPACE)) {
+			Point dir = calcDirection();
+			level.getPlayer().attack(surface, dir.x, dir.y, true);
+			weaponFrame++;
+		}
+	}
+	
+	private Point calcDirection()
+	{
+		int dirX = 0, dirY = 0;
 		if (surface.isPressed(KeyEvent.VK_W))
 			dirY += 1;
 		if (surface.isPressed(KeyEvent.VK_S))
@@ -117,22 +154,7 @@ public class GameScreen extends Screen {
 			dirX -= 1;
 		if (surface.isPressed(KeyEvent.VK_D))
 			dirX += 1;
-		if (sneakTimer <= 300 && surface.isPressed(KeyEvent.VK_SHIFT)) {
-			sneakTimer++;
-			player.setSneak(true);
-		} else {
-			player.setSneak(false);
-			if (sneakTimer > 300)
-				sneakTimer++;
-			if (sneakTimer > 600)
-				sneakTimer = 0;
-		}
-//		TODO make key only be pressed once (cannot be held) and attack only lasts for a second
-		if (surface.isPressed(KeyEvent.VK_SPACE))
-			player.attack(surface, dirX, dirY);
-		player.accelerate(dirX, dirY);
-		
-		slideWorldToImage(player);
+		return new Point(dirX, dirY);
 	}
 
 }

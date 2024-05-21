@@ -8,7 +8,7 @@ import screens.*;
 
 /** This class draws everything in the program
  * @author Boon Chew, Nikunj Govil, Yashasvi Chitela
- * @version 5/15/24
+ * @version 5/20/24
  */
 public class DrawingSurface extends PApplet implements ScreenSwitcher {
 	
@@ -72,6 +72,8 @@ public class DrawingSurface extends PApplet implements ScreenSwitcher {
 	 */
 	public void keyPressed()
 	{
+		activeScreen.keyPressed();
+		
 		if (!keys.contains(keyCode))
 			keys.add(keyCode);
 		if (key == ESC) // prevents the program from closing on escape key

@@ -78,11 +78,12 @@ public class Player extends Sprite {
 		}
 	}
 		
-	public void attack(PApplet surface, int dirX, int dirY)
+	public void attack(PApplet surface, int dirX, int dirY, boolean firstAttack)
 	{
 		if (weapon != null) {
 			weapon.slice(surface, x, y, dirX, dirY);
-			sound.playSoundEffect(shing);
+			if (firstAttack)
+				sound.playSoundEffect(shing);
 		}
 	}
 	
