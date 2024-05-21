@@ -2,10 +2,14 @@ package screens;
 
 import java.awt.Point;
 import java.awt.Rectangle;
+
+import jay.jaysound.JayLayer;
 import main.DrawingSurface;
 import processing.core.PImage;
 
-/** This class represents the menu screen
+/**
+ * This class represents the menu screen
+ * 
  * @author Boon Chew, Nikunj Govil, Yashasvi Chitela
  * @version 5/13/24
  */
@@ -14,30 +18,38 @@ public class MenuScreen extends Screen {
 	private DrawingSurface surface;
 	private Rectangle playButton, levelButton;
 	private PImage backgroundImage;
-	
-	/** Constructs a MenuScreen
+
+	private JayLayer sound;
+
+	/**
+	 * Constructs a MenuScreen
+	 * 
 	 * @param surface The DrawingSurface this FirstScreen uses
 	 */
-	public MenuScreen(DrawingSurface surface)
-	{
+	public MenuScreen(DrawingSurface surface) {
 		super(DrawingSurface.DRAWING_WIDTH, DrawingSurface.DRAWING_HEIGHT);
 		this.surface = surface;
-		
+
 		playButton = new Rectangle(800 / 2 - 100, 600 / 2 - 50, 200, 100);
 		levelButton = new Rectangle(800 / 2 - 100, 500, 200, 100);
+
+		String song = new String("mainbgmusic.mp3");
+		sound = new JayLayer("resources/sound/", "resources/sound/", false);
+		sound.addPlayList();
+		sound.addSong(0, song);
+		sound.changePlayList(0);
 	}
-	
-	
-	public void setup()
-	{
+
+	public void setup() {
 		backgroundImage = surface.loadImage("resources/img/mainscreen.gif");
 		backgroundImage.resize(DRAWING_WIDTH, DRAWING_HEIGHT);
+		sound.nextSong();
 	}
-	
-	/** Draws this MenuScreen
+
+	/**
+	 * Draws this MenuScreen
 	 */
-	public void draw()
-	{
+	public void draw() {
 		surface.background(255, 255, 255);
 		surface.background(backgroundImage);
 		surface.fill(255);
@@ -46,7 +58,7 @@ public class MenuScreen extends Screen {
 		String str = "PLAY";
 		float w = surface.textWidth(str);
 		surface.text(str, playButton.x + playButton.width / 2 - w / 2, playButton.y + playButton.height / 2);
-		
+
 		surface.fill(255);
 		surface.rect(levelButton.x, levelButton.y, levelButton.width, levelButton.height, 10, 10, 10, 10);
 		surface.fill(0);
@@ -54,16 +66,19 @@ public class MenuScreen extends Screen {
 		w = surface.textWidth(str);
 		surface.text(str, levelButton.x + levelButton.width / 2 - w / 2, levelButton.y + levelButton.height / 2);
 	}
-	
-	/** Executes a mouse press in this MenuScreen
+
+	/**
+	 * Executes a mouse press in this MenuScreen
 	 */
-	public void mousePressed()
-	{
-		Point p = surface.actualCoordinatesToAssumed(new Point(surface.mouseX,surface.mouseY));
-		if (playButton.contains(p))
+	public void mousePressed() {
+		Point p = surface.actualCoordinatesToAssumed(new Point(surface.mouseX, surface.mouseY));
+		if (playButton.contains(p)) {
 			surface.switchScreen(ScreenSwitcher.GAME_SCREEN);
-		else if (levelButton.contains(p))
+			sound.stopSong();
+		} else if (levelButton.contains(p)) {
 			surface.switchScreen(ScreenSwitcher.LEVEL_SCREEN);
+			sound.stopSong();
+		}
 	}
-	
+
 }
