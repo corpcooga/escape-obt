@@ -71,6 +71,7 @@ public class Player extends Sprite {
 	 */
 	public void accelerate(int xChange, int yChange)
 	{
+//		TODO make Player point in direction based on movement direction
 		double slowFactor = sneaking ? 0.2 : 1;
 		xVel += xChange * speed * slowFactor;
 		yVel += yChange * speed * slowFactor;
