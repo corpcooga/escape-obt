@@ -39,10 +39,6 @@ public class GameScreen extends Screen {
 	{
 		super(DrawingSurface.DRAWING_WIDTH, DrawingSurface.DRAWING_HEIGHT);
 		this.surface = surface;
-		
-		level = new Level();
-		sneakFrame = 0;
-		weaponFrame = 0;
 	}
 	
 	
@@ -50,6 +46,10 @@ public class GameScreen extends Screen {
 	 */
 	public void setup()
 	{
+		level = new Level(this);
+		sneakFrame = 0;
+		weaponFrame = 0;
+		
 		Point2D.Double playerCoords = level.getPlayer().getCenter();
 		visibleSpace = new Rectangle2D.Double(playerCoords.getX(), playerCoords.getY(), DRAWING_WIDTH, DRAWING_HEIGHT);
 		playerSpace = new Rectangle2D.Double(visibleSpace.getX() + visibleSpace.getWidth() * (1 - characterFractionOfWindow) * 0.5,
@@ -155,6 +155,11 @@ public class GameScreen extends Screen {
 		if (surface.isPressed(KeyEvent.VK_D))
 			dirX += 1;
 		return new Point(dirX, dirY);
+	}
+	
+	public void switchToDeathScreen() 
+	{
+		surface.switchScreen(ScreenSwitcher.DEATH_SCREEN);
 	}
 
 }

@@ -10,6 +10,7 @@ import java.awt.geom.Point2D;
 import java.awt.geom.Rectangle2D;
 
 import processing.core.PApplet;
+import screens.GameScreen;
 import sprites.*;
 
 /** This class represents the game's grid
@@ -20,6 +21,7 @@ public class Level extends Rectangle2D.Double {
 	
 	public static final int TILE_SIZE = 80;
 	
+	private GameScreen gameScreen;
 	private ArrayList<Wall> walls;
 	private ArrayList<KeyFragment> keyFragments;
 	private ArrayList<Tickler> ticklers;
@@ -35,16 +37,17 @@ public class Level extends Rectangle2D.Double {
 	/** Constructs a Level of a specified number
 	 * @param numLevel
 	 */
-	public Level(int numLevel)
+	public Level(GameScreen surface, int numLevel)
 	{
 		setupLevel(numLevel);
+		gameScreen = surface;
 	}
 	
 	/** Construct a level 1 Level
 	 */
-	public Level()
+	public Level(GameScreen surface)
 	{
-		this(1);
+		this(surface, 1);
 	}
 	
 	
@@ -134,6 +137,11 @@ public class Level extends Rectangle2D.Double {
 				tickler.draw(marker);
 		}
 		player.draw(marker);
+	}
+	
+	public void die()
+	{
+		gameScreen.switchToDeathScreen();
 	}
 	
 	/** Removes the KeyFragment at the specified index, then updates exit status

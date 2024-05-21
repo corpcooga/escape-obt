@@ -11,18 +11,20 @@ public class DeathScreen extends Screen {
 	private DrawingSurface surface;
 	private Rectangle restartButton, levelButton;
 	private PImage backgroundImage;
-
+	private GameScreen gameScreen;
+	
 
 	/** Constructs a DeathScreen
 	 * @param surface The DrawingSurface this DeathScreen uses
 	 */
-	public DeathScreen(DrawingSurface surface)
+	public DeathScreen(DrawingSurface surface, GameScreen gameScreen)
 	{
 		super(DrawingSurface.DRAWING_WIDTH, DrawingSurface.DRAWING_HEIGHT);
 		this.surface = surface;
 		
 		restartButton = new Rectangle(800 / 2 - 100, 600 / 2 - 50, 200, 100);
 		levelButton = new Rectangle(800 / 2 - 100, 500, 200, 100);
+		this.gameScreen = gameScreen;
 	}
 	
 	
@@ -60,9 +62,10 @@ public class DeathScreen extends Screen {
 	public void mousePressed()
 	{
 		Point p = surface.actualCoordinatesToAssumed(new Point(surface.mouseX,surface.mouseY));
-		if (restartButton.contains(p))
+		if (restartButton.contains(p)) {
+			gameScreen.setup();
 			surface.switchScreen(ScreenSwitcher.GAME_SCREEN);
-		else if (levelButton.contains(p))
+		} else if (levelButton.contains(p))
 			surface.switchScreen(ScreenSwitcher.LEVEL_SCREEN);
 	}
 }

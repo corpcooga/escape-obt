@@ -15,7 +15,10 @@ public interface ScreenSwitcher
 	/** The level selection screen
 	 */
 	public static final int LEVEL_SCREEN = 2;
-	
+	/** The death screen
+	 */
+	public static final int DEATH_SCREEN = 3;
+
 	
 	/** Changes the current Screen
 	 * @param i The screen to switch to
