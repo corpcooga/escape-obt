@@ -172,5 +172,10 @@ public class GameScreen extends Screen {
 	{
 		return level.getLevel();
 	}
+	
+	public int getHighestLevel()
+	{
+		return level.getHighestLevel();
+	}
 
 }

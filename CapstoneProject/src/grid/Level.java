@@ -32,7 +32,7 @@ public class Level extends Rectangle2D.Double {
 	private Lantern lantern;
 	
 	private char[][] grid;
-	private int numLevel, levelFragments;
+	private int levelFragments, numLevel, highestLevel;
 	
 	
 	/** Constructs a Level of a specified number
@@ -41,6 +41,7 @@ public class Level extends Rectangle2D.Double {
 	public Level(GameScreen surface, int numLevel)
 	{
 		setupLevel(numLevel);
+		highestLevel = 1;
 		gameScreen = surface;
 	}
 	
@@ -68,6 +69,8 @@ public class Level extends Rectangle2D.Double {
 		width = dimensions.x * TILE_SIZE;
 		height = dimensions.y * TILE_SIZE;
 		this.numLevel = numLevel;
+		if (numLevel > highestLevel)
+			highestLevel = numLevel;
 		
 		loadSprites();
 		
@@ -246,6 +249,14 @@ public class Level extends Rectangle2D.Double {
 	public int getLevel()
 	{
 		return numLevel;
+	}
+	
+	/** Gets the highest achieved level number of this Level
+	 * @return The highest achieved level number of this Level
+	 */
+	public int getHighestLevel()
+	{
+		return highestLevel;
 	}
 	
 	/**	Prints out a formatted version of this Level
