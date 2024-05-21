@@ -29,7 +29,7 @@ public class GameScreen extends Screen {
 	private DrawingSurface surface;
 	private Level level;
 	
-	private int sneakTimer;
+	private int sneakFrame, weaponFrame;
 	
 	
 	/** Constructs a GameScreen
