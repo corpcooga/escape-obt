@@ -14,7 +14,7 @@ import sprites.*;
 
 /** This class represents the game's grid
  * @author Boon Chew, Nikunj Govil, Yashasvi Chitela
- * @version 5/20/24
+ * @version 5/21/24
  */
 public class Level extends Rectangle2D.Double {
 	
@@ -23,6 +23,7 @@ public class Level extends Rectangle2D.Double {
 	private ArrayList<Wall> walls;
 	private ArrayList<KeyFragment> keyFragments;
 	private ArrayList<Tickler> ticklers;
+	private ArrayList<Floor> floors;
 	private Player player;
 	private Exit exit;
 	private Weapon weapon;
@@ -116,6 +117,9 @@ public class Level extends Rectangle2D.Double {
 	{
 		player.act();
 		
+		for (Floor floor : floors)
+			if (canBeSeen(floor))
+				floor.draw(marker);
 		if (weapon != null && canBeSeen(weapon))
 			weapon.draw(marker);
 		if (lantern != null && canBeSeen(lantern))
@@ -256,6 +260,7 @@ public class Level extends Rectangle2D.Double {
 		walls = new ArrayList<Wall>();
 		keyFragments = new ArrayList<KeyFragment>();
 		ticklers = new ArrayList<Tickler>();
+		floors = new ArrayList<Floor>();
 		
 //		Sprite width and heights
 		float sw = (float)width / grid[0].length;
@@ -272,34 +277,39 @@ public class Level extends Rectangle2D.Double {
 				if (grid[i][j] == '#')
 					walls.add(new Wall((int)sx, (int)sy, (int)sw, (int)sh));
 				
-//				Key Fragment
-				else if (grid[i][j] == '*')
-					keyFragments.add(new KeyFragment((int)(sx + sw / 4), (int)(sy + sh / 4), 
-													(int)sw / 2, (int)sh / 2));
-				
-//				Tickler
-				else if (grid[i][j] == 'T')
-					ticklers.add(new Tickler(this, (int)(sx + sw / 4), (int)(sy + sh / 4), 
-											(int)sw / 2, (int)sh / 2));
-				
-//				Player
-				else if (grid[i][j] == 'P')
-					player = new Player(this, (int)(sx + sw * 0.3), (int)(sy + sh * 0.3), 
-										(int)(sw * 0.4), (int)(sh * 0.4));
-				
-//				Exit
-				else if (grid[i][j] == 'X')
-					exit = new Exit((int)sx, (int)sy, (int)sw, (int)sh);
-				
-//				Weapon
-				else if (grid[i][j] == 'W')
-					weapon = new Weapon(this, (int)(sx + sw * 0.2), (int)(sy + sh * 0.2), 
-										(int)(sw * 0.6), (int)(sh * 0.6));
-				
-//				Lantern
-				else if (grid[i][j] == 'L')
-					lantern = new Lantern((int)(sx + sw * 0.2), (int)(sy + sh * 0.2), 
-										(int)(sw * 0.6), (int)(sh * 0.6));
+				else {
+//					Floor
+					floors.add(new Floor((int)sx, (int)sy, (int)sw, (int)sh));
+					
+//					Key Fragment
+					if (grid[i][j] == '*')
+						keyFragments.add(new KeyFragment((int)(sx + sw / 4), (int)(sy + sh / 4), 
+														(int)sw / 2, (int)sh / 2));
+					
+//					Tickler
+					else if (grid[i][j] == 'T')
+						ticklers.add(new Tickler(this, (int)(sx + sw / 4), (int)(sy + sh / 4), 
+												(int)sw / 2, (int)sh / 2));
+					
+//					Player
+					else if (grid[i][j] == 'P')
+						player = new Player(this, (int)(sx + sw * 0.3), (int)(sy + sh * 0.3), 
+											(int)(sw * 0.4), (int)(sh * 0.4));
+					
+//					Exit
+					else if (grid[i][j] == 'X')
+						exit = new Exit((int)sx, (int)sy, (int)sw, (int)sh);
+					
+//					Weapon
+					else if (grid[i][j] == 'W')
+						weapon = new Weapon(this, (int)(sx + sw * 0.2), (int)(sy + sh * 0.2), 
+											(int)(sw * 0.6), (int)(sh * 0.6));
+					
+//					Lantern
+					else if (grid[i][j] == 'L')
+						lantern = new Lantern((int)(sx + sw * 0.2), (int)(sy + sh * 0.2), 
+											(int)(sw * 0.6), (int)(sh * 0.6));
+				}
 			}
 	}
 	
