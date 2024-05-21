@@ -17,7 +17,7 @@ public class Player extends Sprite {
 	private Weapon weapon;
 	private double xVel, yVel;
 	private boolean sneaking, hasLantern;
-	private int numFragments, visionRange, walkFrame;
+	private int numFragments, visionRange, walkFrame, direction;
 	
 	private JayLayer sound;
 	private final int walk = 0, tickle = 1, jumpscare = 2, 
@@ -43,6 +43,7 @@ public class Player extends Sprite {
 		sneaking = false;
 		hasLantern = false;
 		walkFrame = 0;
+		direction = 1;
 		
 		String[] soundEffects = new String[] {"walk.mp3", "tickle.mp3", "jumpscare.mp3", 
 											"shing.mp3", "pickupkey.mp3", "equipweapon.mp3",
@@ -71,7 +72,6 @@ public class Player extends Sprite {
 	 */
 	public void accelerate(int xChange, int yChange)
 	{
-//		TODO make Player point in direction based on movement direction (use scale method)
 		double slowFactor = sneaking ? 0.4 : 1;
 		xVel += xChange * speed * slowFactor;
 		yVel += yChange * speed * slowFactor;
@@ -81,6 +81,10 @@ public class Player extends Sprite {
 			walkFrame++;
 		} else
 			walkFrame = 0;
+		if (xChange > 0)
+			direction = 1;
+		else if (xChange < 0)
+			direction = -1;
 	}
 	
 	/** Executes an attack if this Player has a Weapon
@@ -197,6 +201,20 @@ public class Player extends Sprite {
 				level.setupLevel(level.getLevel() + 1);
 				sound.playSoundEffect(exitLevel);
 			}
+	}
+	
+	/** Draws this Player
+	 * @param g PApplet used to draw
+	 */
+	public void draw(PApplet g)
+	{
+		g.translate((float)(x + width / 2), 0);
+		if (direction == 1)
+			g.scale(-1, 1);
+		else 
+			g.scale(1, 1);
+		g.translate((float)-(x + width / 2), 0);
+		super.draw(g);
 	}
 	
 }
