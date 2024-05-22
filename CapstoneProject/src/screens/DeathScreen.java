@@ -36,7 +36,7 @@ public class DeathScreen extends Screen {
 	 */
 	public void setup()
 	{
-		backgroundImage = surface.loadImage("resources/img/GameOver.gif");
+		backgroundImage = surface.loadImage("resources/img/gameoverscreen.gif");
 		backgroundImage.resize(DRAWING_WIDTH, DRAWING_HEIGHT);
 	}
 	
