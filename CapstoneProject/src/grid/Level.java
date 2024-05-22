@@ -146,7 +146,7 @@ public class Level extends Rectangle2D.Double {
 		player.draw(marker);
 	}
 	
-	public void die()
+	public void switchToDeathScreen()
 	{
 		gameScreen.switchToDeathScreen();
 	}

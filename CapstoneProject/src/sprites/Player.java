@@ -175,7 +175,7 @@ public class Player extends Sprite {
 		
 		for (Tickler tickler : level.getTicklers())
 			if (tickler.intersects(this)) {
-				level.die();
+				level.switchToDeathScreen();
 //				TODO find out how to stop other sound effects before playing these
 				sound.playSoundEffect(tickle);
 				sound.playSoundEffect(jumpscare);
@@ -198,7 +198,11 @@ public class Player extends Sprite {
 		Exit exit = level.getExit();
 		if (exit.intersects(this))
 			if (exit.isOpen()) {
-				level.setupLevel(level.getLevel() + 1);
+				int numLevel = level.getLevel();
+				if (numLevel == 5)
+//					TODO replace with going to win screen
+					level.switchToDeathScreen();
+				level.setupLevel(numLevel + 1);
 				sound.playSoundEffect(exitLevel);
 			}
 	}
