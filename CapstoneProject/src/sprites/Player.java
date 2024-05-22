@@ -199,8 +199,10 @@ public class Player extends Sprite {
 		if (exit.intersects(this))
 			if (exit.isOpen()) {
 				int numLevel = level.getLevel();
-				if (numLevel == 5)
+				if (numLevel == 5) {
 					level.switchToWinScreen();
+					return;
+				}
 				level.setupLevel(numLevel + 1);
 				sound.playSoundEffect(exitLevel);
 			}
