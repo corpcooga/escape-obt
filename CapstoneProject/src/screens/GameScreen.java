@@ -12,7 +12,7 @@ import grid.Level;
 
 /** This class represents the game screen
  * @author Boon Chew, Nikunj Govil, Yashasvi Chitela
- * @version 5/21/24
+ * @version 5/22/24
  */
 public class GameScreen extends Screen {
 	
@@ -147,13 +147,13 @@ public class GameScreen extends Screen {
 	private Point calcDirection()
 	{
 		int dirX = 0, dirY = 0;
-		if (surface.isPressed(KeyEvent.VK_W))
+		if (surface.isPressed(KeyEvent.VK_W) || surface.isPressed(KeyEvent.VK_UP))
 			dirY += 1;
-		if (surface.isPressed(KeyEvent.VK_S))
+		if (surface.isPressed(KeyEvent.VK_S) || surface.isPressed(KeyEvent.VK_DOWN))
 			dirY -= 1;
-		if (surface.isPressed(KeyEvent.VK_A))
+		if (surface.isPressed(KeyEvent.VK_A) || surface.isPressed(KeyEvent.VK_LEFT))
 			dirX -= 1;
-		if (surface.isPressed(KeyEvent.VK_D))
+		if (surface.isPressed(KeyEvent.VK_D) || surface.isPressed(KeyEvent.VK_RIGHT))
 			dirX += 1;
 		return new Point(dirX, dirY);
 	}
