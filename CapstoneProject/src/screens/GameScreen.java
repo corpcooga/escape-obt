@@ -128,7 +128,7 @@ public class GameScreen extends Screen {
 		} else {
 			if (weaponFrame >= 20)
 				weaponFrame++;
-			if (weaponFrame >= 180)
+			if (weaponFrame >= 60)
 				weaponFrame = 0;
 		}
 		

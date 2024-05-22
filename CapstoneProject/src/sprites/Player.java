@@ -175,7 +175,6 @@ public class Player extends Sprite {
 		
 		for (Tickler tickler : level.getTicklers())
 			if (tickler.intersects(this)) {
-//				level.setupLevel(level.getLevel());
 				level.die();
 //				TODO find out how to stop other sound effects before playing these
 				sound.playSoundEffect(tickle);
@@ -209,6 +208,7 @@ public class Player extends Sprite {
 	 */
 	public void draw(PApplet g)
 	{
+		g.push();
 		g.translate((float)(x + width / 2), 0);
 		if (direction == 1)
 			g.scale(-1, 1);
@@ -216,6 +216,7 @@ public class Player extends Sprite {
 			g.scale(1, 1);
 		g.translate((float)-(x + width / 2), 0);
 		super.draw(g);
+		g.pop();
 	}
 	
 }

@@ -41,7 +41,6 @@ public class Level extends Rectangle2D.Double {
 	public Level(GameScreen surface, int numLevel)
 	{
 		setupLevel(numLevel);
-		highestLevel = 1;
 		gameScreen = surface;
 	}
 	
