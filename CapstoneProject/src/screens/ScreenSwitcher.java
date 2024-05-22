@@ -18,6 +18,9 @@ public interface ScreenSwitcher
 	/** The death screen
 	 */
 	public static final int DEATH_SCREEN = 3;
+	/** The win screen
+	 */
+	public static final int WIN_SCREEN = 4;
 
 	
 	/** Changes the current Screen

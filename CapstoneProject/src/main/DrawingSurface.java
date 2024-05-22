@@ -8,7 +8,7 @@ import screens.*;
 
 /** This class draws everything in the program
  * @author Boon Chew, Nikunj Govil, Yashasvi Chitela
- * @version 5/21/24
+ * @version 5/22/24
  */
 public class DrawingSurface extends PApplet implements ScreenSwitcher {
 	
@@ -33,6 +33,7 @@ public class DrawingSurface extends PApplet implements ScreenSwitcher {
 		screens.add(gameScreen);
 		screens.add(new LevelScreen(this, gameScreen));
 		screens.add(new DeathScreen(this, gameScreen));
+		screens.add(new WinScreen(this));
 		
 		activeScreen = screens.get(0);
 	}

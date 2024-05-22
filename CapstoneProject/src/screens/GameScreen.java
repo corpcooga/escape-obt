@@ -163,6 +163,11 @@ public class GameScreen extends Screen {
 		surface.switchScreen(ScreenSwitcher.DEATH_SCREEN);
 	}
 	
+	public void switchToWinScreen() 
+	{
+		surface.switchScreen(ScreenSwitcher.WIN_SCREEN);
+	}
+	
 	public void setupLevel(int numLevel)
 	{
 		level.setupLevel(numLevel);

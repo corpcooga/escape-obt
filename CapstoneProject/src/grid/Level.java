@@ -15,7 +15,7 @@ import sprites.*;
 
 /** This class represents the game's grid
  * @author Boon Chew, Nikunj Govil, Yashasvi Chitela
- * @version 5/21/24
+ * @version 5/22/24
  */
 public class Level extends Rectangle2D.Double {
 	
@@ -52,7 +52,6 @@ public class Level extends Rectangle2D.Double {
 	}
 	
 	
-//	TODO make it so that the game doesn't error when on a nonexistent level
 	/** Sets up this Level with the specified number level
 	 * @param numLevel The level number to set up
 	 */
@@ -149,6 +148,11 @@ public class Level extends Rectangle2D.Double {
 	public void switchToDeathScreen()
 	{
 		gameScreen.switchToDeathScreen();
+	}
+	
+	public void switchToWinScreen()
+	{
+		gameScreen.switchToWinScreen();
 	}
 	
 	/** Removes the KeyFragment at the specified index, then updates exit status

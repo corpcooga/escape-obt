@@ -8,7 +8,7 @@ import processing.core.PImage;
 
 /** This class represents the death screen
  * @author Boon Chew, Nikunj Govil, Yashasvi Chitela
- * @version 5/21/24
+ * @version 5/22/24
  */
 public class DeathScreen extends Screen {
 	
@@ -44,7 +44,6 @@ public class DeathScreen extends Screen {
 	 */
 	public void draw()
 	{
-		surface.background(255, 255, 255);
 		surface.background(backgroundImage);
 		surface.fill(255);
 		surface.rect(restartButton.x, restartButton.y, restartButton.width, restartButton.height, 10, 10, 10, 10);

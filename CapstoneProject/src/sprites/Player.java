@@ -8,7 +8,7 @@ import processing.core.PApplet;
 
 /** This class represents the playable character
  * @author Boon Chew, Nikunj Govil, Yashasvi Chitela
- * @version 5/21/24
+ * @version 5/22/24
  */
 public class Player extends Sprite {
 	
@@ -200,8 +200,7 @@ public class Player extends Sprite {
 			if (exit.isOpen()) {
 				int numLevel = level.getLevel();
 				if (numLevel == 5)
-//					TODO replace with going to win screen
-					level.switchToDeathScreen();
+					level.switchToWinScreen();
 				level.setupLevel(numLevel + 1);
 				sound.playSoundEffect(exitLevel);
 			}
