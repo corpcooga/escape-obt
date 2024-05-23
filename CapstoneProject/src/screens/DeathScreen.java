@@ -60,7 +60,7 @@ public class DeathScreen extends Screen {
 		surface.text("EXIT", levelButton.x + levelButton.width / 2, levelButton.y + levelButton.height / 2);
 	}
 	
-	/** Executes a mouse press in this MenuScreen
+	/** Executes a mouse press in this DeathScreen
 	 */
 	public void mousePressed()
 	{
