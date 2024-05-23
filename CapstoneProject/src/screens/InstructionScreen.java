@@ -2,6 +2,7 @@ package screens;
 
 import java.awt.Point;
 import java.awt.Rectangle;
+import java.awt.event.KeyEvent;
 
 import main.DrawingSurface;
 
@@ -28,6 +29,11 @@ public class InstructionScreen extends Screen {
 
 	public void draw()
 	{
+		if (surface.isPressed(KeyEvent.VK_ESCAPE)) {
+			surface.switchScreen(ScreenSwitcher.MENU_SCREEN);
+			return;
+		}
+		
 		surface.background(255);
 	}
 
