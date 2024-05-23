@@ -3,12 +3,16 @@ package sprites;
 import java.util.ArrayList;
 import processing.core.PApplet;
 import grid.Level;
+import jay.jaysound.JayLayer;
 
 /** This class represents a weapon
  * @author Nikunj Govil, Boon Chew, Yashasvi Chitela
- * @version 5/17/2024
+ * @version 5/23/2024
  */
 public class Weapon extends Sprite {
+	
+	private JayLayer sound;
+	
 	
 	/** Constructs a Weapon
 	 * @param img image to use for this Weapon
@@ -21,6 +25,12 @@ public class Weapon extends Sprite {
 	public Weapon(String img, Level level, int x, int y, int w, int h)
 	{
 		super(img, level, x, y, w, h);
+		
+		String[] soundEffects = new String[] {"ticklerdie.mp3"};
+		sound = new JayLayer("resources/sound/", "resources/sound/", false);
+		sound.addPlayList();
+		sound.addSoundEffects(soundEffects);
+		sound.changePlayList(0);
 	}
 	
 	/** Constructs a Weapon with an automatic image
@@ -65,6 +75,7 @@ public class Weapon extends Sprite {
 			if (ticklers.get(i).intersects(this)) {
 				level.killTickler(i);
 				i--;
+				sound.playSoundEffect(0);
 			}
 		
 		surface.translate((float)this.x, (float)this.y);
