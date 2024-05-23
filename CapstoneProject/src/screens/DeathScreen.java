@@ -45,6 +45,7 @@ public class DeathScreen extends Screen {
 	public void draw()
 	{
 		surface.background(backgroundImage);
+		
 		surface.fill(255);
 		surface.rect(restartButton.x, restartButton.y, restartButton.width, restartButton.height, 10, 10, 10, 10);
 		surface.fill(0);

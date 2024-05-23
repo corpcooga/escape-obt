@@ -29,7 +29,7 @@ public class LevelScreen extends Screen {
 		int buttonWidth = 200;
         int buttonHeight = 50;
         int buttonSpacing = 20;
-        double startX = (surface.width) / 2;
+        double startX = surface.width / 2;
         double startY = (surface.height + 2 * buttonHeight + buttonSpacing) / 2;
         
         for (int i = 0; i < 5; i++) {
