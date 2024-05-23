@@ -1,16 +1,19 @@
 package screens;
 
+import jay.jaysound.JayLayer;
 import main.DrawingSurface;
 import processing.core.PImage;
 
 /** This class represents the winning screen
  * @author Boon Chew, Nikunj Govil, Yashasvi Chitela
- * @version 5/22/24
+ * @version 5/23/24
  */
 public class WinScreen extends Screen {
 	
 	private DrawingSurface surface;
 	private PImage backgroundImage;
+	
+	private JayLayer sound;
 	
 
 	/** Constructs a WinScreen
@@ -20,6 +23,12 @@ public class WinScreen extends Screen {
 	{
 		super(DrawingSurface.DRAWING_WIDTH, DrawingSurface.DRAWING_HEIGHT);
 		this.surface = surface;
+		
+		String song = new String("escapeohio.mp3");
+		sound = new JayLayer("resources/sound/", "resources/sound/", false);
+		sound.addPlayList();
+		sound.addSong(0, song);
+		sound.changePlayList(0);
 	}
 	
 	
@@ -29,6 +38,7 @@ public class WinScreen extends Screen {
 	{
 		backgroundImage = surface.loadImage("resources/img/winscreen.gif");
 		backgroundImage.resize(DRAWING_WIDTH, DRAWING_HEIGHT);
+		sound.nextSong();
 	}
 	
 	/** Draws this WinScreen
@@ -37,4 +47,5 @@ public class WinScreen extends Screen {
 	{
 		surface.background(backgroundImage);
 	}
+	
 }
