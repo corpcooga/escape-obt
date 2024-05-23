@@ -9,7 +9,7 @@ import grid.Level;
 
 /** This class represents a sprite in the game
 * @author Nikunj Govil, Boon Chew, Yashavi Chitela
-* @version 5/20/2024
+* @version 5/22/2024
 */
 public class Sprite extends Rectangle2D.Double {
 	
@@ -102,8 +102,7 @@ public class Sprite extends Rectangle2D.Double {
 	}
 	
 	/** Keeps this Sprite in the screen
-	 * @param windowWidth width of screen
-	 * @param windowHeight height of screen
+	 * @param limits The coordinates and dimensions of the screen area
 	 */
 	public void applyWindowLimits(Rectangle2D.Double limits)
 	{
