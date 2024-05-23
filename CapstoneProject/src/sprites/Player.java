@@ -176,7 +176,6 @@ public class Player extends Sprite {
 		for (Tickler tickler : level.getTicklers())
 			if (tickler.intersects(this)) {
 				level.switchToDeathScreen();
-//				TODO find out how to stop other sound effects before playing these
 				sound.playSoundEffect(tickle);
 				sound.playSoundEffect(jumpscare);
 			}
