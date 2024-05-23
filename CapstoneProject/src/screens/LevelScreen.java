@@ -24,26 +24,16 @@ public class LevelScreen extends Screen {
 		super(DrawingSurface.DRAWING_WIDTH, DrawingSurface.DRAWING_HEIGHT);
 		this.surface = surface;
 		gameScreen = screen;
-
 		levelButtons = new Rectangle[5];
-
-		int buttonWidth = 200;
-        int buttonHeight = 50;
-        int buttonSpacing = 20;
-        double startX = surface.width / 2;
-        double startY = (surface.height + 2 * buttonHeight + buttonSpacing) / 2;
         
-        for (int i = 0; i < 5; i++) {
-            int x, y;
-            if (i < 3) {
-                x = (int)(startX + i * (buttonWidth + buttonSpacing));
-                y = (int)startY;
-            } else {
-                x = (int)(startX + (i - 3) * (buttonWidth + buttonSpacing));
-                y = (int)(startY + buttonHeight + buttonSpacing);
-            }
-            levelButtons[i] = new Rectangle(x, y, buttonWidth, buttonHeight);
+		for (int i = 0; i < 3; i++) {
+        		int x = DRAWING_WIDTH / 2 + (i - 1) * 220 - 100;
+        		levelButtons[i] = new Rectangle(x, 180, 200, 200);
         }
+		for (int i = 3; i < 5; i++) {
+	    		int x = DRAWING_WIDTH / 2 + (i - 4) * 220;
+	    		levelButtons[i] = new Rectangle(x, 420, 200, 200);
+		}
 	}
 	
 	
@@ -65,6 +55,11 @@ public class LevelScreen extends Screen {
 		}
 		
 		surface.background(backgroundImage);
+		surface.strokeWeight(5);
+		surface.textSize(80);
+		surface.textAlign(DrawingSurface.CENTER, DrawingSurface.CENTER);
+		surface.text("Levels", DRAWING_WIDTH / 2, 50);
+		surface.textSize(40);
 
 		// Draw level buttons
 		for (int i = 0; i < levelButtons.length; i++) {
@@ -72,10 +67,9 @@ public class LevelScreen extends Screen {
 				surface.fill(255);
 			else
 				surface.fill(100);
-			surface.rect(levelButtons[i].x, levelButtons[i].y, levelButtons[i].width, levelButtons[i].height);
+			surface.rect(levelButtons[i].x, levelButtons[i].y, levelButtons[i].width, levelButtons[i].height, 60);
 			
 			surface.fill(0);
-			surface.textAlign(DrawingSurface.CENTER, DrawingSurface.CENTER);
 			surface.text("Level " + (i + 1), levelButtons[i].x + levelButtons[i].width / 2,
 					levelButtons[i].y + levelButtons[i].height / 2);
 		}
@@ -88,6 +82,7 @@ public class LevelScreen extends Screen {
 			if (levelButtons[i].contains(p) && i < gameScreen.getHighestLevel()) {
 				gameScreen.setupLevel(i + 1);
 				surface.switchScreen(ScreenSwitcher.GAME_SCREEN);
+				break;
 			}
 	}
 	

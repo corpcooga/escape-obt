@@ -56,7 +56,7 @@ public class MenuScreen extends Screen {
 		surface.background(backgroundImage);
 		surface.strokeWeight(5);
 		surface.textSize(80);
-		surface.textAlign(surface.CENTER, surface.CENTER);
+		surface.textAlign(DrawingSurface.CENTER, DrawingSurface.CENTER);
 		surface.text("Escape OBT", DRAWING_WIDTH / 2, 50);
 		surface.textSize(40);
 		
