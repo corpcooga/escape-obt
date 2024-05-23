@@ -5,7 +5,7 @@ import jay.jaysound.JayLayer;
 
 /** This class represents an enemy entity
  * @author Nikunj Govil, Yashasvi Chitela, Boon Chew
- * @version 5/20/24
+ * @version 5/22/24
  */
 public class Tickler extends Sprite {
 	
@@ -16,7 +16,8 @@ public class Tickler extends Sprite {
 	
 	private JayLayer sound;
 	private final int nearby = 0;
-
+	
+	
 	/** Constructs a Tickler
 	 * @param img image to use for this Tickler
 	 * @param level The Level of this Tickler
