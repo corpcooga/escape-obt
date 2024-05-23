@@ -36,6 +36,7 @@ public class Level extends Rectangle2D.Double {
 	
 	
 	/** Constructs a Level of a specified number
+	 * @param surface The GameScreen of this Level
 	 * @param numLevel
 	 */
 	public Level(GameScreen surface, int numLevel)
@@ -44,7 +45,8 @@ public class Level extends Rectangle2D.Double {
 		gameScreen = surface;
 	}
 	
-	/** Construct a level 1 Level
+	/** Constructs a level 1 Level
+	 * @param surface The GameScreen of this Level
 	 */
 	public Level(GameScreen surface)
 	{
@@ -72,7 +74,6 @@ public class Level extends Rectangle2D.Double {
 			highestLevel = numLevel;
 		
 		loadSprites();
-		
 		levelFragments = keyFragments.size();
 	}
 	
@@ -145,11 +146,15 @@ public class Level extends Rectangle2D.Double {
 		player.draw(marker);
 	}
 	
+	/** Switches to the death screen
+	 */
 	public void switchToDeathScreen()
 	{
 		gameScreen.switchToDeathScreen();
 	}
 	
+	/** Switches to the win screen
+	 */
 	public void switchToWinScreen()
 	{
 		gameScreen.switchToWinScreen();
@@ -264,6 +269,7 @@ public class Level extends Rectangle2D.Double {
 	}
 	
 	/**	Prints out a formatted version of this Level
+	 * @return a String containing a text version of this Level
 	 */
 	public String toString()
 	{
