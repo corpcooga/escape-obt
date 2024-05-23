@@ -37,4 +37,5 @@ public class InstructionScreen extends Screen {
 				+ "Click the PLAY button to enter the first level.\r\n"
 				+ "Click the LEVELS button to enter any level you have finished already.\r\n", 400, 250);
 	}
+	
 }
