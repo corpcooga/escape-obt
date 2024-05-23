@@ -12,6 +12,9 @@ public class InstructionScreen extends Screen {
 	private DrawingSurface surface;
 	
 	
+	/** Constructs a InstructionScreen
+	 * @param surface The DrawingSurface this InstructionScreen uses
+	 */
 	public InstructionScreen(DrawingSurface surface)
 	{
 		super(DrawingSurface.DRAWING_WIDTH, DrawingSurface.DRAWING_HEIGHT);
@@ -19,6 +22,8 @@ public class InstructionScreen extends Screen {
 	}
 	
 	
+	/** Draws this InstructionScreen
+	 */
 	public void draw()
 	{
 		if (surface.isPressed(KeyEvent.VK_ESCAPE)) {
