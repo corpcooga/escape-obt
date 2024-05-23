@@ -117,7 +117,7 @@ public class GameScreen extends Screen {
 			player.setSneak(false);
 			if (sneakFrame >= 300)
 				sneakFrame++;
-			if (sneakFrame >= 600)
+			if (sneakFrame >= 420)
 				sneakFrame = 0;
 		}
 		Point dir = calcDirection();
