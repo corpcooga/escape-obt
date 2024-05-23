@@ -40,7 +40,6 @@ public class WinScreen extends Screen {
 	public void setup() {
 		backgroundImage = surface.loadImage("resources/img/winscreen.gif");
 		backgroundImage.resize(DRAWING_WIDTH, DRAWING_HEIGHT);
-//		
 	}
 
 	/**
