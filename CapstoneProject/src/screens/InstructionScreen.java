@@ -18,7 +18,7 @@ public class InstructionScreen extends Screen {
 		this.surface = surface;
 	}
 	
-
+	
 	public void draw()
 	{
 		if (surface.isPressed(KeyEvent.VK_ESCAPE)) {
@@ -27,15 +27,18 @@ public class InstructionScreen extends Screen {
 		}
 		
 		surface.background(255);
+		surface.strokeWeight(5);
+		surface.textSize(80);
+		surface.textAlign(DrawingSurface.CENTER, DrawingSurface.CENTER);
 		surface.fill(0);
-		surface.textAlign(DrawingSurface.CENTER);
-		surface.textSize(15);
-		surface.text("[WASD] or [ARROW KEYS] - Move\r\n"
-				+ "[SHIFT] - Sneak: Move around much slower but entities will be less aware of you\r\n"
-				+ "[SPACE] - Attack: Swipe your sword (if equipped) in the direction you’re facing, killing entities\r\n"
-				+ "[ESC] - Exit to the main menu\r\n"
-				+ "Click the PLAY button to enter the first level.\r\n"
-				+ "Click the LEVELS button to enter any level you have finished already.\r\n", 400, 250);
+		surface.text("Instructions", DRAWING_WIDTH / 2, 50);
+		
+		surface.textSize(18);
+		surface.text("[WASD] or [ARROW KEYS] - Move the character\n"
+				+ "[SHIFT] - Sneak: Move slower, ticklers will be less aware of you\n"
+				+ "[SPACE] - Attack: Swipe your sword (if equipped) in the direction you’re facing, killing ticklers\n"
+				+ "[ESC] - Exit to the main menu", 
+				DRAWING_WIDTH / 2, DRAWING_HEIGHT / 2);
 	}
 	
 }
