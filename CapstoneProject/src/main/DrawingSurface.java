@@ -12,6 +12,8 @@ import screens.*;
  */
 public class DrawingSurface extends PApplet implements ScreenSwitcher {
 	
+	/** The width and height of the screen
+	 */
 	public static final int DRAWING_WIDTH = 800, DRAWING_HEIGHT = 800;
 	
 	private ArrayList<Integer> keys;
@@ -21,7 +23,7 @@ public class DrawingSurface extends PApplet implements ScreenSwitcher {
 	private float ratioX, ratioY;
 
 	
-	/** Constructs a DrawingSurface with multiple screens
+	/** Constructs a DrawingSurface with various screens
 	 */
 	public DrawingSurface()
 	{
@@ -40,7 +42,7 @@ public class DrawingSurface extends PApplet implements ScreenSwitcher {
 	}
 	
 	
-	/** Sets up the screen dimensions
+	/** Sets the screen dimensions
 	 */
 	public void settings()
 	{
@@ -81,7 +83,7 @@ public class DrawingSurface extends PApplet implements ScreenSwitcher {
 			key = 0;
 	}
 	
-	/** Removes all keys that aren't pressed
+	/** Removes all keys that aren't being pressed
 	 */
 	public void keyReleased()
 	{
