@@ -8,7 +8,7 @@ import processing.core.PApplet;
 
 /** This class represents the playable character
  * @author Boon Chew, Nikunj Govil, Yashasvi Chitela
- * @version 5/22/24
+ * @version 5/23/24
  */
 public class Player extends Sprite {
 	
