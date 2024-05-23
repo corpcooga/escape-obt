@@ -2,7 +2,7 @@ package sprites;
 
 /** This class represents the exit to a level
  * @author Nikunj Govil, Boon Chew, Yashasvi Chitela
- * @version 5/17/2024
+ * @version 5/22/2024
  */
 public class Exit extends Sprite {
 	
@@ -34,12 +34,17 @@ public class Exit extends Sprite {
 	}
 	
 	
+	/** Opens this Exit, changes its image
+	 */
 	public void open()
 	{
 		open = true;
 		setImage("resources/img/dooropen.gif");
 	}
 	
+	/** Determines if this Exit is open
+	 * @return true if this Exit is open, false otherwise
+	 */
 	public boolean isOpen()
 	{
 		return open;
