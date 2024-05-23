@@ -13,9 +13,9 @@ import processing.core.PImage;
 public class DeathScreen extends Screen {
 	
 	private DrawingSurface surface;
+	private GameScreen gameScreen;
 	private Rectangle restartButton, levelButton;
 	private PImage backgroundImage;
-	private GameScreen gameScreen;
 	
 
 	/** Constructs a DeathScreen
@@ -32,7 +32,7 @@ public class DeathScreen extends Screen {
 	}
 	
 	
-	/**Sets the DeathScreen to default settings
+	/** Sets the DeathScreen to default settings
 	 */
 	public void setup()
 	{
