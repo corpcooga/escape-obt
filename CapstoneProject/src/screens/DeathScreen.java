@@ -3,6 +3,7 @@ package screens;
 import java.awt.Point;
 import java.awt.Rectangle;
 
+import jay.jaysound.JayLayer;
 import main.DrawingSurface;
 import processing.core.PImage;
 
@@ -17,6 +18,11 @@ public class DeathScreen extends Screen {
 	private Rectangle restartButton, levelButton;
 	private PImage backgroundImage;
 	
+	private JayLayer sound;
+	
+	private final int laugh = 0;
+	private int laughFrame;
+	
 
 	/** Constructs a DeathScreen
 	 * @param surface The DrawingSurface this DeathScreen uses
@@ -29,6 +35,13 @@ public class DeathScreen extends Screen {
 		restartButton = new Rectangle(DRAWING_WIDTH / 2 - 100, 400, 200, 100);
 		levelButton = new Rectangle(DRAWING_WIDTH / 2 - 100, 550, 200, 100);
 		this.gameScreen = gameScreen;
+		laughFrame = 0;
+		
+		String[] soundEffects = new String[] {"ticklerlaugh.mp3"};
+		sound = new JayLayer("resources/sound/", "resources/sound/", false);
+		sound.addPlayList();
+		sound.addSoundEffects(soundEffects);
+		sound.changePlayList(0);
 	}
 	
 	
@@ -58,6 +71,9 @@ public class DeathScreen extends Screen {
 		surface.rect(levelButton.x, levelButton.y, levelButton.width, levelButton.height, 20);
 		surface.fill(0);
 		surface.text("EXIT", levelButton.x + levelButton.width / 2, levelButton.y + levelButton.height / 2);
+		
+		if (++laughFrame % 300 == 0)
+			sound.playSoundEffect(laugh);
 	}
 	
 	/** Executes a mouse press in this DeathScreen
