@@ -135,6 +135,8 @@ public class GameScreen extends Screen {
 		slideWorldToImage(player);
 	}
 	
+	/** Executes a key press in this GameScreen
+	 */
 	public void keyPressed()
 	{
 		if (weaponFrame == 0 && surface.key == KeyEvent.VK_SPACE && !surface.isPressed(KeyEvent.VK_SPACE)) {
@@ -158,26 +160,39 @@ public class GameScreen extends Screen {
 		return new Point(dirX, dirY);
 	}
 	
+	/** Switches to the death screen
+	 */
 	public void switchToDeathScreen() 
 	{
 		surface.switchScreen(ScreenSwitcher.DEATH_SCREEN);
 	}
 	
+	/** Switches to the win screen
+	 */
 	public void switchToWinScreen() 
 	{
 		surface.switchScreen(ScreenSwitcher.WIN_SCREEN);
 	}
 	
+	/** Sets up a level of the specified number
+	 * @param numLevel The level to set up
+	 */
 	public void setupLevel(int numLevel)
 	{
 		level.setupLevel(numLevel);
 	}
 	
+	/** Gets the number of the current level
+	 * @return The number of the current level
+	 */
 	public int getLevel()
 	{
 		return level.getLevel();
 	}
 	
+	/** Gets the number of the highest level reached
+	 * @return The number of the highest level reached
+	 */
 	public int getHighestLevel()
 	{
 		return level.getHighestLevel();
