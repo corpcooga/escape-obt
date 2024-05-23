@@ -26,8 +26,8 @@ public class DeathScreen extends Screen {
 		super(DrawingSurface.DRAWING_WIDTH, DrawingSurface.DRAWING_HEIGHT);
 		this.surface = surface;
 		
-		restartButton = new Rectangle(800 / 2 - 100, 600 / 2 - 50, 200, 100);
-		levelButton = new Rectangle(800 / 2 - 100, 500, 200, 100);
+		restartButton = new Rectangle(DRAWING_WIDTH / 2 - 100, 400, 200, 100);
+		levelButton = new Rectangle(DRAWING_WIDTH / 2 - 100, 550, 200, 100);
 		this.gameScreen = gameScreen;
 	}
 	
@@ -45,20 +45,19 @@ public class DeathScreen extends Screen {
 	public void draw()
 	{
 		surface.background(backgroundImage);
+		surface.strokeWeight(5);
+		surface.textSize(40);
+		surface.textAlign(DrawingSurface.CENTER, DrawingSurface.CENTER);
 		
 		surface.fill(255);
-		surface.rect(restartButton.x, restartButton.y, restartButton.width, restartButton.height, 10, 10, 10, 10);
+		surface.rect(restartButton.x, restartButton.y, restartButton.width, restartButton.height, 20);
 		surface.fill(0);
-		String str = "Restart";
-		float w = surface.textWidth(str);
-		surface.text(str, restartButton.x + restartButton.width / 2 - w / 2, restartButton.y + restartButton.height / 2);
+		surface.text("RESTART", restartButton.x + restartButton.width / 2, restartButton.y + restartButton.height / 2);
 		
 		surface.fill(255);
-		surface.rect(levelButton.x, levelButton.y, levelButton.width, levelButton.height, 10, 10, 10, 10);
+		surface.rect(levelButton.x, levelButton.y, levelButton.width, levelButton.height, 20);
 		surface.fill(0);
-		str = "LEVELS";
-		w = surface.textWidth(str);
-		surface.text(str, levelButton.x + levelButton.width / 2 - w / 2, levelButton.y + levelButton.height / 2);
+		surface.text("EXIT", levelButton.x + levelButton.width / 2, levelButton.y + levelButton.height / 2);
 	}
 	
 	/** Executes a mouse press in this MenuScreen
@@ -70,6 +69,6 @@ public class DeathScreen extends Screen {
 			gameScreen.setupLevel(gameScreen.getLevel());
 			surface.switchScreen(ScreenSwitcher.GAME_SCREEN);
 		} else if (levelButton.contains(p))
-			surface.switchScreen(ScreenSwitcher.LEVEL_SCREEN);
+			surface.switchScreen(ScreenSwitcher.MENU_SCREEN);
 	}
 }
