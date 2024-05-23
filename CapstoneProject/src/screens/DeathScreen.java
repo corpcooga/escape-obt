@@ -68,7 +68,9 @@ public class DeathScreen extends Screen {
 		if (restartButton.contains(p)) {
 			gameScreen.setupLevel(gameScreen.getLevel());
 			surface.switchScreen(ScreenSwitcher.GAME_SCREEN);
-		} else if (levelButton.contains(p))
+		} else if (levelButton.contains(p)) {
+			gameScreen.setupLevel(gameScreen.getLevel());
 			surface.switchScreen(ScreenSwitcher.MENU_SCREEN);
+		}
 	}
 }
