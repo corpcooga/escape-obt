@@ -2,7 +2,7 @@ package screens;
 
 /** This class is used to switch through the different screens
  * @author Boon Chew, Nikunj Govil, Yashasvi Chitela
- * @version 5/13/24
+ * @version 5/22/24
  */
 public interface ScreenSwitcher
 {
@@ -21,6 +21,9 @@ public interface ScreenSwitcher
 	/** The win screen
 	 */
 	public static final int WIN_SCREEN = 4;
+	/** The instructions screen
+	 */
+	public static final int INSTRUCTION_SCREEN = 5;
 
 	
 	/** Changes the current Screen

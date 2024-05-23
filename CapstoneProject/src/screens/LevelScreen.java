@@ -2,6 +2,7 @@ package screens;
 
 import java.awt.Point;
 import java.awt.Rectangle;
+import java.awt.event.KeyEvent;
 
 import main.DrawingSurface;
 import processing.core.PImage;
@@ -46,7 +47,7 @@ public class LevelScreen extends Screen {
 	}
 	
 	
-	/** Sets the LevelScreen to default settings
+	/** Sets this LevelScreen to default settings
 	 */
 	public void setup()
 	{
@@ -54,8 +55,15 @@ public class LevelScreen extends Screen {
 		backgroundImage.resize(DRAWING_WIDTH, DRAWING_HEIGHT);
 	}
 	
+	/** Draws this LevelScreen
+	 */
 	public void draw()
 	{
+		if (surface.isPressed(KeyEvent.VK_ESCAPE)) {
+			surface.switchScreen(ScreenSwitcher.MENU_SCREEN);
+			return;
+		}
+		
 		surface.background(backgroundImage);
 
 		// Draw level buttons

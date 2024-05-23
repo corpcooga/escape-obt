@@ -32,7 +32,7 @@ public class DeathScreen extends Screen {
 	}
 	
 	
-	/** Sets the DeathScreen to default settings
+	/** Sets this DeathScreen to default settings
 	 */
 	public void setup()
 	{

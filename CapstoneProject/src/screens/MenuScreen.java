@@ -14,7 +14,7 @@ import processing.core.PImage;
 public class MenuScreen extends Screen {
 	
 	private DrawingSurface surface;
-	private Rectangle playButton, levelButton;
+	private Rectangle playButton, levelButton, instructionButton;
 	private PImage backgroundImage;
 	
 	private JayLayer sound;
@@ -28,8 +28,9 @@ public class MenuScreen extends Screen {
 		super(DrawingSurface.DRAWING_WIDTH, DrawingSurface.DRAWING_HEIGHT);
 		this.surface = surface;
 		
-		playButton = new Rectangle(DRAWING_WIDTH / 2 - 100, 300, 200, 100);
-		levelButton = new Rectangle(DRAWING_WIDTH / 2 - 100, 500, 200, 100);
+		playButton = new Rectangle(DRAWING_WIDTH / 2 - 100, 200, 200, 100);
+		levelButton = new Rectangle(DRAWING_WIDTH / 2 - 100, 350, 200, 100);
+		instructionButton = new Rectangle(DRAWING_WIDTH / 2 - 150, 500, 300, 100);
 
 		String song = new String("mainbgmusic.mp3");
 		sound = new JayLayer("resources/sound/", "resources/sound/", false);
@@ -37,9 +38,9 @@ public class MenuScreen extends Screen {
 		sound.addSong(0, song);
 		sound.changePlayList(0);
 	}
-
 	
-	/** Sets the MenuScreen to default settings
+	
+	/** Sets this MenuScreen to default settings
 	 */
 	public void setup()
 	{
@@ -68,17 +69,26 @@ public class MenuScreen extends Screen {
 		surface.rect(levelButton.x, levelButton.y, levelButton.width, levelButton.height, 20);
 		surface.fill(0);
 		surface.text("LEVELS", levelButton.x + levelButton.width / 2, levelButton.y + levelButton.height / 2);
+		
+		surface.fill(255);
+		surface.rect(instructionButton.x, instructionButton.y, instructionButton.width, instructionButton.height, 20);
+		surface.fill(0);
+		surface.text("INSTRUCTIONS", instructionButton.x + instructionButton.width / 2, instructionButton.y + instructionButton.height / 2);
 	}
 
 	/** Executes a mouse press in this MenuScreen
 	 */
-	public void mousePressed() {
+	public void mousePressed()
+	{
 		Point p = surface.actualCoordinatesToAssumed(new Point(surface.mouseX, surface.mouseY));
 		if (playButton.contains(p)) {
 			surface.switchScreen(ScreenSwitcher.GAME_SCREEN);
 			sound.stopSong();
 		} else if (levelButton.contains(p)) {
 			surface.switchScreen(ScreenSwitcher.LEVEL_SCREEN);
+			sound.stopSong();
+		} else if (instructionButton.contains(p)) {
+			surface.switchScreen(ScreenSwitcher.INSTRUCTION_SCREEN);
 			sound.stopSong();
 		}
 	}
