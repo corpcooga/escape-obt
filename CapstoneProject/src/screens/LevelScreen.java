@@ -19,6 +19,10 @@ public class LevelScreen extends Screen {
 	private PImage backgroundImage;
 	
 	
+	/** Constructs a LevelScreen
+	 * @param surface The DrawingSurface this LevelScreen uses
+	 * @param screen The GameScreen this LevelScreen uses
+	 */
 	public LevelScreen(DrawingSurface surface, GameScreen screen)
 	{
 		super(DrawingSurface.DRAWING_WIDTH, DrawingSurface.DRAWING_HEIGHT);
@@ -75,6 +79,8 @@ public class LevelScreen extends Screen {
 		}
 	}
 	
+	/** Executes a mouse press in this LevelScreen
+	 */
 	public void mousePressed()
 	{
 		Point p = surface.actualCoordinatesToAssumed(new Point(surface.mouseX,surface.mouseY));
