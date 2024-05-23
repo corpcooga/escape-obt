@@ -19,8 +19,6 @@ public class LevelScreen extends Screen {
 	private Rectangle[] levelButtons;
 	private PImage backgroundImage;
 	
-	private JayLayer sound;
-	
 	/** Constructs a LevelScreen
 	 * @param surface The DrawingSurface this LevelScreen uses
 	 * @param screen The GameScreen this LevelScreen uses
@@ -31,12 +29,6 @@ public class LevelScreen extends Screen {
 		this.surface = surface;
 		gameScreen = screen;
 		levelButtons = new Rectangle[5];
-		
-		String song = new String("levelscreenmusic.mp3");
-		sound = new JayLayer("resources/sound/", "resources/sound/", false);
-		sound.addPlayList();
-		sound.addSong(0, song);
-		sound.changePlayList(0);
         
 		for (int i = 0; i < 3; i++) {
         		int x = DRAWING_WIDTH / 2 + (i - 1) * 220 - 100;
@@ -55,7 +47,6 @@ public class LevelScreen extends Screen {
 	{
 		backgroundImage = surface.loadImage("resources/img/levelscreen.gif");
 		backgroundImage.resize(DRAWING_WIDTH, DRAWING_HEIGHT);
-		sound.nextSong();
 	}
 	
 	/** Draws this LevelScreen
@@ -64,7 +55,6 @@ public class LevelScreen extends Screen {
 	{
 		if (surface.isPressed(KeyEvent.VK_ESCAPE)) {
 			surface.switchScreen(ScreenSwitcher.MENU_SCREEN);
-			sound.stopSong();
 			return;
 		}
 		
@@ -97,7 +87,6 @@ public class LevelScreen extends Screen {
 		for (int i = 0; i < levelButtons.length; i++)
 			if (levelButtons[i].contains(p) && i < gameScreen.getHighestLevel()) {
 				gameScreen.setupLevel(i + 1);
-				sound.stopSong();
 				surface.switchScreen(ScreenSwitcher.GAME_SCREEN);
 				break;
 			}
