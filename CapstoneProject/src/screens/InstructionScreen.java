@@ -1,9 +1,6 @@
 package screens;
 
-import java.awt.Point;
-import java.awt.Rectangle;
 import java.awt.event.KeyEvent;
-
 import main.DrawingSurface;
 
 /** This class represents the instructions screen
@@ -13,8 +10,6 @@ import main.DrawingSurface;
 public class InstructionScreen extends Screen {
 
 	private DrawingSurface surface;
-	private int width = 250;
-	private int height = 150;
 	
 	
 	public InstructionScreen(DrawingSurface surface)
@@ -33,13 +28,13 @@ public class InstructionScreen extends Screen {
 		
 		surface.background(255);
 		surface.fill(0);
-		surface.textAlign(surface.CENTER);
+		surface.textAlign(DrawingSurface.CENTER);
 		surface.textSize(15);
 		surface.text("[WASD] or [ARROW KEYS] - Move\r\n"
 				+ "[SHIFT] - Sneak: Move around much slower but entities will be less aware of you\r\n"
 				+ "[SPACE] - Attack: Swipe your sword (if equipped) in the direction you’re facing, killing entities\r\n"
 				+ "[ESC] - Exit to the main menu\r\n"
 				+ "Click the PLAY button to enter the first level.\r\n"
-				+ "Click the LEVELS button to enter any level you have finished already.\r\n", width + 150, height + 100);
+				+ "Click the LEVELS button to enter any level you have finished already.\r\n", 400, 250);
 	}
 }
