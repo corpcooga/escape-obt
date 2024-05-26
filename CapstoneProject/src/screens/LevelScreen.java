@@ -4,7 +4,6 @@ import java.awt.Point;
 import java.awt.Rectangle;
 import java.awt.event.KeyEvent;
 
-import jay.jaysound.JayLayer;
 import main.DrawingSurface;
 import processing.core.PImage;
 
