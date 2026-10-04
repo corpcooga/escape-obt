@@ -4,9 +4,8 @@ A collaborative 2D top-down stealth and survival dungeon crawler built from scra
 
 ---
 
-## Gameplay Demonstration
+## Gameplay Documentation
 * [Watch Gameplay Demo Video](https://drive.google.com/file/d/1qU-lls3OacRDlRyZmbVWrs8V05SQZ_I_/view?usp=sharing)
-* UML Diagram
 <img width="100%" alt="image" src="https://github.com/user-attachments/assets/ad298821-f08e-432d-9237-035eb8452cc4" />
 
 
